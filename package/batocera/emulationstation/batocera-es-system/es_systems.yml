@@ -12,6 +12,7 @@ snes:
       snes9x:      { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X] }
       bsnes:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BSNES] }
       bsnes_hd:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BSNES_HD] }
+      mesens:     { requireAnyOf:  [BR2_PACKAGE_LIBRETRO_MESENS] }
 
 snes-msu1:
   name:       Super Disc System (MSU1)
@@ -218,6 +219,7 @@ gbc:
       gambatte: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GAMBATTE] }
       mgba:     { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MGBA] }
       vba-m:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_VBA_M] }
+      mesens:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 
 gb:
   name:       Game Boy
@@ -230,6 +232,17 @@ gb:
       gambatte: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GAMBATTE] }
       mgba:     { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MGBA] }
       vba-m:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_VBA_M] }
+      mesens:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
+
+sgb:
+  name:       Super Game Boy
+  manufacturer: Nintendo
+  release: 1994
+  hardware: console
+  extensions: [gb, gbc, zip, 7z]
+  emulators:
+    libretro:
+      mesens:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 
 gbc2players:
   name:       Game Boy Color (2 players)
@@ -1525,7 +1538,8 @@ satellaview:
   group:      snes
   emulators:
     libretro:
-      snes9x: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X] }
+      snes9x:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X] }
+      mesens: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 
 sufami:
   name:       SuFami Turbo
