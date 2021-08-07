@@ -117,33 +117,9 @@ libretro:
                     "192+":  192
                     "512":   512
                     "576+":  576
-    mesens:
+    mesen-s:
       features: [netplay, rewind, autosave, latency_reduction, padtokeyboard]
       cfeatures:
-            mesen-s_aspect_ratio:
-                prompt:      ASPECT RATIO
-                description: Adjust the aspect ratio
-                choices:
-                    "Auto":          Auto
-                    "No Stretching": No Stretching
-                    "NTSC":          NTSC
-                    "PAL":           PAL
-                    "4:3":           4:3
-                    "16:9":          16:9
-            mesen-s_overscan_vertical:
-                prompt:      VERTICAL OVERSCAN
-                description: Crop vertical overscan
-                choices:
-                    "None": None
-                    "8px":  8px
-                    "16px": 16px
-            mesen-s_overscan_horizontal:
-                prompt:      HORIZONTAL OVERSCAN
-                description: Crop horizontal overscan
-                choices:
-                    "None": None
-                    "8px":  8px
-                    "16px": 16px
             mesen-s_ntsc_filter:
                 prompt:      NTSC FILTER
                 description: Optional video filtering
@@ -155,13 +131,13 @@ libretro:
                     "Monochrome (Blargg)": Monochrome (Blargg)
             mesen-s_blend_high_res:
                 prompt:      BLEND HIGH-RES MODES  
-                description: Enable pseudo-transparency
+                description: Enable pseudo-transparency, may cause blurriness
                 choices:
                     "On":  enabled
                     "Off": disabled
             mesen-s_cubic_interpolation:
                 prompt:      CUBIC INTERPOLATION (AUDIO)
-                description: Change the audio filtering
+                description: Change the audio filtering, may improve sound quality
                 choices:
                     "On":  enabled
                     "Off": disabled
@@ -169,7 +145,6 @@ libretro:
                 prompt:      GAME BOY MODEL
                 description: Manually set the Game Boy type
                 choices:
-                    "Auto":           Auto
                     "Game Boy":       Game Boy
                     "Game Boy Color": Game Boy Color
                     "Super Game Boy": Super Game Boy
@@ -179,13 +154,6 @@ libretro:
                 choices:
                     "On":  enabled
                     "Off": disabled
-            mesen-s_region:
-                prompt:      REGION
-                description: SNES Region
-                choices:
-                    "Auto": Auto
-                    "NTSC": NTSC
-                    "PAL":  PAL
             mesen-s_overclock:
                 prompt:      OVERCLOCK
                 description: Overclock the SNES CPU
@@ -211,13 +179,6 @@ libretro:
                     "400%":  400%
                     "500%":  500%
                     "1000%": 1000%
-            mesen-s_ramstate:
-                prompt:      POWER-ON RAM STATE
-                description: How the SNES' RAM will be initialized
-                choices:
-                    "Random Values": Random Values (Default)
-                    "All 0s":        All 0s
-                    "All 1s":        All 1s
     citra:
       features: [rewind, autosave, latency_reduction]
     daphne:

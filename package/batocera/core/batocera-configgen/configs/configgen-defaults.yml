@@ -315,7 +315,7 @@ sg1000:
   core:     genesisplusgx
 sgb:
   emulator: libretro
-  core:     mesens
+  core:     mesen-s
 solarus:
   emulator: solarus
   core:     solarus

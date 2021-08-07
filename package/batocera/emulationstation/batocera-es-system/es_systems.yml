@@ -242,7 +242,7 @@ sgb:
   extensions: [gb, gbc, zip, 7z]
   emulators:
     libretro:
-      mesens:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
+      mesen-s:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 
 gbc2players:
   name:       Game Boy Color (2 players)
