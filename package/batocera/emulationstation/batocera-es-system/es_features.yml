@@ -1357,6 +1357,14 @@ libretro:
                     "Off": ON
                     "On":  OFF
       systems:
+            sgb:
+                cfeatures:
+                    sgb_borders:
+                        prompt:      SUPER GB BORDERS
+                        description: Only for Super Game Boy enhanced games
+                        choices:
+                            "Off": OFF
+                            "On":  ON
             gb:
                 cfeatures:
                     sgb_borders:

@@ -790,8 +790,8 @@ def generateCoreSettings(coreSettings, system, rom):
             coreSettings.save('mgba_skip_bios', '"ON"')
         else:
             coreSettings.save('mgba_skip_bios', '"OFF"')
-
-        if (system.name != 'gba'):
+        
+        if (system.name != 'gba') and (system.name != 'sgb'):
             # GB / GBC: Use Super Game Boy borders
             if system.isOptSet('sgb_borders') and system.config['sgb_borders'] == "True":
                 coreSettings.save('mgba_sgb_borders', '"ON"')
@@ -802,7 +802,7 @@ def generateCoreSettings(coreSettings, system, rom):
                 coreSettings.save('mgba_color_correction', system.config['color_correction'])
             else:
                 coreSettings.save('mgba_color_correction', '"OFF"')
-
+        
         if (system.name == 'gba'):
             # GBA: Solar sensor level, Boktai 1: The Sun is in Your Hand
             if system.isOptSet('solar_sensor_level'):
@@ -814,6 +814,18 @@ def generateCoreSettings(coreSettings, system, rom):
                 coreSettings.save('mgba_frameskip', system.config['frameskip_mgba'])
             else:
                 coreSettings.save('mgba_frameskip', '"0"')
+        
+        # Force Super Game Boy mode for SGB system, auto for all others
+        # No current option to override - add if needed.
+        if (system.name == 'sgb'):
+            coreSettings.save('mgba_gb_model', '"Super Game Boy"')
+            # Default border to on for SGB
+            if system.isOptSet('sgb_borders') and system.config['sgb_borders'] == "OFF":
+                coreSettings.save('mgba_sgb_borders', '"OFF"')
+            else:
+                coreSettings.save('mgba_sgb_borders', '"ON"')
+        else:
+            coreSettings.save('mgba_gb_model', '"Autodetect"')
 
     if (system.config['core'] == 'vba-m'):
         # GB / GBC / GBA: Auto select fine hardware mode
