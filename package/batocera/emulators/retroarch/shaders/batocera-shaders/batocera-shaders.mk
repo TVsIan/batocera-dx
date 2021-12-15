@@ -54,7 +54,7 @@ define BATOCERA_SHADERS_INSTALL_TARGET_CMDS
 	fi
 
 	# sets
-	for set in retro scanlines enhanced curvature zfast flatten-glow mega-bezel; do \
+	for set in retro scanlines enhanced curvature zfast flatten-glow mega-bezel mega-bezel-advanced mega-bezel-potato; do \
 		mkdir -p $(TARGET_DIR)/usr/share/batocera/shaders/configs/$$set; \
 		cp $(BATOCERA_SHADERS_DIRIN)/$$set/rendering-defaults.yml     $(TARGET_DIR)/usr/share/batocera/shaders/configs/$$set/; \
 		if test -e $(BATOCERA_SHADERS_DIRIN)/$$set/rendering-defaults-$(BATOCERA_SHADERS_SYSTEM).yml; then \
@@ -62,6 +62,9 @@ define BATOCERA_SHADERS_INSTALL_TARGET_CMDS
 		fi \
 	done
 
+	# for future downloaded shader use
+	mkdir -p $(TARGET_DIR)/userdata/shaders
+	ln -s $(TARGET_DIR)/userdata/shaders $(TARGET_DIR)/usr/share/batocera/shaders/downloaded
 endef
 
 $(eval $(generic-package))
