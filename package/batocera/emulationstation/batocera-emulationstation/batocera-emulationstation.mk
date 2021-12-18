@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-BATOCERA_EMULATIONSTATION_VERSION = 78b5c17a49325a8abca31b805d0a3f4875423fdf
+BATOCERA_EMULATIONSTATION_VERSION = 4fa6f46d9c095fec935c9e4f7c97a34470c2ecc6
 BATOCERA_EMULATIONSTATION_SITE = https://github.com/batocera-linux/batocera-emulationstation
 BATOCERA_EMULATIONSTATION_SITE_METHOD = git
 BATOCERA_EMULATIONSTATION_LICENSE = MIT
@@ -79,11 +79,6 @@ define BATOCERA_EMULATIONSTATION_RPI_FIXUP
 	$(SED) 's|.{CMAKE_FIND_ROOT_PATH}/usr|$(STAGING_DIR)/usr|g'    $(@D)/CMakeLists.txt
 endef
 
-define BATOCERA_EMULATIONSTATION_EXTERNAL_POS
-	cp $(STAGING_DIR)/usr/share/batocera-es-system/es_external_translations.h $(@D)/es-app/src
-	for P in $(STAGING_DIR)/usr/share/batocera-es-system/locales/*; do if test -e $$P/batocera-es-system.po; then cat $$P/batocera-es-system.po >> $(@D)/locale/lang/$$(basename $$P)/LC_MESSAGES/emulationstation2.po; fi; done
-endef
-
 define BATOCERA_EMULATIONSTATION_RESOURCES
 	$(INSTALL) -m 0755 -d $(TARGET_DIR)/usr/share/emulationstation/resources/help
 	$(INSTALL) -m 0755 -d $(TARGET_DIR)/usr/share/emulationstation/resources/flags
@@ -149,7 +144,6 @@ define BATOCERA_EMULATIONSTATION_BOOT
 endef
 
 BATOCERA_EMULATIONSTATION_PRE_CONFIGURE_HOOKS += BATOCERA_EMULATIONSTATION_RPI_FIXUP
-BATOCERA_EMULATIONSTATION_PRE_CONFIGURE_HOOKS += BATOCERA_EMULATIONSTATION_EXTERNAL_POS
 BATOCERA_EMULATIONSTATION_POST_INSTALL_TARGET_HOOKS += BATOCERA_EMULATIONSTATION_RESOURCES
 BATOCERA_EMULATIONSTATION_POST_INSTALL_TARGET_HOOKS += BATOCERA_EMULATIONSTATION_BOOT
 
