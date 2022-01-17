@@ -4428,14 +4428,24 @@ msgstr "New 3DSには、より高速なプロセッサ、ZL/ZR ボタン、Cス�
 #. TRANSLATION: daphne
 msgctxt "game_options"
 msgid "Not all games support Stretch, depending on the video files."
+<<<<<<< Updated upstream
 msgstr "引き伸ばしは、すべてのゲームに対応しているわけではありません"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
 msgid "Original"
+<<<<<<< Updated upstream
 msgstr "オリジナル"
 
 #. TRANSLATION: daphne, openbor, xemu, demul
+=======
+msgstr ""
+
+#. TRANSLATION: daphne, openbor, xemu
+>>>>>>> Stashed changes
 msgctxt "game_options"
 msgid "Stretch"
 msgstr "引き伸ばし"
@@ -5747,6 +5757,7 @@ msgstr "開始時にオン"
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "MAC MODEL"
+<<<<<<< Updated upstream
 msgstr "MAC モデル"
 
 #. TRANSLATION: mame/pcsx2
@@ -5783,66 +5794,157 @@ msgstr "Mac II (カラー, 2 HD フロッピー/CD/HDD)"
 msgctxt "game_options"
 msgid "Mac IIx (Color, 2 HD Floppies/CD/HDD)"
 msgstr "Mac IIx (カラー, 2 HD フロッピー/CD/HDD)"
+=======
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac 128k (128kb RAM, 2 LD Floppies)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac 512k (512kb RAM, 2 LD Floppies)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac Plus (4Mb RAM, 2 LD Floppies/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac SE (4Mb RAM, 2 LD Floppies/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac Classic (4Mb RAM, 2 HD Floppies/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac II (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac LC 3 (4Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "Disk"
+<<<<<<< Updated upstream
 msgstr "ディスク"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "CD"
+<<<<<<< Updated upstream
 msgstr "CD"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "Hard Drive"
+<<<<<<< Updated upstream
 msgstr "ハードディスク"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "BOOT DISK"
+<<<<<<< Updated upstream
 msgstr "起動ディスク"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "Select a boot disk or hard drive if needed"
+<<<<<<< Updated upstream
 msgstr "起動ディスクまたはハードディスクを選択します"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "System 3.0 (LD Floppy)"
+<<<<<<< Updated upstream
 msgstr "System 3.0 (LD フロッピー)"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "System 6.0.8 (LD Floppy)"
+<<<<<<< Updated upstream
 msgstr "System 6.0.8 (LD フロッピー)"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "System 7.0.1 (HD Floppy)"
+<<<<<<< Updated upstream
 msgstr "System 7.0.1 (HD フロッピー)"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "System 7.5 (HD Floppy)"
+<<<<<<< Updated upstream
 msgstr "System 7.5 (HD フロッピー)"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "System 6.0.8 (Hard Drive)"
+<<<<<<< Updated upstream
 msgstr "System 6.0.8 (ハードディスク)"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "System 7.0.1 (Hard Drive)"
+<<<<<<< Updated upstream
 msgstr "System 7.0.1 (ハードディスク)"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
 msgid "System 7.5.5 (Hard Drive)"
+<<<<<<< Updated upstream
 msgstr "System 7.5.5 (ハードディスク)"
+=======
+msgstr ""
+>>>>>>> Stashed changes
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"

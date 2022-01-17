@@ -4460,7 +4460,11 @@ msgctxt "game_options"
 msgid "Original"
 msgstr ""
 
+<<<<<<< Updated upstream
 #. TRANSLATION: daphne, openbor, xemu, demul
+=======
+#. TRANSLATION: daphne, openbor, xemu
+>>>>>>> Stashed changes
 msgctxt "game_options"
 msgid "Stretch"
 msgstr "Растянуть"
@@ -5789,37 +5793,70 @@ msgstr ""
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
+<<<<<<< Updated upstream
 msgid "Mac 128k (2 LD Floppies)"
+=======
+msgid "Mac 128k (128kb RAM, 2 LD Floppies)"
+>>>>>>> Stashed changes
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
+<<<<<<< Updated upstream
 msgid "Mac 512k (2 LD Floppies)"
+=======
+msgid "Mac 512k (512kb RAM, 2 LD Floppies)"
+>>>>>>> Stashed changes
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
+<<<<<<< Updated upstream
 msgid "Mac Plus (2 LD Floppies/HDD)"
+=======
+msgid "Mac Plus (4Mb RAM, 2 LD Floppies/HDD)"
+>>>>>>> Stashed changes
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
+<<<<<<< Updated upstream
 msgid "Mac SE (2 LD Floppies/HDD)"
+=======
+msgid "Mac SE (4Mb RAM, 2 LD Floppies/HDD)"
+>>>>>>> Stashed changes
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
+<<<<<<< Updated upstream
 msgid "Mac Classic (2 HD Floppies/HDD)"
+=======
+msgid "Mac Classic (4Mb RAM, 2 HD Floppies/HDD)"
+>>>>>>> Stashed changes
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
+<<<<<<< Updated upstream
 msgid "Mac II (Color, 2 HD Floppies/CD/HDD)"
+=======
+msgid "Mac II (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+>>>>>>> Stashed changes
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
 msgctxt "game_options"
+<<<<<<< Updated upstream
 msgid "Mac IIx (Color, 2 HD Floppies/CD/HDD)"
+=======
+msgid "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac LC 3 (4Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+>>>>>>> Stashed changes
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
