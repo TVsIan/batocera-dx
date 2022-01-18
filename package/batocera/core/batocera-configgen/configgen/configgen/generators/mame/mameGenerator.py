@@ -213,22 +213,24 @@ class MameGenerator(Generator):
 
                 # Alternate ROM type for systems with mutiple media (ie cassette & floppy)
                 # Mac will auto change floppy 1 to 2 if a boot disk is enabled
-                if system.isOptSet("altromtype") and system.name != "macintosh":
-                    commandArray += [ "-" + system.config["altromtype"] ]
-                elif system.name == "macintosh" and system.isOptSet("bootdisk"):
-                    if system.isOptSet("altromtype") and system.config["bootdisk"] in [ "macos30", "macos608", "macos701", "macos75" ]:
-                        if system.config["altromtype"] == "flop1":
-                            commandArray += [ "-flop2" ]
+                if system.name != "macintosh":
+                    if system.isOptSet("altromtype"):
+                        commandArray += [ "-" + system.config["altromtype"] ]
+                    else:
+                        commandArray += [ "-" + messRomType[messMode] ]
+                else:
+                    if system.isOptSet("bootdisk"):
+                        if ((system.isOptSet("altromtype") and system.config["altromtype"] == "flop1") or not system.isOptSet("altromtype")) and system.config["bootdisk"] in [ "macos30", "macos608", "macos701", "macos75" ]:
+                            commandArray += [ "-flop2" ]                            
+                        elif system.isOptSet("altromtype"):
+                            commandArray += [ "-" + system.config["altromtype"] ]
                         else:
                             commandArray += [ "-" + messRomType[messMode] ]
                     else:
-                        if system.config["bootdisk"] in [ "macos30", "macos608", "macos701", "macos75" ]:
-                            commandArray += [ "-flop2" ]
+                        if system.isOptSet("altromtype"):
+                            commandArray += [ "-" + system.config["altromtype"] ]
                         else:
                             commandArray += [ "-" + messRomType[messMode] ]
-                else:
-                    commandArray += [ "-" + messRomType[messMode] ]
-                
                 # Use the full filename for MESS ROMs
                 commandArray += [ rom ]
         
