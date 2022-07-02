@@ -58,6 +58,7 @@ usage() {
     echo "${1} windows play    	     <game>.wtgz"            >&2
     echo "${1} windows install 	     <game>.iso"             >&2
     echo "${1} windows install 	     <game>.exe"             >&2
+    echo "${1} windows create        <game>"                 >&2
     echo "${1} windows tricks  	     <game>.wine directplay" >&2
     echo "${1} windows wine2squashfs <game.wine>"            >&2
     echo "${1} windows wine2winetgz  <game.wine>"            >&2
@@ -652,6 +653,14 @@ install_iso() {
     rmdir "${GAMEISOMOUNT}"
 }
 
+create_empty() {
+    GAMENAME=$1
+    GAMEDIR=$(dirname "${GAMENAME}")
+    WINEPOINT=$(echo "${G_ROMS_DIR}/${GAMENAME}" | sed -e s+"\.exe$"++)".wine"
+
+    createWineDirectory "${WINEPOINT}"
+}
+
 wine2squashfs() {
     GAMENAME=$1
     BASEGAMENAME=$(basename "${GAMENAME}")
@@ -739,6 +748,10 @@ case "${ACTION}" in
 		cleanAndExit 1
 	esac
 	;;
+    "create")
+    GAMENAME=$1
+    create_empty "${GAMENAME}" || cleanAndExit 1
+    ;;
     "tricks")
 	GAMENAME=$1
 	TRICK=$2
