@@ -66,7 +66,9 @@ class Rpcs3Generator(Generator):
         # Add Node Miscellaneous
         if "Miscellaneous" not in rpcs3ymlconfig:
             rpcs3ymlconfig["Miscellaneous"] = {}
-        
+        if "Input/Output" not in rpcs3ymlconfig:
+            rpcs3ymlconfig["Input/Output"] = {}
+
         # [Core]
         # Set the PPU Decoder based on config
         if system.isOptSet("ppudecoder"):
@@ -148,6 +150,12 @@ class Rpcs3Generator(Generator):
         rpcs3ymlconfig["Miscellaneous"]['Exit RPCS3 when process finishes'] = True
         rpcs3ymlconfig["Miscellaneous"]['Start games in fullscreen mode'] = True
 
+        # input/output
+        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns') and len(guns) > 0:
+            rpcs3ymlconfig["Input/Output"]["Move"] = "Gun"
+            rpcs3ymlconfig["Input/Output"]["Camera"] = "Fake"
+            rpcs3ymlconfig["Input/Output"]["Camera type"] = "PS Eye"
+
         with open(batoceraFiles.rpcs3config, 'w') as file:
             documents = yaml.safe_dump(rpcs3ymlconfig, file, default_flow_style=False)
         if rom.endswith(".psn"):
@@ -160,7 +168,7 @@ class Rpcs3Generator(Generator):
             romName = rom + '/PS3_GAME/USRDIR/EBOOT.BIN'
         commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], romName]
 
-        if system.isOptSet("gui") and system.getOptBoolean("gui") == False:
+        if not (system.isOptSet("gui") and system.getOptBoolean("gui")):
             commandArray.append("--no-gui")
 
         # firmware not installed and available : instead of starting the game, install it

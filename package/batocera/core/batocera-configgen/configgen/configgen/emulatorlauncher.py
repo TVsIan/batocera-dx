@@ -23,6 +23,7 @@ from sys import exit
 import subprocess
 import batoceraFiles
 import utils.videoMode as videoMode
+import utils.gunsUtils as gunsUtils
 ############################
 from utils.logger import get_logger
 eslog = get_logger(__name__)
@@ -144,6 +145,10 @@ def start_rom(args, maxnbplayers, rom, romConfiguration):
         system.config["use_guns"] = True
     if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
         guns = controllers.getGuns()
+        if "core" in system.config:
+            gunsUtils.precalibration(systemName, system.config['emulator'], system.config["core"], rom)
+        else:
+            gunsUtils.precalibration(systemName, system.config['emulator'], None, rom)
     else:
         eslog.info("guns disabled.");
         guns = []
@@ -341,18 +346,21 @@ def getHudBezel(system, generator, rom, gameResolution, bordersSize):
     bezel_ratio  = bezel_width / bezel_height
 
     # the screen and bezel ratio must be approximatly the same
-    if abs(screen_ratio - bezel_ratio) > max_ratio_delta:
-        eslog.debug(f"screen ratio ({screen_ratio}) is too far from the bezel one ({bezel_ratio}) : {screen_ratio} - {bezel_ratio} > {max_ratio_delta}")
-        return None
+    if bordersSize is None:
+        if abs(screen_ratio - bezel_ratio) > max_ratio_delta:
+            eslog.debug(f"screen ratio ({screen_ratio}) is too far from the bezel one ({bezel_ratio}) : {screen_ratio} - {bezel_ratio} > {max_ratio_delta}")
+            return None
 
     # the ingame image and the bezel free space must feet
     ## the bezel top and bottom cover must be minimum
-    if "top" in infos and infos["top"] / bezel_height > max_cover:
-        eslog.debug("bezel top covers too much the game image : {} / {} > {}".format(infos["top"], bezel_height, max_cover))
-        return None
-    if "bottom" in infos and infos["bottom"] / bezel_height > max_cover:
-        eslog.debug("bezel bottom covers too much the game image : {} / {} > {}".format(infos["bottom"], bezel_height, max_cover))
-        return None
+    # in case there is a border, force it
+    if bordersSize is None:
+        if "top" in infos and infos["top"] / bezel_height > max_cover:
+            eslog.debug("bezel top covers too much the game image : {} / {} > {}".format(infos["top"], bezel_height, max_cover))
+            return None
+        if "bottom" in infos and infos["bottom"] / bezel_height > max_cover:
+            eslog.debug("bezel bottom covers too much the game image : {} / {} > {}".format(infos["bottom"], bezel_height, max_cover))
+            return None
 
     # if there is no information about top/bottom, assume default is 0
 
@@ -365,24 +373,27 @@ def getHudBezel(system, generator, rom, gameResolution, bordersSize):
         eslog.debug(f"bezel has no left info in {overlay_info_file}")
         # assume default is 4/3 over 16/9
         infos_left = (bezel_width - (bezel_height / 3 * 4)) / 2
-        if abs((infos_left  - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
-            eslog.debug(f"bezel left covers too much the game image : {infos_left  - ((bezel_width-img_width)/2.0)} / {img_width} > {max_cover}")
-            return None
+        if bordersSize is None:
+            if abs((infos_left  - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
+                eslog.debug(f"bezel left covers too much the game image : {infos_left  - ((bezel_width-img_width)/2.0)} / {img_width} > {max_cover}")
+                return None
         
     if "right" not in infos:
         eslog.debug(f"bezel has no right info in {overlay_info_file}")
         # assume default is 4/3 over 16/9
         infos_right = (bezel_width - (bezel_height / 3 * 4)) / 2
-        if abs((infos_right - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
-            eslog.debug(f"bezel right covers too much the game image : {infos_right  - ((bezel_width-img_width)/2.0)} / {img_width} > {max_cover}")
+        if bordersSize is None:
+            if abs((infos_right - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
+                eslog.debug(f"bezel right covers too much the game image : {infos_right  - ((bezel_width-img_width)/2.0)} / {img_width} > {max_cover}")
+                return None
+
+    if bordersSize is None:
+        if "left"  in infos and abs((infos["left"]  - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
+            eslog.debug("bezel left covers too much the game image : {} / {} > {}".format(infos["left"]  - ((bezel_width-img_width)/2.0), img_width, max_cover))
             return None
-    
-    if "left"  in infos and abs((infos["left"]  - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
-        eslog.debug("bezel left covers too much the game image : {} / {} > {}".format(infos["left"]  - ((bezel_width-img_width)/2.0), img_width, max_cover))
-        return None
-    if "right" in infos and abs((infos["right"] - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
-        eslog.debug("bezel right covers too much the game image : {} / {} > {}".format(infos["right"]  - ((bezel_width-img_width)/2.0), img_width, max_cover))
-        return None
+        if "right" in infos and abs((infos["right"] - ((bezel_width-img_width)/2.0)) / img_width) > max_cover:
+            eslog.debug("bezel right covers too much the game image : {} / {} > {}".format(infos["right"]  - ((bezel_width-img_width)/2.0), img_width, max_cover))
+            return None
 
     # if screen and bezel sizes doesn't match, resize
     # stretch option

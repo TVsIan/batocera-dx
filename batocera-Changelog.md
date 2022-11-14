@@ -1,19 +1,32 @@
 # 202x/xx/xx - batocera.linux 36 - Luna Moth
 ### EmulationStation
 - volume for libretro cores can be changed per-game from es, may be extended to other emulators in future
+- brightness can go down to 1% (instead of 5%)
+- holding power button 3s will show the shutdown menu
+- new enhanced UI for themes management (from Content Downloader)
 ### Added
 - alsa ucm2 to x86 builds for soundcard compatibility
-- Vita3k - PlayStation Vita emulator
+- Vita3k - PlayStation Vita emulator (October 25th build)
 - WASM4 - WebAssembly fantasy console (x86_64)
+- Ikemen-Go fighting engine (x86_64)
 - automatic switch when a new display is plugged or unplugged (on es only for plugging)
+- Intel VAAPI drivers
+- Light gun in-game pre-calibration for arcade (atomiswave, naomi, MAME, lr-mame, lr-mame2003-plus, model2, model3)
+- Mesa hadware codecs for supported Intel & AMD cards
+- Zink for OpenGL to Vulkan
+- patch to allow Switch clone controllers to work in some cases
+- Xenia a Microsoft Xbox 360 emulator (v1.0.2775) - requires x86_64+Vulkan card & Wine (Note: Limited compatibility)
+- Light gun support for Wii
+- Light gun support for PS3
 ### Changed
 - move to pipewire wireplumber audio
+- bluetooth modes : automatic and manual (via a list)
 - kronos now uses beetle's save path by default, move the save files out of saves/saturn/kronos to saves/saturn and rename:
     - *.ram to *.bkr
     - *-ext512K.ram to *.bcr
     - You can continue to use the old save format by entering the following line into batocera.conf: saturn.kronos_use_beetle_saves = disabled
-- automatic screen switch when a new screen if plugged or unplugged
-- cemu to native linux version (v2.0.4)
+- cemu to native linux version (v2.0.10)
+- cemu fixes for controllers
 ### Updated
 - pcsx2 to v1.7.3292
 - alsa to 1.2.7.2
@@ -27,7 +40,7 @@
 - xemu to 0.7.67
 - citra to nightly-1784
 - dolphin to 5.0-17316
-- rpcs3 to v0.0.24
+- rpcs3 to v0.0.25
 - flycast emulators to v2.0
 - dosbox to v0.78.1
 - dosbox-x to v0.84.3
@@ -40,12 +53,12 @@
 - groovy mame to 0.247
 - hatari to v2.4.1
 - fsuae to July 30 build
-- scummvm to Oct 13, 2022 (v2.6.1)
+- scummvm to v2.6.1
 - simcoupe to v1.2.11
 - supermodel to Aug 19 2022 build
 - tsugaru to v20220702
 - vice to 3.6.1
-- linux kernel for x86_64 to 6.0.2
+- linux kernel for x86_64 to 6.0.7
 - daphne emulator hypseus-singe to v2.10.1 (now uses SDL controller)
 - amiberry to v5.4
 - mame to v0.248
@@ -57,7 +70,7 @@
 - retroarch-assets to Aug 06 2022 build
 - common-shaders to Apr 16 2022 build
 - glsl-shaders to Sep 23 2022 build
-- alllinuxfirmwares to 20221012
+- alllinuxfirmwares to 20221109
 - mupen64plus-video-rice to Sep 30, 2022
 - mupen64plus-video-glide64mk2 to Sep 30, 2022
 - mupen64plus-ui-console to Oct 01, 2022
@@ -65,19 +78,32 @@
 - mupen64plus-input-sdl to Sep 30, 2022
 - mupen64plus-audio-sdl to Oct 01, 2022
 - mupen64plus-core to Oct 01, 2022
-- mesa3d to 22.2.1
+- moonlight embedded to 2.5.3
+- proton to v2.7
+- vulkan stack to v1.3.231
 ### Fixed
 - lr-mame save state file names
 - slow rpcs3 initial ppu compilation times
 - rpcs3 cache & saves dir
   - note: move existing cache from /userdata/saves/rpcs3 to /userdata/system/cache/rpcs3
 - can now boot in verbose mode from syslinux (spam down on keyboard while booting)
+- moonlight embedded not connecting to streams
+- mesa vaapi for additional cards
+- long start times with vulkan in some cases
+- Sony touchpad for Mame
+- od-commander fixed for several screen resolutions
 ### Dev  
 - buildroot upgrade to 2022.08.1
 - rpi1 image renamed to bcm2835
 - rpi2 image renamed to bcm2836
 - rpi3 image renamed to bcm2837
 - rpi4 image renamed to bcm2711
+- ffmpeg updated to 5.1.2
+- libva updated to 2.16
+- rtl8192eu update to Nov 5, 2022
+- rtl8723ds update to Nov 4, 2022
+- mesa3d to 22.2.3
+- uinput-joystick update to Feb 11, 2022
 
 # 2022/09/20 - batocera.linux 35 - Monarch Butterfly
 * add: gun support in emulationstation
