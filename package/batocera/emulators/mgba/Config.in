@@ -1,0 +1,13 @@
+config BR2_PACKAGE_MGBA
+    select BR2_PACKAGE_SDL2
+    select BR2_PACKAGE_QT5
+    select BR2_PACKAGE_QT5_VERSION_LATEST
+    select BR2_PACKAGE_QT5BASE
+    select BR2_PACKAGE_QT5BASE_GUI
+    select BR2_PACKAGE_QT5BASE_WIDGETS
+    select BR2_PACKAGE_QT5BASE_OPENGL
+    select BR2_PACKAGE_QT5BASE_LUA
+    select BR2_PACKAGE_LIBEDIT
+    bool "mGBA"
+    help
+      Game Boy Series Emulator

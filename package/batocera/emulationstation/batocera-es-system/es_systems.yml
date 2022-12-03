@@ -264,6 +264,16 @@ gba:
   comment_br: |
     Para mais informações: https://wiki.batocera.org/systems:gba
 
+gbamulti:
+  name:       Game Boy Advance Multiplayer
+  manufacturer: Nintendo
+  release: 2001
+  hardware: portable
+  extensions: [gba, zip, 7z]
+  emulators:
+    mgba:
+      mgba:   { requireAnyOf: [BR2_PACKAGE_MGBA] }
+
 gbc:
   name:       Game Boy Color
   manufacturer: Nintendo

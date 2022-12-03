@@ -727,6 +727,7 @@ config BR2_PACKAGE_BATOCERA_HANDHELD_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_MGBA            # ALL
 	select BR2_PACKAGE_LIBRETRO_VBA_M           if !BR2_PACKAGE_BATOCERA_TARGET_BCM2835 && !BR2_PACKAGE_BATOCERA_TARGET_CHA
 	select BR2_PACKAGE_LIBRETRO_GPSP            if BR2_PACKAGE_BATOCERA_TARGET_BCM2835 # for slow machines
+	select BR2_PACKAGE_MGBA            			# ALL
 
 	# NDS
 	select BR2_PACKAGE_LIBRETRO_DESMUME         if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
@@ -1487,6 +1488,7 @@ config BR2_PACKAGE_BATOCERA_XORG
 	select BR2_PACKAGE_XTERM                        # terminal
 	select BR2_PACKAGE_RATPOISON                    # window manager
 	select BR2_PACKAGE_XAPP_XSETROOT                # cursors etc
+	select BR2_PACKAGE_XDOTOOL						# send keystrokes via script
 	select BR2_PACKAGE_UNCLUTTER                    # hide mouse
 	select BR2_PACKAGE_TOUCHEGG                     # touchscreen extended gestures
 

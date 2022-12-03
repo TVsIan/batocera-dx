@@ -223,6 +223,9 @@ gb2players:
 gba:
   emulator: libretro
   core:     mgba
+gbamulti:
+  emulator: mgba
+  core:     mgba
 gbc:
   emulator: libretro
   core:     gambatte

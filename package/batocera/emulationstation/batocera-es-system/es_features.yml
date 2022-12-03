@@ -9766,3 +9766,15 @@ vita3k:
         "4x":  4
         "8x":  8
         "16x": 16
+
+mgba:
+  shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
+  features: [padtokeyboard]
+  systems:
+      gbamulti:
+        playerCount:
+          prompt:      NUMBER OF PLAYERS
+          description: Maximum number of players supported
+          choices:
+            "2": 2
+            "4": 4

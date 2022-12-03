@@ -275,6 +275,10 @@ def getGenerator(emulator):
         from generators.ikemen.ikemenGenerator import IkemenGenerator
         return IkemenGenerator()
 
+    if emulator == "mgba":
+        from generators.mgba.mgbaGenerator import mGBAGenerator
+        return mGBAGenerator()
+
     #if emulator == 'play':
     #from generators.play.playGenerator import PlayGenerator
     #return PlayGenerator(),
