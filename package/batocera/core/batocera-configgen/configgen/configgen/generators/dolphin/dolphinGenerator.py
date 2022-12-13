@@ -361,6 +361,19 @@ class DolphinGenerator(Generator):
         else:
             return False
 
+    def useRatpoison(self, config):
+        #GBA Mode
+        for i in range(1,5):
+            if ("dolphin_port_" + str(i) + "_type") in config and config["dolphin_port_" + str(i) + "_type"] == "13":
+                eslog.debug("ratpoison needed - GBA Mode")
+                return True
+
+        if "auto_ereader" in config and config["auto_ereader"] != "none":
+            eslog.debug("ratpoison needed - e-Reader Mode")
+            return True
+
+        return False
+
     def getInGameRatio(self, config, gameResolution, rom):
 
         dolphinGFXSettings = configparser.ConfigParser(interpolation=None)

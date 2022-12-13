@@ -32,4 +32,4 @@ then
     export DRI_PRIME=1
 fi
 
-LC_ALL=C ratpoison --file /etc/ratpoisonrc
+openbox --config-file /etc/openbox/rc.xml --startup "emulationstation-standalone"
