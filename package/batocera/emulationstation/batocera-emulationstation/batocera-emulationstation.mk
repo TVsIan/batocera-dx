@@ -4,7 +4,7 @@
 #
 ################################################################################
 # Last update: Dec 8, 2022
-BATOCERA_EMULATIONSTATION_VERSION = cb617457c028ff0f68f5212bfbd52f961478a25d
+BATOCERA_EMULATIONSTATION_VERSION = 8258dbc6c6fc9838338fa2fac6a76b11cb9505aa
 BATOCERA_EMULATIONSTATION_SITE = https://github.com/batocera-linux/batocera-emulationstation
 BATOCERA_EMULATIONSTATION_SITE_METHOD = git
 BATOCERA_EMULATIONSTATION_LICENSE = MIT
@@ -51,7 +51,7 @@ else
 BATOCERA_EMULATIONSTATION_CONF_OPTS += -DENABLE_PULSE=OFF
 endif
 
-ifeq ($(BR2_PACKAGE_XSERVER_XORG_SERVER),y)
+ifeq ($(BR2_PACKAGE_XORG7),y)
 BATOCERA_EMULATIONSTATION_CONF_OPTS += -DENABLE_FILEMANAGER=ON
 else
 BATOCERA_EMULATIONSTATION_CONF_OPTS += -DENABLE_FILEMANAGER=OFF
@@ -151,7 +151,6 @@ endif
 
 define BATOCERA_EMULATIONSTATION_XINITRC
 	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulationstation/batocera-emulationstation/xinitrc $(TARGET_DIR)/etc/X11/xinit/xinitrc
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulationstation/batocera-emulationstation/ratpoisonrc $(TARGET_DIR)/etc/ratpoisonrc
 endef
 
 define BATOCERA_EMULATIONSTATION_BOOT

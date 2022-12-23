@@ -7,7 +7,7 @@ arm_64bit=1
 
 # Kernel
 kernel=boot/linux
-initramfs boot/initrd.gz
+initramfs boot/initrd.lz4
 
 # Firmware configurations
 start_file=start4.elf
@@ -134,6 +134,9 @@ display_auto_detect=1
 
 # Enable audio (loads snd_bcm2835)
 dtparam=audio=on
+
+# Enable bluetooth
+dtparam=krnbt=on
 
 # Enable DRM VC4 V3D driver
 dtoverlay=vc4-kms-v3d-pi4

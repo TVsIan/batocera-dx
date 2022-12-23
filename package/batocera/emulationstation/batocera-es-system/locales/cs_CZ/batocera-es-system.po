@@ -412,41 +412,6 @@ msgctxt "game_options"
 msgid "hidden"
 msgstr "skrytý"
 
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Change the number of enabled cores, increasing per-core performance"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "CPU CORES"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Use All Cores"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Use Physical Cores Only"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Dual Core"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Triple Core"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Quad Core"
-msgstr ""
-
 #. TRANSLATION: libretro/81
 msgctxt "game_options"
 msgid "Emulate Chroma 81 interface (colorization)."
@@ -6794,48 +6759,15 @@ msgstr "POVOLIT OZNÁMENÍ"
 msgctxt "game_options"
 msgid ""
 "Enable gamepad view for games that have interaction across two screens. Use "
-"Hotkey+R2 to switch screens."
+"L1+R1 to switch screens."
 msgstr ""
-"Povoluje zobrazení gamepadu pro hry, které mají interakci na dvou "
-"obrazovkách. Pro přepínání obrazovek použijte klávesovou zkratku + R2."
+"Povolí zobrazení gamepadu pro hry, které mají interakci na dvou obrazovkách. "
+"K přepínání obrazovek použijte klávesy L1+R1."
 
 #. TRANSLATION: cemu
 msgctxt "game_options"
 msgid "ENABLE GAMEPAD VIEW"
 msgstr "POVOLIT ZOBRAZENÍ NA GAMEPADU"
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid ""
-"Show the TV and gamepad views together. Use Hotkey+R2 to switch screens."
-msgstr ""
-"Zobrazte zobrazení televizoru a gamepadu společně. Pro přepínání obrazovek "
-"použijte klávesovou zkratku+R2."
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "ENABLE DUAL VIEW"
-msgstr "POVOLIT DUÁLNÍ ZOBRAZENÍ"
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Side by Side (Even)"
-msgstr "Vedle sebe (Sudá)"
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Side by Side (Small Gamepad)"
-msgstr "Vedle sebe (Malý Gamepad)"
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Stack-ed (Even)"
-msgstr "Stohováno (Sudá)"
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Stacked (Small Gamepad)"
-msgstr "Stohovaný (Malý Gamepad)"
 
 #. TRANSLATION: citra
 msgctxt "game_options"
@@ -6953,13 +6885,33 @@ msgstr "SMÍCHAT SPRITY (SINGE)"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD light gun games."
-msgstr "Použití s hrami se světelnou zbrani Singe HD."
+msgid "Singe overlay size options."
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "OVERSIZE OVERLAY (SINGE)"
-msgstr "PŘEKRYTÍ NADMĚRNÝCH ROZMĚRŮ (SINGE)"
+msgid "OVERLAY SIZE (SINGE)"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Standard"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "HD Gun Games"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Full"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Half"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -7029,51 +6981,6 @@ msgstr "Umožňuje ručně nastavit nastavení řadiče v souboru custom.ini."
 msgctxt "game_options"
 msgid "CUSTOM CONTROLLER"
 msgstr "VLASTNÍ OVLADAČ"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Arrangement of GameCube and GBA screens."
-msgstr "Uspořádání obrazovek GameCube a GBA."
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "GBA LAYOUT"
-msgstr "ROZLOŽENÍ GBA"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Vertical - GBAs on Right"
-msgstr "Vertikální - GBA vpravo"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Horizontal - GBAs on Bottom"
-msgstr "Horizontální - GBA na spodní straně"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Make controller 2 a GBA with e-Reader"
-msgstr "Vytvořit ovladač 2 a GBA s e-čtečkou"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "AUTO E-READER"
-msgstr "AUTO E-Čtečka"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader (US)"
-msgstr "e-Čtečka (US)"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader (JP)"
-msgstr "e-Čtečka (JP)"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader+ (JP)"
-msgstr "e-Čtečka+ (JP)"
 
 #. TRANSLATION: dolphin/uzem
 msgctxt "game_options"
@@ -7207,11 +7114,6 @@ msgstr "Taneční Podložka"
 msgctxt "game_options"
 msgid "DK Bongos"
 msgstr "DK Bongos"
-
-#. TRANSLATION: dolphin, dolphin, dolphin, dolphin
-msgctxt "game_options"
-msgid "GBA (Internal)"
-msgstr "GBA (Interní)"
 
 #. TRANSLATION: dolphin
 msgctxt "game_options"
@@ -10274,12 +10176,87 @@ msgid "Anti-aliasing is a technique for smoothing out jagged edges."
 msgstr "Anti-aliasing je technika vyhlazování zubatých hran."
 
 #~ msgctxt "game_options"
+#~ msgid "Use with Singe HD light gun games."
+#~ msgstr "Použití s hrami se světelnou zbrani Singe HD."
+
+#~ msgctxt "game_options"
+#~ msgid "OVERSIZE OVERLAY (SINGE)"
+#~ msgstr "PŘEKRYTÍ NADMĚRNÝCH ROZMĚRŮ (SINGE)"
+
+#~ msgctxt "game_options"
 #~ msgid ""
 #~ "Enable gamepad view for games that have interaction across two screens. "
-#~ "Use L1+R1 to switch screens."
+#~ "Use Hotkey+R2 to switch screens."
 #~ msgstr ""
-#~ "Povolí zobrazení gamepadu pro hry, které mají interakci na dvou "
-#~ "obrazovkách. K přepínání obrazovek použijte klávesy L1+R1."
+#~ "Povoluje zobrazení gamepadu pro hry, které mají interakci na dvou "
+#~ "obrazovkách. Pro přepínání obrazovek použijte klávesovou zkratku + R2."
+
+#~ msgctxt "game_options"
+#~ msgid ""
+#~ "Show the TV and gamepad views together. Use Hotkey+R2 to switch screens."
+#~ msgstr ""
+#~ "Zobrazte zobrazení televizoru a gamepadu společně. Pro přepínání "
+#~ "obrazovek použijte klávesovou zkratku+R2."
+
+#~ msgctxt "game_options"
+#~ msgid "ENABLE DUAL VIEW"
+#~ msgstr "POVOLIT DUÁLNÍ ZOBRAZENÍ"
+
+#~ msgctxt "game_options"
+#~ msgid "Side by Side (Even)"
+#~ msgstr "Vedle sebe (Sudá)"
+
+#~ msgctxt "game_options"
+#~ msgid "Side by Side (Small Gamepad)"
+#~ msgstr "Vedle sebe (Malý Gamepad)"
+
+#~ msgctxt "game_options"
+#~ msgid "Stack-ed (Even)"
+#~ msgstr "Stohováno (Sudá)"
+
+#~ msgctxt "game_options"
+#~ msgid "Stacked (Small Gamepad)"
+#~ msgstr "Stohovaný (Malý Gamepad)"
+
+#~ msgctxt "game_options"
+#~ msgid "Arrangement of GameCube and GBA screens."
+#~ msgstr "Uspořádání obrazovek GameCube a GBA."
+
+#~ msgctxt "game_options"
+#~ msgid "GBA LAYOUT"
+#~ msgstr "ROZLOŽENÍ GBA"
+
+#~ msgctxt "game_options"
+#~ msgid "Vertical - GBAs on Right"
+#~ msgstr "Vertikální - GBA vpravo"
+
+#~ msgctxt "game_options"
+#~ msgid "Horizontal - GBAs on Bottom"
+#~ msgstr "Horizontální - GBA na spodní straně"
+
+#~ msgctxt "game_options"
+#~ msgid "Make controller 2 a GBA with e-Reader"
+#~ msgstr "Vytvořit ovladač 2 a GBA s e-čtečkou"
+
+#~ msgctxt "game_options"
+#~ msgid "AUTO E-READER"
+#~ msgstr "AUTO E-Čtečka"
+
+#~ msgctxt "game_options"
+#~ msgid "e-Reader (US)"
+#~ msgstr "e-Čtečka (US)"
+
+#~ msgctxt "game_options"
+#~ msgid "e-Reader (JP)"
+#~ msgstr "e-Čtečka (JP)"
+
+#~ msgctxt "game_options"
+#~ msgid "e-Reader+ (JP)"
+#~ msgstr "e-Čtečka+ (JP)"
+
+#~ msgctxt "game_options"
+#~ msgid "GBA (Internal)"
+#~ msgstr "GBA (Interní)"
 
 #~ msgctxt "game_options"
 #~ msgid "Wii Internal resolution."

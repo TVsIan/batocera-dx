@@ -7,6 +7,9 @@ import shutil
 import os
 import controllersConfig
 import filecmp
+from utils.logger import get_logger
+
+eslog = get_logger(__name__)
 
 class DaphneGenerator(Generator):
 
@@ -34,7 +37,12 @@ class DaphneGenerator(Generator):
         
         # create symbolic link for singe
         if not os.path.exists(batoceraFiles.daphneDatadir + "/singe"):
+            if not os.path.exists(batoceraFiles.daphneHomedir + "/roms"):
+                os.mkdir(batoceraFiles.daphneHomedir + "/roms")
             os.symlink(batoceraFiles.daphneHomedir + "/roms", batoceraFiles.daphneDatadir + "/singe")
+        if not os.path.islink(batoceraFiles.daphneDatadir + "/singe"):
+            eslog.error("Your {} directory isn't a symlink, that's not good.".format(batoceraFiles.daphneDatadir + "/singe"))
+            
         
         # extension used .daphne and the file to start the game is in the folder .daphne with the extension .txt
         romName = os.path.splitext(os.path.basename(rom))[0]
@@ -48,7 +56,7 @@ class DaphneGenerator(Generator):
                             "-gamepad", "-datadir", batoceraFiles.daphneDatadir, "-homedir", batoceraFiles.daphneDatadir]
         else:
             commandArray = [batoceraFiles.batoceraBins[system.config['emulator']],
-                            romName, "vldp", "-framefile", frameFile, "-useoverlaysb", "2", "-fullscreen",
+                            romName, "vldp", "-framefile", frameFile, "-fullscreen",
                             "-fastboot", "-gamepad", "-datadir", batoceraFiles.daphneDatadir, "-homedir", batoceraFiles.daphneHomedir]
         
         # controller config file
@@ -74,7 +82,7 @@ class DaphneGenerator(Generator):
             commandArray.append("-nolinear_scale")
 
         #The following options should only be set when os.path.isfile(singeFile) is true.
-        #-blend_sprites, -oversize_overlay, -nocrosshair, -sinden or -manymouse
+        #-blend_sprites, -set_overlay oversize, -nocrosshair, -sinden or -manymouse
         if os.path.isfile(singeFile):
             # Blend Sprites (Singe)
             if system.isOptSet('blend_sprites') and system.getOptBoolean("blend_sprites"):
@@ -83,11 +91,11 @@ class DaphneGenerator(Generator):
             bordersSize = controllersConfig.gunsBordersSizeName(guns, system.config)
             if bordersSize is not None:
                 if bordersSize == "thin":
-                    commandArray.extend(["-sinden", "1", "w"])
-                elif bordersSize == "medium":
-                    commandArray.extend(["-sinden", "2", "w"])
-                else:
                     commandArray.extend(["-sinden", "3", "w"])
+                elif bordersSize == "medium":
+                    commandArray.extend(["-sinden", "6", "w"])
+                else:
+                    commandArray.extend(["-sinden", "9", "w"])
             else:
                 if len(guns) > 0: # enable manymouse for guns
                     commandArray.extend(["-manymouse"]) # sinden implies manymouse
@@ -95,9 +103,13 @@ class DaphneGenerator(Generator):
                     if system.isOptSet('abs_mouse_input') and system.getOptBoolean("abs_mouse_input"):
                         commandArray.extend(["-manymouse"]) # this is causing issues on some "non-gun" games
 
-            # Oversize Overlay (Singe) for HD lightgun games
-            if system.isOptSet('lightgun_hd') and system.getOptBoolean("lightgun_hd"):
-                commandArray.append("-oversize_overlay")
+            # Overlay sizes (Singe) for HD lightgun and Singe 2 games
+            if system.isOptSet('overlay_size') and system.config['overlay_size'] == 'oversize':
+                commandArray.append("-set_overlay", "oversize")
+            elif system.isOptSet('overlay_size') and system.config['overlay_size'] == 'full':
+                commandArray.append("-set_overlay", "full")
+            elif system.isOptSet('overlay_size') and system.config['overlay_size'] == 'half':
+                commandArray.append("-set_overlay", "half")
             
             # crosshair
             if system.isOptSet('daphne_crosshair'):

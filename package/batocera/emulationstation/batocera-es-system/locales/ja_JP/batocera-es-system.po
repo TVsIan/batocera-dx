@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: batocera-es v36beta(2022/11/14)\n"
+"Project-Id-Version: batocera-es v36beta(2022/12/10)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-11-15 20:39+0900\n"
+"PO-Revision-Date: 2022-12-10 08:00+0900\n"
 "Last-Translator: mikakunin\n"
 "Language-Team: mikakunin\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.2\n"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -257,7 +257,7 @@ msgstr "AIゲーム翻訳サービスを有効"
 #. TRANSLATION: shared
 msgctxt "game_options"
 msgid "The language to translate into."
-msgstr "翻訳する言語"
+msgstr "翻訳する言語を選択します"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -301,12 +301,12 @@ msgstr "先行フレーム"
 #. TRANSLATION: shared
 msgctxt "game_options"
 msgid "Can prevent audio skips on button presses when using run-ahead."
-msgstr "先読み使用時にボタンを押したときの音声スキップを防ぎます"
+msgstr "先読み使用でボタンを押したときの音声の途切れを防ぎます"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
 msgid "USE SECOND INSTANCE FOR RUN-AHEAD"
-msgstr "ランアヘッドで2番目のインスタンスを使用"
+msgstr "先読みで2番目のインスタンスを使用"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -314,7 +314,8 @@ msgid ""
 "Automatically decrease frame delay temporarily to prevent frame drops. Can "
 "introduce stuttering."
 msgstr ""
-"フレームドロップ防止で、フレーム遅延を減らします。不具合がでる場合があります"
+"フレームドロップ防止で、フレーム遅延を自動で減らします。不具合がでる場合があ"
+"ります"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -325,7 +326,7 @@ msgstr "自動フレーム遅延"
 msgctxt "game_options"
 msgid ""
 "Don't deviate from core requested timing. G-Sync, FreeSync, HDMI 2.1 VRR."
-msgstr "コア要求のタイミングで。G-Sync、FreeSync、HDMI2.1VRR"
+msgstr "コア要求のタイミングを調整(G-Sync、FreeSync、HDMI2.1VRR)"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -350,7 +351,7 @@ msgstr "システムでガンコンが検出された場合は、パッドの代
 #. TRANSLATION: shared, shared, libretro/beetle-saturn, libretro/fbneo, libretro/fceumm, ...
 msgctxt "game_options"
 msgid "LIGHT GUN"
-msgstr "ライトガン"
+msgstr "ライトガン(ガンコン)"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -401,41 +402,6 @@ msgstr "通常"
 msgctxt "game_options"
 msgid "hidden"
 msgstr "非表示"
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Change the number of enabled cores, increasing per-core performance"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "CPU CORES"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Use All Cores"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Use Physical Cores Only"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Dual Core"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Triple Core"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Quad Core"
-msgstr ""
 
 #. TRANSLATION: libretro/81
 msgctxt "game_options"
@@ -1144,7 +1110,7 @@ msgstr "6x 4K (3840x3168)"
 #. TRANSLATION: libretro/dolphin
 msgctxt "game_options"
 msgid "Wii NAND's language setting."
-msgstr ""
+msgstr "Wii NAND の言語設定"
 
 #. TRANSLATION: libretro/dolphin, hatari, redream, sonic2013, soniccd, ...
 msgctxt "game_options"
@@ -1364,7 +1330,7 @@ msgstr "ジョイスティック (アナログ,2ボタン)"
 #. TRANSLATION: libretro/dosbox
 msgctxt "game_options"
 msgid "Select Keyboard, Joystick or Gamepad mode"
-msgstr "キーボード、スティック、またはGamePadモードを選択します"
+msgstr "キーボード、スティック、またはゲームパッドを選択します"
 
 #. TRANSLATION: libretro/dosbox_pure
 msgctxt "game_options"
@@ -1769,7 +1735,7 @@ msgstr "ゲーム検出表示時に使用"
 #. TRANSLATION: libretro/dosbox_pure
 msgctxt "game_options"
 msgid "Set the deadzone of the joystick analog sticks."
-msgstr "アナログスティックのデッドゾーンを設定します"
+msgstr "アナログスティックのデッドゾーン(遊び幅)を設定します"
 
 #. TRANSLATION: libretro/dosbox_pure
 msgctxt "game_options"
@@ -2404,17 +2370,17 @@ msgstr "シンクレア 2 ジョイスティック"
 #. TRANSLATION: libretro/fuse, libretro/fuse
 msgctxt "game_options"
 msgid "Timex 1 Joystick"
-msgstr "Timex 1 Joystick"
+msgstr "Timex 1 ジョイスティック"
 
 #. TRANSLATION: libretro/fuse, libretro/fuse
 msgctxt "game_options"
 msgid "Timex 2 Joystick"
-msgstr "Timex 2 Joystick"
+msgstr "Timex 2 ジョイスティック"
 
 #. TRANSLATION: libretro/fuse, libretro/fuse
 msgctxt "game_options"
 msgid "Fuller Joystick"
-msgstr "フラージョイスティック"
+msgstr "Fuller ジョイスティック"
 
 #. TRANSLATION: libretro/fuse
 msgctxt "game_options"
@@ -3025,47 +2991,47 @@ msgstr "カセット"
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Type of joystick connected to the game port."
-msgstr ""
+msgstr "ゲームポートに接続されたジョイスティック タイプ"
 
 #. TRANSLATION: libretro/mame, libretro/mame, mame/uzem, mame/uzem
 msgctxt "game_options"
 msgid "JOYSTICK TYPE"
-msgstr "ジョイスティック　タイプ"
+msgstr "ジョイスティック タイプ"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Apple (2x 2-button Analog)"
-msgstr ""
+msgstr "Apple (2x 2 ボタン アナログ)"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Sirius/Atari (2x 1-button Digital, II+ Only)"
-msgstr ""
+msgstr "Sirius/Atari (2x 1 ボタン デジタル) II+ 専用"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Gizmo (1-Button Digital)"
-msgstr ""
+msgstr "Gizmo (1 ボタン デジタル)"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Model of emulated Apple II."
-msgstr ""
+msgstr "エミュレートする Apple II モデル"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Apple //e Enhanced (Default)"
-msgstr ""
+msgstr "Apple //e Enhanced (標準)"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Apple //e"
-msgstr ""
+msgstr "Apple //e"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Apple ][ Plus"
-msgstr ""
+msgstr "Apple ][ Plus"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
@@ -6425,7 +6391,7 @@ msgstr "ラインモード"
 #. TRANSLATION: amiberry
 msgctxt "game_options"
 msgid "SINGLE"
-msgstr "SINGLE"
+msgstr "シングル"
 
 #. TRANSLATION: amiberry
 msgctxt "game_options"
@@ -6555,7 +6521,7 @@ msgstr "ゲームパッド + 4 プロコントローラー"
 #. TRANSLATION: cemu
 msgctxt "game_options"
 msgid "GamePad + 4 Sideway Wiimote"
-msgstr "ゲームパッド+4サイドウェイWiiリモコン"
+msgstr "ゲームパッド+4 横向きWiiリモコン"
 
 #. TRANSLATION: cemu
 msgctxt "game_options"
@@ -6565,7 +6531,7 @@ msgstr "5 プロコントローラー"
 #. TRANSLATION: cemu
 msgctxt "game_options"
 msgid "5 Sideway Wiimote"
-msgstr "5 Wiiリモコン横向き"
+msgstr "5 横向きWiiリモコン"
 
 #. TRANSLATION: cemu
 msgctxt "game_options"
@@ -6756,44 +6722,13 @@ msgstr "通知を有効"
 msgctxt "game_options"
 msgid ""
 "Enable gamepad view for games that have interaction across two screens. Use "
-"Hotkey+R2 to switch screens."
+"L1+R1 to switch screens."
 msgstr ""
 
 #. TRANSLATION: cemu
 msgctxt "game_options"
 msgid "ENABLE GAMEPAD VIEW"
-msgstr "ゲームパッドビュー(画面切替)を有効にする"
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid ""
-"Show the TV and gamepad views together. Use Hotkey+R2 to switch screens."
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "ENABLE DUAL VIEW"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Side by Side (Even)"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Side by Side (Small Gamepad)"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Stack-ed (Even)"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Stacked (Small Gamepad)"
-msgstr ""
+msgstr "ゲームパッド画面を有効"
 
 #. TRANSLATION: citra
 msgctxt "game_options"
@@ -6909,13 +6844,33 @@ msgstr "ブレンドスプライト（SINGE）"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD light gun games."
-msgstr "Singe HD ライトガンゲームで使用します"
+msgid "Singe overlay size options."
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "OVERSIZE OVERLAY (SINGE)"
-msgstr "特大オーバーレイ（SINGE）"
+msgid "OVERLAY SIZE (SINGE)"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Standard"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "HD Gun Games"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Full"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Half"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -6980,51 +6935,6 @@ msgstr "custom.ini ファイルを使い、コントローラー設定のカス�
 msgctxt "game_options"
 msgid "CUSTOM CONTROLLER"
 msgstr "カスタム コントローラー"
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Arrangement of GameCube and GBA screens."
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "GBA LAYOUT"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Vertical - GBAs on Right"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Horizontal - GBAs on Bottom"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Make controller 2 a GBA with e-Reader"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "AUTO E-READER"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader (US)"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader (JP)"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader+ (JP)"
-msgstr ""
 
 #. TRANSLATION: dolphin/uzem
 msgctxt "game_options"
@@ -7159,11 +7069,6 @@ msgctxt "game_options"
 msgid "DK Bongos"
 msgstr "タルコンガ (DK Bongos)"
 
-#. TRANSLATION: dolphin, dolphin, dolphin, dolphin
-msgctxt "game_options"
-msgid "GBA (Internal)"
-msgstr ""
-
 #. TRANSLATION: dolphin
 msgctxt "game_options"
 msgid "GAMECUBE PORT 2 TYPE"
@@ -7248,7 +7153,7 @@ msgstr "メモリ管理ユニット"
 #. TRANSLATION: dolphin
 msgctxt "game_options"
 msgid "Enhancement. Removes disc loading."
-msgstr "強化：ディスクローディングを削除します"
+msgstr "強化：ディスク読み込みをなくします"
 
 #. TRANSLATION: dolphin
 msgctxt "game_options"
@@ -8217,11 +8122,13 @@ msgid ""
 "Render this many frames ahead to improve performance at the cost of input "
 "lag."
 msgstr ""
+"入力遅延を犠牲にしてパフォーマンスを向上させるために、多くのフレームを先にレ"
+"ンダリングします"
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
 msgid "VSYNCS IN MTGS QUEUE"
-msgstr ""
+msgstr "垂直同期マルチスレッドGS要求"
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
@@ -9356,11 +9263,13 @@ msgid ""
 "Reset the cache can fix some crashes if your game was running under Batocera "
 "29."
 msgstr ""
+"Batocera 29 でゲームを実行していた場合、キャッシュをリセットすると修正される"
+"ことがあります"
 
 #. TRANSLATION: wine
 msgctxt "game_options"
 msgid "DXVK RESET CACHE"
-msgstr ""
+msgstr "DXVK リセット キャッシュ"
 
 #. TRANSLATION: wine
 msgctxt "game_options"
@@ -9368,11 +9277,13 @@ msgid ""
 "Enable this mode if you have issue for run your game on NTFS storage (by "
 "default is better to use LinuxFS)."
 msgstr ""
+"NTFS ストレージでゲームの実行に問題がある場合は、このモードを有効にします (デ"
+"フォルトでは LinuxFS の使用をお勧めします)"
 
 #. TRANSLATION: wine
 msgctxt "game_options"
 msgid "ENABLE NTFS MODE"
-msgstr ""
+msgstr "NTFS モードを有効にする"
 
 #. TRANSLATION: wine
 msgctxt "game_options"
@@ -9525,7 +9436,7 @@ msgstr "DSP オーディオを使用する"
 #. TRANSLATION: sonic2013, soniccd, yuzu, ryujinx
 msgctxt "game_options"
 msgid "Change the game's language."
-msgstr "ゲーム言語を変更します"
+msgstr "ゲームの表示言語を変更します"
 
 #. TRANSLATION: sonic2013
 msgctxt "game_options"
@@ -9728,12 +9639,12 @@ msgstr "4x (2880p/4320p)"
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "5x (3600p/5400p)"
-msgstr ""
+msgstr "5x (3600p/5400p)"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "6x (4320p/6480p)"
-msgstr ""
+msgstr "6x (4320p/6480p)"
 
 #. TRANSLATION: yuzu, ryujinx
 msgctxt "game_options"
@@ -9743,12 +9654,12 @@ msgstr "16:9 (基本)"
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Force 21:9"
-msgstr ""
+msgstr "強制的に 21:9 にする"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Force 16:10"
-msgstr ""
+msgstr "強制的に 16:10 にする"
 
 #. TRANSLATION: yuzu, ryujinx
 msgctxt "game_options"
@@ -9798,7 +9709,7 @@ msgstr "台湾"
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Choose your console timezone."
-msgstr ""
+msgstr "コンソールの タイムゾーンを選択します"
 
 #. TRANSLATION: yuzu, ryujinx
 msgctxt "game_options"
@@ -9808,177 +9719,177 @@ msgstr "コンソール タイムゾーンの選択"
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "CET"
-msgstr ""
+msgstr "CET"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "CST6CDT"
-msgstr ""
+msgstr "CST6CDT"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Cuba"
-msgstr ""
+msgstr "キューバ"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "EET"
-msgstr ""
+msgstr "EET"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Egypt"
-msgstr ""
+msgstr "エジプト"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Eire"
-msgstr ""
+msgstr "Eire"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "EST"
-msgstr ""
+msgstr "EST"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "EST5EDT"
-msgstr ""
+msgstr "EST5EDT"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "GB"
-msgstr ""
+msgstr "GB"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "GB-Eire"
-msgstr ""
+msgstr "GB-Eire"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "GMT"
-msgstr ""
+msgstr "GMT"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "GMT+0"
-msgstr ""
+msgstr "GMT+0"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "GMT-0"
-msgstr ""
+msgstr "GMT-0"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "GMT0"
-msgstr ""
+msgstr "GMT0"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Greenwich"
-msgstr ""
+msgstr "グリニッジ"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Hong Kong"
-msgstr ""
+msgstr "香港"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "HST"
-msgstr ""
+msgstr "HST"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Iran"
-msgstr ""
+msgstr "イラン"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Israel"
-msgstr ""
+msgstr "イスラエル"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Jamaica"
-msgstr ""
+msgstr "ジャマイカ"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Kwajalein"
-msgstr ""
+msgstr "クェゼリン"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Libya"
-msgstr ""
+msgstr "リビア"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "MET"
-msgstr ""
+msgstr "MET"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "MST"
-msgstr ""
+msgstr "MST"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "MST7MDT"
-msgstr ""
+msgstr "MST7MDT"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Navajo"
-msgstr ""
+msgstr "ナバホ"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "NZ"
-msgstr ""
+msgstr "ニュージーランド"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "NZ-CHAT"
-msgstr ""
+msgstr "NZ-CHAT"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "PRC"
-msgstr ""
+msgstr "PRC"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "PST8PDT"
-msgstr ""
+msgstr "PST8PDT"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "ROC"
-msgstr ""
+msgstr "ROC"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "ROK"
-msgstr ""
+msgstr "ROK"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Singapore"
-msgstr ""
+msgstr "シンガポール"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "UCT"
-msgstr ""
+msgstr "UCT"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Univarsal"
-msgstr ""
+msgstr "ユニバーサル"
 
 #. TRANSLATION: yuzu, ryujinx
 msgctxt "game_options"
@@ -9988,42 +9899,42 @@ msgstr "UTC"
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "W-SU"
-msgstr ""
+msgstr "W-SU"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "WET"
-msgstr ""
+msgstr "WET"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Zulu"
-msgstr ""
+msgstr "Zulu"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "CHOOSE SOUND OUTPUT MODE"
-msgstr ""
+msgstr "音声出力モードの選択"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Mono"
-msgstr ""
+msgstr "モノラル"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Stereo"
-msgstr ""
+msgstr "ステレオ"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "ASYNC SHADER COMPILE"
-msgstr ""
+msgstr "非同期シェーダーのコンパイル"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "ANTI-ALIASING METHOD"
-msgstr ""
+msgstr "アンチエイリアシング方法"
 
 #. TRANSLATION: yuzu, vita3k
 msgctxt "game_options"
@@ -10033,17 +9944,17 @@ msgstr "FXAA"
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "Gaussian"
-msgstr ""
+msgstr "ガウス"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "ScaleForce"
-msgstr ""
+msgstr "スケールを固定"
 
 #. TRANSLATION: yuzu
 msgctxt "game_options"
 msgid "AMD FidelityFX (Vulkan Only)"
-msgstr ""
+msgstr "AMD FidelityFX (Vulkanのみ)"
 
 #. TRANSLATION: ryujinx
 msgctxt "game_options"
@@ -10197,80 +10108,115 @@ msgstr ""
 "高速近似アンチエイリアシング(FXAA)は、ギザギザのエッジを滑らかにする技術です"
 
 #~ msgctxt "game_options"
+#~ msgid "Use with Singe HD light gun games."
+#~ msgstr "Singe HD ライトガンゲームで使用します"
+
+#~ msgctxt "game_options"
+#~ msgid "OVERSIZE OVERLAY (SINGE)"
+#~ msgstr "特大オーバーレイ（SINGE）"
+
+#~ msgctxt "game_options"
+#~ msgid "Change the number of enabled cores, increasing per-core performance"
+#~ msgstr "有効なコアの数を変更して、コアあたりのパフォーマンスを向上させます"
+
+#~ msgctxt "game_options"
+#~ msgid "CPU CORES"
+#~ msgstr "CPU コア"
+
+#~ msgctxt "game_options"
+#~ msgid "Use All Cores"
+#~ msgstr "全コア使用"
+
+#~ msgctxt "game_options"
+#~ msgid "Use Physical Cores Only"
+#~ msgstr "物理コアのみを使用"
+
+#~ msgctxt "game_options"
+#~ msgid "Dual Core"
+#~ msgstr "デュアルコア"
+
+#~ msgctxt "game_options"
+#~ msgid "Triple Core"
+#~ msgstr "トリプルコア"
+
+#~ msgctxt "game_options"
+#~ msgid "Quad Core"
+#~ msgstr "クアッドコア"
+
+#~ msgctxt "game_options"
 #~ msgid ""
 #~ "Enable gamepad view for games that have interaction across two screens. "
-#~ "Use L1+R1 to switch screens."
-#~ msgstr "2画面を使用するゲームの画面切替(ﾎﾞﾀﾝ：L1+R1)を有効にします"
-
-#~ msgctxt "game_options"
-#~ msgid "Wii Internal resolution."
-#~ msgstr "Wii 内部解像度"
-
-#~ msgctxt "game_options"
-#~ msgid "x1 (640 x 528)"
-#~ msgstr "x1 (640 x 528)"
-
-#~ msgctxt "game_options"
-#~ msgid "x2 (1280 x 1056)"
-#~ msgstr "x2 (1280 x 1056)"
-
-#~ msgctxt "game_options"
-#~ msgid "x3 (1920 x 1584)"
-#~ msgstr "x3 (1920 x 1584)"
-
-#~ msgctxt "game_options"
-#~ msgid "x4 (2560 x 2112)"
-#~ msgstr "x4 (2560 x 2112)"
-
-#~ msgctxt "game_options"
-#~ msgid "x5 (3200 x 2640)"
-#~ msgstr "x5 (3200 x 2640)"
-
-#~ msgctxt "game_options"
-#~ msgid "x6 (3840 x 3168)"
-#~ msgstr "x6 (3840 x 3168)"
-
-#~ msgctxt "game_options"
-#~ msgid "16X"
-#~ msgstr "16X"
-
-#~ msgctxt "game_options"
-#~ msgid "Wii System languages."
-#~ msgstr "Wii システム言語"
-
-#~ msgctxt "game_options"
-#~ msgid "LANGUAGES"
-#~ msgstr "言語"
-
-#~ msgctxt "game_options"
-#~ msgid "WII WIDESCREEN HACK"
-#~ msgstr "WII ワイドスクリーンハック"
-
-#~ msgctxt "game_options"
-#~ msgid "Shader compilation mode, may not work well on all hardware."
+#~ "Use Hotkey+R2 to switch screens."
 #~ msgstr ""
-#~ "シェーダー コンパイル モードは、機種により、正常に機能しない場合があります"
+#~ "２画面でするゲームのパッド画面を有効にします (ホットキー+R2で画面切り替え)"
 
 #~ msgctxt "game_options"
-#~ msgid "SHADER COMPILATION MODE"
-#~ msgstr "シェーダー コンパイル モード"
+#~ msgid ""
+#~ "Show the TV and gamepad views together. Use Hotkey+R2 to switch screens."
+#~ msgstr ""
+#~ "ゲーム画面とゲームパッド画面を一緒に表示します (ホットキー+R2で画面切り替"
+#~ "え)"
 
 #~ msgctxt "game_options"
-#~ msgid "Sync"
-#~ msgstr "同期"
+#~ msgid "ENABLE DUAL VIEW"
+#~ msgstr "デュアル(２画面同時)表示を有効"
+
+#~ msgctxt "game_options"
+#~ msgid "Side by Side (Even)"
+#~ msgstr "左右 (同等画面)"
+
+#~ msgctxt "game_options"
+#~ msgid "Side by Side (Small Gamepad)"
+#~ msgstr "左右 (パッド画面：小)"
+
+#~ msgctxt "game_options"
+#~ msgid "Stack-ed (Even)"
+#~ msgstr "上下 (同等画面)"
+
+#~ msgctxt "game_options"
+#~ msgid "Stacked (Small Gamepad)"
+#~ msgstr "上下 (パッド画面：小)"
+
+#~ msgctxt "game_options"
+#~ msgid "Arrangement of GameCube and GBA screens."
+#~ msgstr "ゲームキューブとGBA の画面配置を選択します"
+
+#~ msgctxt "game_options"
+#~ msgid "GBA LAYOUT"
+#~ msgstr "GBA接続時の画面レイアウト"
+
+#~ msgctxt "game_options"
+#~ msgid "Vertical - GBAs on Right"
+#~ msgstr "縦並び表示 - 右に GBA"
+
+#~ msgctxt "game_options"
+#~ msgid "Horizontal - GBAs on Bottom"
+#~ msgstr "横並び表示 - 下に GBA"
+
+#~ msgctxt "game_options"
+#~ msgid "Make controller 2 a GBA with e-Reader"
+#~ msgstr "コントローラー2を カードeリーダー付GBA にします"
+
+#~ msgctxt "game_options"
+#~ msgid "AUTO E-READER"
+#~ msgstr "カードeリーダー  接続選択"
+
+#~ msgctxt "game_options"
+#~ msgid "e-Reader (US)"
+#~ msgstr "e-リーダー (US)"
+
+#~ msgctxt "game_options"
+#~ msgid "e-Reader (JP)"
+#~ msgstr "カードeリーダー (日本)"
+
+#~ msgctxt "game_options"
+#~ msgid "e-Reader+ (JP)"
+#~ msgstr "カードeリーダー+ (日本)"
+
+#~ msgctxt "game_options"
+#~ msgid "GBA (Internal)"
+#~ msgstr "GBA（eリーダー）"
 
 #~ msgctxt "game_options"
 #~ msgid "A-Sync Skip Rendering"
 #~ msgstr "非同期 スキップ レンダリング"
-
-#~ msgctxt "game_options"
-#~ msgid "Sync UberShaders"
-#~ msgstr "同期 ウーバーシェーダー"
-
-#~ msgctxt "game_options"
-#~ msgid "A-Sync UberShaders"
-#~ msgstr "非同期 ウーバーシェーダー"
-
-#~ msgctxt "game_options"
-#~ msgid "Speed up. Causes visual glitches on first load."
-#~ msgstr "速度増加。最初の読込時に視覚的な不具合が発生します"

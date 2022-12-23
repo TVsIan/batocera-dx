@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PPSSPP_VERSION = v1.13.2
+PPSSPP_VERSION = v1.14.1
 PPSSPP_SITE = https://github.com/hrydgard/ppsspp.git
 PPSSPP_SITE_METHOD=git
 PPSSPP_GIT_SUBMODULES=YES
@@ -67,12 +67,6 @@ endif
 # rpi4 and panfrost vulkan support
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_BCM2711)$(BR2_PACKAGE_BATOCERA_PANFROST_MESA3D),y)
     PPSSPP_CONF_OPTS += -DARM_NO_VULKAN=OFF
-endif
-
-# rockchip
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ROCKCHIP_ANY),y)
-    # In order to support the custom resolution patch, permissive compile is needed
-    PPSSPP_TARGET_CFLAGS += -fpermissive
 endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBMALI),y)

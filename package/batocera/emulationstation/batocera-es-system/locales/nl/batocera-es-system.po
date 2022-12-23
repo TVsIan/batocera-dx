@@ -394,41 +394,6 @@ msgctxt "game_options"
 msgid "hidden"
 msgstr ""
 
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Change the number of enabled cores, increasing per-core performance"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "CPU CORES"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Use All Cores"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Use Physical Cores Only"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Dual Core"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Triple Core"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "Quad Core"
-msgstr ""
-
 #. TRANSLATION: libretro/81
 msgctxt "game_options"
 msgid "Emulate Chroma 81 interface (colorization)."
@@ -6762,43 +6727,12 @@ msgstr ""
 msgctxt "game_options"
 msgid ""
 "Enable gamepad view for games that have interaction across two screens. Use "
-"Hotkey+R2 to switch screens."
+"L1+R1 to switch screens."
 msgstr ""
 
 #. TRANSLATION: cemu
 msgctxt "game_options"
 msgid "ENABLE GAMEPAD VIEW"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid ""
-"Show the TV and gamepad views together. Use Hotkey+R2 to switch screens."
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "ENABLE DUAL VIEW"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Side by Side (Even)"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Side by Side (Small Gamepad)"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Stack-ed (Even)"
-msgstr ""
-
-#. TRANSLATION: cemu
-msgctxt "game_options"
-msgid "Stacked (Small Gamepad)"
 msgstr ""
 
 #. TRANSLATION: citra
@@ -6916,13 +6850,33 @@ msgstr "BLEND SPRITES (SINGE)"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD light gun games."
+msgid "Singe overlay size options."
 msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "OVERSIZE OVERLAY (SINGE)"
-msgstr "OVERSIZE OVERLAAG (SINGE)"
+msgid "OVERLAY SIZE (SINGE)"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Standard"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "HD Gun Games"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Full"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Half"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -6986,51 +6940,6 @@ msgstr ""
 #. TRANSLATION: daphne
 msgctxt "game_options"
 msgid "CUSTOM CONTROLLER"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Arrangement of GameCube and GBA screens."
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "GBA LAYOUT"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Vertical - GBAs on Right"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Horizontal - GBAs on Bottom"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "Make controller 2 a GBA with e-Reader"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "AUTO E-READER"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader (US)"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader (JP)"
-msgstr ""
-
-#. TRANSLATION: dolphin/uzem
-msgctxt "game_options"
-msgid "e-Reader+ (JP)"
 msgstr ""
 
 #. TRANSLATION: dolphin/uzem
@@ -7166,11 +7075,6 @@ msgstr ""
 #. TRANSLATION: dolphin, dolphin, dolphin, dolphin
 msgctxt "game_options"
 msgid "DK Bongos"
-msgstr ""
-
-#. TRANSLATION: dolphin, dolphin, dolphin, dolphin
-msgctxt "game_options"
-msgid "GBA (Internal)"
 msgstr ""
 
 #. TRANSLATION: dolphin
@@ -10201,6 +10105,10 @@ msgstr ""
 msgctxt "game_options"
 msgid "Anti-aliasing is a technique for smoothing out jagged edges."
 msgstr ""
+
+#~ msgctxt "game_options"
+#~ msgid "OVERSIZE OVERLAY (SINGE)"
+#~ msgstr "OVERSIZE OVERLAAG (SINGE)"
 
 #~ msgctxt "game_options"
 #~ msgid "Double the rendering resolution. No effect on 64-bit machines."

@@ -3,8 +3,8 @@
 # flycast
 #
 ################################################################################
-# Version: Commits on Dec 5, 2022
-FLYCAST_VERSION = 71ba0187820da4f89c490bdfa78b006504e57adf
+# Version: Commits on Dec 10, 2022
+FLYCAST_VERSION = 223504a2065d55238ae232dfa92b33d98c223b4c
 FLYCAST_SITE = https://github.com/flyinghead/flycast.git
 FLYCAST_SITE_METHOD=git
 FLYCAST_GIT_SUBMODULES=YES
@@ -37,8 +37,8 @@ ifeq ($(BR2_PACKAGE_HAS_LIBMALI),y)
     FLYCAST_CONF_OPTS += -DUSE_MALI=ON
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RG552),y)
-    FLYCAST_CONF_OPTS += -DRG552=ON
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3399),y)
+    FLYCAST_CONF_OPTS += -DRK3399=ON
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_BCM2711),y)
     FLYCAST_CONF_OPTS += -DRPI4=ON
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3326),y)

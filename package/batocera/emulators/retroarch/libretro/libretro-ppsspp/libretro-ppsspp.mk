@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBRETRO_PPSSPP_VERSION = 91886be119e04ad4bda53cb9d64eedbd0c7c5cf1
+LIBRETRO_PPSSPP_VERSION = v1.14.1
 LIBRETRO_PPSSPP_SITE = https://github.com/hrydgard/ppsspp.git
 LIBRETRO_PPSSPP_SITE_METHOD=git
 LIBRETRO_PPSSPP_GIT_SUBMODULES=YES
@@ -61,12 +61,6 @@ endif
 # x86_64
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64_ANY),y)
     LIBRETRO_PPSSPP_CONF_OPTS += -DX86_64=ON
-endif
-
-# rockchip
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ROCKCHIP_ANY),y)
-    # In order to support the custom resolution patch, permissive compile is needed
-    LIBRETRO_PPSSPP_TARGET_CFLAGS += -fpermissive
 endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBMALI),y)
