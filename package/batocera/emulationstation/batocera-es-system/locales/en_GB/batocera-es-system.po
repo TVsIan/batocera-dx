@@ -8442,6 +8442,32 @@ msgstr ""
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
+msgid ""
+"Can fix bugs in some games. Only relevant for dynamic or LLVM SPU decoder."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "SPU XFloat Accuracy"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Accurate XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Approximate XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Relaxed XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
 msgid "Most games already have an internal framelimit. Minor performance cost."
 msgstr ""
 
@@ -9538,6 +9564,17 @@ msgstr ""
 #. TRANSLATION: model2emu
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
+msgstr ""
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid ""
+"Use if you're having graphical issues or GPU problems with this emulator."
+msgstr ""
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid "ENABLE SOFTWARE RENDERER"
 msgstr ""
 
 #. TRANSLATION: yuzu, ryujinx

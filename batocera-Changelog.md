@@ -4,6 +4,7 @@
 - brightness can go down to 1% (instead of 5%)
 - holding power button 3s will show the shutdown menu
 - new enhanced UI for themes management (from Content Downloader)
+- navigation with light guns now possible
 ### Added
 - alsa ucm2 to x86 builds for soundcard compatibility - v1.2.8
 - sound open firmware for expanded soundcard support - v2.2.3
@@ -25,7 +26,8 @@
 - Light gun support for PS3 (up to 2 players)
 - initial Intel A770 GPU support
 - Enabled libretro-yabasanshiro for platform RK3399
-- force feedback for Nintendo controllers
+- force feedback for Nintendo controllers (requires linux kernel 5.16 or later)
+- Added wayland + sway support for single board computer (SBC)
 ### Changed
 - move to pipewire wireplumber audio
 - bluetooth modes : automatic and manual (via a list)
@@ -127,7 +129,7 @@
 - rtl8723ds update to Nov 4, 2022
 - rtl8812au update to Nov 16, 2022
 - rtl8188fu update to Nov 1, 2022
-- mesa3d update to 22.3.1
+- mesa3d update to 22.3.2
 - uinput-joystick update to Feb 11, 2022
 - firmware-orangepi update to Nov 24, 2022
 

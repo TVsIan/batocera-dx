@@ -7433,6 +7433,14 @@ rpcs3:
                 "ASMJIT Recompiler":    Recompiler (ASMJIT)
                 "Fast Interpreter":     Interpreter (fast)
                 "Precise Interpreter":  Interpreter (precise)
+        spuxfloataccuracy:
+            group: ADVANCED OPTIONS
+            prompt:      SPU XFloat Accuracy
+            description: Can fix bugs in some games. Only relevant for dynamic or LLVM SPU decoder.
+            choices:
+                "Accurate XFloat":    accurate
+                "Approximate XFloat": approximate
+                "Relaxed XFloat":     relaxed
         framelimit:
             group: ADVANCED OPTIONS
             prompt:      ADDITIONAL FRAMELIMIT
@@ -9348,6 +9356,12 @@ model2emu:
             choices:
                 "Off":      0
                 "On":       1
+        model2Software:
+            prompt:      ENABLE SOFTWARE RENDERER
+            description: Use if you're having graphical issues or GPU problems with this emulator.
+            choices:
+                "Off (Default)": 0
+                "On":            1
 
 gsplus:
   features: [padtokeyboard]
