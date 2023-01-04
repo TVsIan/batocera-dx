@@ -1,3 +1,11 @@
+# 202x/xx/xx - batocera.linux 37
+### Added
+- Re-added GameCube-GBA link capability including eReader
+- Re-added Cemu multi-screen display
+- Added new screenshot function when in multi-window mode (Hotkey + L1)
+### Changed
+- Bumped Dolphin to 5.0-17995
+
 # 202x/xx/xx - batocera.linux 36 - Luna Moth
 ### EmulationStation
 - volume for libretro cores can be changed per-game from es, may be extended to other emulators in future
