@@ -1,0 +1,6 @@
+config BR2_PACKAGE_I3
+        bool "I3"
+        help
+          Dynamic Window Manager
+
+          https://github.com/i3/i3

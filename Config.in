@@ -431,6 +431,7 @@ menu "Utils"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/zmusic/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/touchegg/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/imgui/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/i3/Config.in"
 endmenu
 
 menu "Libraries"
