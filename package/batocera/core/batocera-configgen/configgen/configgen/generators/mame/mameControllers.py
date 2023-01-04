@@ -214,14 +214,27 @@ def generatePadsConfig(cfgPath, playersControllers, sysName, altButtons, customC
                 if rmapping in pad.inputs:
                         xml_input.appendChild(generatePortElement(pad, config, nplayer, pad.index, mapping, mappings_use[mapping], pad.inputs[rmapping], True, altButtons, gunmappings, mousemappings, multiMouse))
 
-        #UI Mappings
+        # UI Mappings
         if nplayer == 1:
             xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_DOWN", "DOWN", mappings_use["JOYSTICK_DOWN"], pad.inputs[mappings_use["JOYSTICK_UP"]], False, "", ""))      # Down
             xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_LEFT", "LEFT", mappings_use["JOYSTICK_LEFT"], pad.inputs[mappings_use["JOYSTICK_LEFT"]], False, "", ""))    # Left
             xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_UP", "UP", mappings_use["JOYSTICK_UP"], pad.inputs[mappings_use["JOYSTICK_UP"]], False, "", ""))            # Up
             xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_RIGHT", "RIGHT", mappings_use["JOYSTICK_RIGHT"], pad.inputs[mappings_use["JOYSTICK_LEFT"]], False, "", "")) # Right
-            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_SELECT", "ENTER", 'b', pad.inputs['b'], False, "", ""))                                                     # Select
 
+            # Use the button names for menus so they don't move around with remappings.
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_CANCEL", "ESC", 'start', pad.inputs['start'], False, "", ""))                                               # Exit
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_CONFIGURE", "TAB", 'b', pad.inputs['b'], False, "", "", True))                                              # Menu
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_SELECT", "ENTER", 'b', pad.inputs['b'], False, "", ""))                                                     # Select 
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_RESET_MACHINE", "F3", 'a', pad.inputs['a'], False, "", ""))                                                 # Reset
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_FAST_FORWARD", "PAGEDOWN", 'RIGHT', pad.inputs['right'], False, "", ""))                                    # Fast Forward
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "RENDER_SNAP", "F12", 'pageup', pad.inputs['pageup'], False, "", ""))                                           # Screenshot
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "POST_PROCESS", ["LCONTROL", "LALT", "F5"], 'l2', pad.inputs['l2'], False, "", ""))                             # Toggle HLSL filters
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "SERVICE", "F2", 'r2', pad.inputs['r2'], False, "", ""))                                                        # Service Button/Switch
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_PAUSE", "P", 'left', pad.inputs['left'], False, "", ""))                                                    # Pause
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_TOGGLE_UI", "SCRLOCK", 'r3', pad.inputs['r3'], False, "", "", True))                                        # UI Mode
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_LOAD_STATE", "F7", 'y', pad.inputs['y'], False, "", ""))                                                    # Load Save State
+            xml_input.appendChild(generateComboPortElement(pad, config, 'standard', pad.index, "UI_SAVE_STATE", ["LSHIFT", "F7"], 'x', pad.inputs['x'], False, "", ""))                                        # Save State
+            
         if useControls in messControlDict.keys():
             for controlDef in messControlDict[useControls].keys():
                 thisControl = messControlDict[useControls][controlDef]
@@ -324,7 +337,7 @@ def generateSpecialPortElement(pad, config, tag, nplayer, padindex, mapping, key
     xml_newseq.appendChild(value)
     return xml_port
 
-def generateComboPortElement(pad, config, tag, padindex, mapping, kbkey, key, input, reversed, mask, default):
+def generateComboPortElement(pad, config, tag, padindex, mapping, kbkey, key, input, reversed, mask, default, hotkey = False):
     # Maps a keycode + button - for important keyboard keys when available
     xml_port = config.createElement("port")
     xml_port.setAttribute("tag", tag)
@@ -334,7 +347,21 @@ def generateComboPortElement(pad, config, tag, padindex, mapping, kbkey, key, in
     xml_newseq = config.createElement("newseq")
     xml_newseq.setAttribute("type", "standard")
     xml_port.appendChild(xml_newseq)
-    value = config.createTextNode("KEYCODE_{} OR ".format(kbkey) + input2definition(pad, key, input, padindex + 1, reversed, 0))
+
+    if type(kbkey) is list:
+        keyList = ''
+        for key in kbkey:
+            keyList = keyList + f"KEYCODE_{key}"
+    else:
+        keyList = f"KEYCODE_{kbkey}" 
+
+    if hotkey:
+        buttonList = f"{input2definition(pad, 'hotkey', pad.inputs['hotkey'], padindex + 1, reversed, 0)} {input2definition(pad, key, input, padindex + 1, reversed, 0)}"
+    else:
+        buttonList = input2definition(pad, key, input, padindex + 1, reversed, 0)
+
+    value = config.createTextNode(f"{keyList} OR {buttonList}")
+        
     xml_newseq.appendChild(value)
     return xml_port
 

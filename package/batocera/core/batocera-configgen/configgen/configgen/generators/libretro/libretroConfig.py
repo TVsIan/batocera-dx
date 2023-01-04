@@ -187,6 +187,12 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
         retroarchConfig['input_player1_analog_dpad_mode'] = '3'
         retroarchConfig['input_player2_analog_dpad_mode'] = '3'
 
+    # Game Focus Mode
+    if system.isOptSet('game_focus') and system.getOptBoolean('game_focus'):
+        retroarchConfig['input_auto_game_focus'] = '1'
+    else:
+        retroarchConfig['input_auto_game_focus'] = '0'
+
     # force notification messages, but not the "remap" one
     retroarchConfig['video_font_enable'] = '"true"'
     retroarchConfig['notification_show_remap_load'] = '"false"'

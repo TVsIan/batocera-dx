@@ -208,7 +208,7 @@ class MameGenerator(Generator):
         # UI enable - for computer systems, the default sends all keys to the emulated system.
         # This will enable hotkeys, but some keys may pass through to MAME and not be usable in the emulated system.
         # Hotkey + D-Pad Up will toggle this when in use (scroll lock key)
-        if not (system.isOptSet("enableui") and not system.getOptBoolean("enableui")):
+        if not (system.isOptSet("game_focus") and not system.getOptBoolean("game_focus")):
             commandArray += [ "-ui_active" ]
 
         # Load selected plugins

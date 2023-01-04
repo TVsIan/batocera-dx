@@ -227,3 +227,55 @@ endif
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2),y)
     LIBRETRO_PLATFORM += rpi3
 endif
+
+# Working around an issue with Retroarch - if Game Focus is set to a controller hotkey, it ignores the hotkey button and toggles every press.
+# To fix, using Scroll Lock on Hotkey + R3 on Computer systems.
+define RETROARCH_EVMAPY
+    mkdir -p $(TARGET_DIR)/usr/share/evmapy
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/adam.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/amiga1200.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/amiga500.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/amstradcpc.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/apple2.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/apple2gs.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/archimedes.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/atari800.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/atarist.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/atom.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/bbc.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/c128.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/c20.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/c64.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/camplynx.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/coco.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/cplus4.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/dos.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/electron.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/fm7.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/fmtowns.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/laser310.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/macintosh.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/msx1.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/msx2+.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/msx2.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/msxturbor.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/o2em.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/pc88.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/pc98.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/pdp1.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/pet.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/prboom.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/samcoupe.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/socrates.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/thomson.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/ti99.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/tutor.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/tyrquake.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/x1.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/x68000.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/xegs.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/zx81.libretro.keys
+    cp $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/retroarch/retroarch/gamefocus.keys $(TARGET_DIR)/usr/share/evmapy/zxspectrum.libretro.keys
+endef
+
+RETROARCH_POST_INSTALL_TARGET_HOOKS += RETROARCH_EVMAPY

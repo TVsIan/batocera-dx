@@ -432,7 +432,7 @@ class EsSystemConf:
                                    if "shared" in features[emulator]["cores"][core]["systems"][system]:
                                        for shared in features[emulator]["cores"][core]["systems"][system]["shared"]:
                                            if EsSystemConf.archValid(arch, features["shared"]["cfeatures"][shared]):
-                                               featuresTxt += "    <sharedFeature value=\"{}\" />\n".format(EsSystemConf.protectXml(shared))
+                                               featuresTxt += "            <sharedFeature value=\"{}\" />\n".format(EsSystemConf.protectXml(shared))
                                            else:
                                                print("skipping system " + emulator + "/" + system + " shared " + shared)
                                    if "cfeatures" in features[emulator]["cores"][core]["systems"][system]:

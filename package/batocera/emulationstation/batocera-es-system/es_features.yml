@@ -241,6 +241,19 @@ shared:
       choices:
         "normal": "normal"
         "hidden": "hidden"
+    game_focus:
+      prompt: GAME FOCUS MODE
+      description: Disable hotkeys, use controller Hotkey + R3 or Scroll Lock to toggle
+      choices:
+        "On at Start":  1
+        "Off at Start": 0
+    pergamecfg:
+      group: ADVANCED OPTIONS
+      prompt:      CUSTOM GAME CONFIG
+      description: Enable per-game custom configuration via MAME menu.
+      choices:
+          "On":  1
+          "Off": 0
 
 global:
   shared: [videomode, ratio, shaderset, smooth, integerscale, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, ai_service_enabled, ai_target_lang, ai_service_url, ai_service_pause, rewind, runahead, secondinstance, video_frame_delay_auto, vrr_runloop_enable, video_threaded, rumble_gain]
@@ -307,6 +320,7 @@ libretro:
       features: [padtokeyboard]
       systems:
             atari800:
+                shared: [game_focus]
                 cfeatures:
                     atari800_system:
                         group: ADVANCED OPTIONS
@@ -387,7 +401,7 @@ libretro:
        shared: [rewind, autosave]
     bluemsx:
       features: [padtokeyboard, cheevos]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             bluemsx_overscan:
                 prompt:      ZOOM (HIDE BORDERS)
@@ -410,7 +424,7 @@ libretro:
       shared: [rewind, autosave]
     cap32:
       features: [netplay, cheevos, padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             cap32_model:
                 prompt:      CPC MODEL
@@ -805,6 +819,7 @@ libretro:
                             "GameCube Controller":               1281
     dosbox:
       features: [padtokeyboard]
+      shared: [game_focus]
       cfeatures:
             core_timing:
                 group: ADVANCED OPTIONS
@@ -851,6 +866,7 @@ libretro:
                     "Joystick (Analog, 2 Buttons)": 517
     dosbox_pure:
       features: [padtokeyboard]
+      shared: [game_focus]
       cfeatures:
             pure_cpu_type:
                 group: ADVANCED OPTIONS
@@ -1515,7 +1531,7 @@ libretro:
       shared: [rewind]
     fuse:
       features: [padtokeyboard]
-      shared: [autosave]
+      shared: [autosave, game_focus]
       cfeatures:
             fuse_machine:
                 prompt:      MODEL
@@ -1851,7 +1867,7 @@ libretro:
       shared: [rewind, autosave]
     hatari:
       features: [padtokeyboard]
-      shared: [autosave]
+      shared: [autosave, game_focus]
     imame4all:
       features: [netplay]
       shared: [rewind, autosave]
@@ -1860,6 +1876,7 @@ libretro:
       shared: [autosave]
     lowresnx:
       features: [padtokeyboard]
+      shared: [game_focus]
     #lutro:
     same_cdi:
       features: [netplay]
@@ -2034,6 +2051,7 @@ libretro:
                     "Off (Default)": 0
       systems:
          adam:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2058,21 +2076,8 @@ libretro:
                           "Cartridge (Slot 2)": cart2
                           "Cartridge (Slot 3)": cart3
                           "Cartridge (Slot 4)": cart4
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          advision:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2081,14 +2086,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":              none
                           "Entex AdventureVision cartridges": advision
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          apfm1000:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2097,14 +2096,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":   none
                           "APF M-1000 cartridges": apfm1000
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          apple2:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2140,21 +2133,8 @@ libretro:
                           "Apple //e Enhanced (Default)": apple2ee
                           "Apple //e":                    apple2e
                           "Apple ][ Plus":                apple2p
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          apple2gs:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2177,21 +2157,8 @@ libretro:
                           "5 1/4 Disk (Drive 2)": flop2
                           "3 1/2 Disk (Drive 3)": flop3
                           "3 1/2 Disk (Drive 4)": flop4
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          arcadia:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2200,14 +2167,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":             none
                           "Emerson Arcadia 2001 cartridges": arcadia
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          archimedes:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2227,37 +2188,18 @@ libretro:
                           "BBC A3000":                  aa3000
                           "Archimedes 440/1 (Default)": aa4401
                           "Archimedes 540":             aa540
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          astrocde:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
                       prompt:      SOFTWARE LIST
                       description: Use MAME software lists to identify ROM
                       choices:
-                          "Don't Use (Default)":            none
+                          "Don't Use (Default)":                  none
                           "Bally Professional Arcade cartridges": astrocde
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          atom:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2278,21 +2220,8 @@ libretro:
                           "Disk (Drive 2)": flop2
                           "Cartridge":      cart
                           "Quickload":      quik
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          bbc:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   sticktype:
                       group: ADVANCED OPTIONS
@@ -2342,21 +2271,8 @@ libretro:
                           "BBC Micro/Master Disk (Drive 2)": flop2
                           "BBC Master Cartridge (Slot 1)":   cart1
                           "BBC Master Cartridge (Slot 2)":   cart2
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          camplynx:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2372,21 +2288,8 @@ libretro:
                           "Lynx 128k (Default)": lynx128k
                           "Lynx 96k":            lynx96k
                           "Lynx 48k":            lynx48k
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          cdi:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2395,14 +2298,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":  none
                           "Philips CD-i CD-ROMs": cdi
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          coco:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2428,21 +2325,8 @@ libretro:
                       choices:
                           "Cassette":    cass
                           "Cartridge":   cart
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          crvision:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2458,14 +2342,8 @@ libretro:
                       choices:
                           "Cartridge":   cart
                           "Cassette":    cass
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          electron:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2483,21 +2361,8 @@ libretro:
                       choices:
                           "Electron w/64k Master RAM Board (default)": electron64
                           "Electron":                                  electron
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          fm7:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2521,21 +2386,8 @@ libretro:
                           "Cassette":       cass
                           "Disk (Drive 1)": flop1
                           "Disk (Drive 2)": flop2
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          fmtowns:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   altmodel:
                       group: ADVANCED OPTIONS
@@ -2571,21 +2423,8 @@ libretro:
                           "Floppy Disk (Drive 2 - Model 1/2 & II UX)": flop2
                           "CD-ROM":                                    cdrm
                           "Hard Drive (II UX)":                        hard1
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          gamate:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2594,14 +2433,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":        none
                           "Bit Corp Gamate cartridges": gamate
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          gamecom:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2610,14 +2443,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":       none
                           "Tiger Game.com cartridges": gamecom
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          gamepock:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2626,14 +2453,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":                   none
                           "Epoch Game Pocket Computer cartridges": gamepock
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          gmaster:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2642,14 +2463,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":            none
                           "Hartung Game Master cartridges": gmaster
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          gp32:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2658,14 +2473,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":            none
                           "GamePark GP32 SmartMedia cards": gp32
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          laser310:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2689,21 +2498,8 @@ libretro:
                       choices:
                           "Cassette": cass
                           "Snapshot": snap
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          macintosh:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2771,21 +2567,8 @@ libretro:
                           "System 6.0.8 (Hard Drive)": mac608
                           "System 7.0.1 (Hard Drive)": mac701
                           "System 7.5.5 (Hard Drive)": mac755
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          megaduck:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2794,14 +2577,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":             none
                           "Creatronic Mega Duck cartridges": megaduck
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          pdp1:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2810,21 +2587,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":            none
                           "PDP-1 Paper Tape Reader Images": pdp1_ptp
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          pv1000:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2833,14 +2597,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":      none
                           "Casio PV-1000 cartridges": pv1000
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          socrates:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2849,21 +2607,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":                  none
                           "Video Technology Socrates cartridges": socrates
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          supracan:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2872,14 +2617,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":            none
                           "Funtech Super A'Can cartridges": supracan
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          ti99:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2910,21 +2649,8 @@ libretro:
                           "Cassette 1":  cass1
                           "Cassette 2":  cass2
                           "Cartridge":   cart
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          tutor:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2940,21 +2666,8 @@ libretro:
                       choices:
                           "Cassette":    cass
                           "Cartridge":   cart
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          vectrex:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2963,14 +2676,8 @@ libretro:
                       choices:
                           "Don't Use (Default)":    none
                           "GCE Vectrex cartridges": vectrex
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          vsmile:
+              shared: [pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -2980,14 +2687,8 @@ libretro:
                           "Don't Use (Default)":             none
                           "VTech V.Smile cartridges":        vsmile_cart
                           "VTech V.Smile Motion cartridges": vsmilem_cart
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
          xegs:
+              shared: [game_focus, pergamecfg]
               cfeatures:
                   softList:
                       group: ADVANCED OPTIONS
@@ -3007,113 +2708,6 @@ libretro:
                           "Disk (Drive 2)": flop2
                           "Disk (Drive 3)": flop3
                           "Disk (Drive 4)": flop4
-                  enableui:
-                      group: ADVANCED OPTIONS
-                      prompt:      UI KEYS
-                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                      choices:
-                          "Off at Start": 0
-                          "On at Start":  1
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
-    mamevirtual:
-      features: [netplay]
-      shared: [autosave]
-      cfeatures:
-            mame_cpu_overclock:
-                group: ADVANCED OPTIONS
-                prompt:      OVERCLOCK (UNSTABLE)
-                description: Enhancement. Reduces system slowdown. Causes issues in some games.
-                choices:
-                    "default":        default
-                    "30":             30
-                    "35":             35
-                    "40":             40
-                    "45":             45
-                    "50":             50
-                    "55":             55
-                    "60":             60
-                    "65":             65
-                    "70":             70
-                    "75":             75
-                    "80":             80
-                    "85":             85
-                    "90":             90
-                    "95":             95
-                    "100":            100
-                    "105":            105
-                    "110":            110
-                    "115":            115
-                    "120":            120
-                    "125":            125
-                    "130":            130
-                    "135":            135
-                    "140":            140
-                    "145":            145
-                    "150":            150
-            mame_altres:
-                prompt:      RENDERING RESOLUTION
-                description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
-                choices:
-                    "640x480":        640x480
-                    "800x600":        800x600
-                    "960x720":        960x720
-                    "1024x768":       1024x768
-                    "1280x720":       1280x720
-                    "1600x800":       1600x800
-                    "1920x1080":      1920x1080
-                    "2560x1440":      2560x1440
-                    "3840x2160":      3840x2160
-            sharemameart:
-                group: ADVANCED OPTIONS
-                prompt:      SHARE MAME ARTWORK
-                description: Use the same art paths as standalone MAME - not recommended if using decorations or shaders.
-                choices:
-                    "On (Default)": 1
-                    "Off":          0
-            artworkcrop:
-                group: ADVANCED OPTIONS
-                prompt:      CROP ARTWORK
-                description: Crop MAME artwork to maximize the game screen and only fill unused space.
-                choices:
-                    "On":            1
-                    "Off (Default)": 0
-            customcfg:
-                group: ADVANCED OPTIONS
-                prompt:      CUSTOM CONFIG
-                description: Use a custom MAME config, do not overwrite config on launch.
-                choices:
-                    "On":            1
-                    "Off (Default)": 0
-            customcfg:
-                group: ADVANCED OPTIONS
-                prompt:      CUSTOM MAME CONFIG
-                description: Set system-wide controls via MAME menu
-                choices:
-                    "On":  1
-                    "Off": 0
-      systems:
-        vgmplay:
-              cfeatures:
-                  softList:
-                      group: ADVANCED OPTIONS
-                      prompt:      SOFTWARE LIST
-                      description: Use MAME software lists to identify ROM
-                      choices:
-                          "Don't Use (Default)":    none
-                          "Video Game Music Files": vgmplay
-                  pergamecfg:
-                      group: ADVANCED OPTIONS
-                      prompt:      CUSTOM GAME CONFIG
-                      description: Enable per-game custom configuration via MAME menu.
-                      choices:
-                          "On":  1
-                          "Off": 0
 
     mame0139:
       shared: [use_guns]
@@ -3622,7 +3216,7 @@ libretro:
                     "Famicom (FDS)":        famicom
     np2kai:
       features: [netplay, padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             np2kai_model:
                 prompt:      PC MODEL
@@ -3754,7 +3348,7 @@ libretro:
                     "Atari Joypad":                 Atari Joypad
     o2em:
       features: [cheevos]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             o2em_bios:
                 prompt:      EMULATED SYSTEM
@@ -4135,7 +3729,7 @@ libretro:
       features: [cheevos]
       shared: [rewind, autosave]
     prboom:
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             prboom-resolution:
                 prompt:      RENDERING RESOLUTION
@@ -4160,7 +3754,7 @@ libretro:
       shared: [rewind, autosave]
     puae:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             puae_model:
                 prompt:      AMIGA MODEL
@@ -4414,7 +4008,7 @@ libretro:
 
     puae2021:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             puae_model:
                 prompt:      AMIGA MODEL
@@ -4668,6 +4262,7 @@ libretro:
 
     px68k:
       features: [padtokeyboard]
+      shared: [game_focus]
       cfeatures:
             px68k_cpuspeed:
                 prompt:      CPU CLOCK
@@ -4720,7 +4315,7 @@ libretro:
                     "Super Famicom (8 Buttons)": CPSF-SFC (8 Buttons)
     quasi88:
       features: [netplay, padtokeyboard, cheevos]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             q88_basic_mode:
                 prompt:      PC MODEL
@@ -4930,12 +4525,12 @@ libretro:
                     "Off":  0
     theodore:
       features: [netplay, padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
     tic80:
       features: [padtokeyboard]
     tyrquake:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             tyrquake_resolution:
                 prompt:      RENDERING RESOLUTION
@@ -5141,7 +4736,7 @@ libretro:
                     "4":    4
     vice_x64:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             c64_model:
                 prompt:      MODEL TYPE
@@ -5234,7 +4829,7 @@ libretro:
                     "On":                       enabled
     vice_x64sc:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             c64_model:
                 prompt:      MODEL TYPE
@@ -5327,7 +4922,7 @@ libretro:
                     "On":                       enabled
     vice_x128:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             c128_model:
                 prompt:      MODEL TYPE
@@ -5483,7 +5078,7 @@ libretro:
                     "On":                       enabled
     vice_xvic:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             vic20_model:
                 prompt:      MODEL TYPE
@@ -5556,7 +5151,7 @@ libretro:
                     "On":                       enabled
     vice_xpet:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
       cfeatures:
             pet_model:
                 prompt:      MODEL TYPE
@@ -5661,7 +5256,7 @@ libretro:
       shared: [rewind, autosave]
     x1:
       features: [padtokeyboard]
-      shared: [rewind, autosave]
+      shared: [rewind, autosave, game_focus]
     #xash3d_fwgs:
     xrick:
       cfeatures:
@@ -7791,6 +7386,7 @@ mame:
                 "Off (Default)": 0
   systems:
        adam:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -7815,21 +7411,8 @@ mame:
                         "Cartridge (Slot 2)": cart2
                         "Cartridge (Slot 3)": cart3
                         "Cartridge (Slot 4)": cart4
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        advision:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -7838,14 +7421,8 @@ mame:
                     choices:
                         "Don't Use (Default)":              none
                         "Entex AdventureVision cartridges": advision
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        apfm1000:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -7854,14 +7431,8 @@ mame:
                     choices:
                         "Don't Use (Default)":   none
                         "APF M-1000 cartridges": apfm1000
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        apple2:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -7898,21 +7469,8 @@ mame:
                         "Apple //e Enhanced (Default)": apple2ee
                         "Apple //e":                    apple2e
                         "Apple ][ Plus":                apple2p
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        apple2gs:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -7935,21 +7493,8 @@ mame:
                         "5 1/4 Disk (Drive 2)": flop2
                         "3 1/2 Disk (Drive 3)": flop3
                         "3 1/2 Disk (Drive 4)": flop4
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        arcadia:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -7958,14 +7503,8 @@ mame:
                     choices:
                         "Don't Use (Default)":             none
                         "Emerson Arcadia 2001 cartridges": arcadia
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        archimedes:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -7985,21 +7524,8 @@ mame:
                         "BBC A3000":                  aa3000
                         "Archimedes 440/1 (Default)": aa4401
                         "Archimedes 540":             aa540
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        astrocde:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8008,14 +7534,8 @@ mame:
                     choices:
                         "Don't Use (Default)":            none
                         "Bally Professional Arcade cartridges": astrocde
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        atom:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8036,21 +7556,8 @@ mame:
                         "Disk (Drive 2)": flop2
                         "Cartridge":      cart
                         "Quickload":      quik
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        bbc:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 sticktype:
                     group: ADVANCED OPTIONS
@@ -8085,21 +7592,8 @@ mame:
                         "ROM (Slot 4)":   rom4
                         "Disk (Drive 1)": flop1
                         "Disk (Drive 2)": flop2
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        camplynx:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8115,21 +7609,8 @@ mame:
                         "Lynx 128k (Default)": lynx128k
                         "Lynx 96k":            lynx96k
                         "Lynx 48k":            lynx48k
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        cdi:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8138,14 +7619,8 @@ mame:
                     choices:
                         "Don't Use (Default)":  none
                         "Philips CD-i CD-ROMs": cdi
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        coco:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8171,21 +7646,8 @@ mame:
                     choices:
                         "Cassette":    cass
                         "Cartridge":   cart
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        crvision:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8201,14 +7663,8 @@ mame:
                     choices:
                         "Cartridge":   cart
                         "Cassette":    cass
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        electron:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8226,21 +7682,8 @@ mame:
                     choices:
                         "Electron w/64k Master RAM Board (default)": electron64
                         "Electron":                                  electron
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        fm7:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8272,21 +7715,8 @@ mame:
                         "Cassette":       cass
                         "Disk (Drive 1)": flop1
                         "Disk (Drive 2)": flop2
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        fmtowns:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 altmodel:
                     group: ADVANCED OPTIONS
@@ -8322,21 +7752,8 @@ mame:
                         "Floppy Disk (Drive 2 - Model 1/2 & II UX)": flop2
                         "CD-ROM":                                    cdrm
                         "Hard Drive (II UX)":                        hard1
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        gamate:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8345,14 +7762,8 @@ mame:
                     choices:
                         "Don't Use (Default)":        none
                         "Bit Corp Gamate cartridges": gamate
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        gamecom:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8361,14 +7772,8 @@ mame:
                     choices:
                         "Don't Use (Default)":       none
                         "Tiger Game.com cartridges": gamecom
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        gamepock:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8377,14 +7782,8 @@ mame:
                     choices:
                         "Don't Use (Default)":                   none
                         "Epoch Game Pocket Computer cartridges": gamepock
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        gmaster:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8393,14 +7792,8 @@ mame:
                     choices:
                         "Don't Use (Default)":            none
                         "Hartung Game Master cartridges": gmaster
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        gp32:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8409,14 +7802,8 @@ mame:
                     choices:
                         "Don't Use (Default)":            none
                         "GamePark GP32 SmartMedia cards": gp32
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        laser310:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8440,21 +7827,8 @@ mame:
                     choices:
                         "Cassette": cass
                         "Snapshot": snap
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        macintosh:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8523,21 +7897,8 @@ mame:
                         "System 6.0.8 (Hard Drive)": mac608
                         "System 7.0.1 (Hard Drive)": mac701
                         "System 7.5.5 (Hard Drive)": mac755
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        megaduck:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8546,14 +7907,8 @@ mame:
                     choices:
                         "Don't Use (Default)":             none
                         "Creatronic Mega Duck cartridges": megaduck
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        pdp1:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8562,21 +7917,8 @@ mame:
                     choices:
                         "Don't Use (Default)":            none
                         "PDP-1 Paper Tape Reader Images": pdp1_ptp
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        pv1000:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8585,14 +7927,8 @@ mame:
                     choices:
                         "Don't Use (Default)":      none
                         "Casio PV-1000 cartridges": pv1000
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        socrates:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8601,21 +7937,8 @@ mame:
                     choices:
                         "Don't Use (Default)":                  none
                         "Video Technology Socrates cartridges": socrates
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        supracan:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8624,14 +7947,8 @@ mame:
                     choices:
                         "Don't Use (Default)":            none
                         "Funtech Super A'Can cartridges": supracan
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        ti99:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8662,21 +7979,8 @@ mame:
                         "Cassette 1":  cass1
                         "Cassette 2":  cass2
                         "Cartridge":   cart
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        tutor:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8692,21 +7996,8 @@ mame:
                     choices:
                         "Cassette":    cass
                         "Cartridge":   cart
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        vc4000:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8722,14 +8013,8 @@ mame:
                     choices:
                         "Cartridge": cart
                         "Quickload": quik
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        vectrex:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8738,14 +8023,8 @@ mame:
                     choices:
                         "Don't Use (Default)":    none
                         "GCE Vectrex cartridges": vectrex
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        vgmplay:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8754,14 +8033,8 @@ mame:
                     choices:
                         "Don't Use (Default)":    none
                         "Video Game Music Files": vgmplay
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        vsmile:
+            shared: [pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8771,14 +8044,8 @@ mame:
                         "Don't Use (Default)":             none
                         "VTech V.Smile cartridges":        vsmile_cart
                         "VTech V.Smile Motion cartridges": vsmilem_cart
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        xegs:
+            shared: [game_focus, pergamecfg]
             cfeatures:
                 softList:
                     group: ADVANCED OPTIONS
@@ -8798,20 +8065,6 @@ mame:
                         "Disk (Drive 2)": flop2
                         "Disk (Drive 3)": flop3
                         "Disk (Drive 4)": flop4
-                enableui:
-                    group: ADVANCED OPTIONS
-                    prompt:      UI KEYS
-                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
-                    choices:
-                        "Off at Start": 0
-                        "On at Start":  1
-                pergamecfg:
-                    group: ADVANCED OPTIONS
-                    prompt:      CUSTOM GAME CONFIG
-                    description: Enable per-game custom configuration via MAME menu.
-                    choices:
-                        "On":  1
-                        "Off": 0
        mame:
             features: [netplay, padtokeyboard]
             cfeatures:
