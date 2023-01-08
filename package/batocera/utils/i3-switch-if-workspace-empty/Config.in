@@ -1,0 +1,9 @@
+config BR2_PACKAGE_I3_SWITCH_IF_WORKSPACE_EMPTY
+        bool "i3-switch-if-workspace-empty"
+        select BR2_PACKAGE_PYTHON_I3IPC
+        select BR2_PACKAGE_PYTHON_XLIB
+
+        help
+          Python script using i3ipc to connect to i3wm: on window close,
+          if the current workspace is empty, move to the first previous
+          non empty workspace.

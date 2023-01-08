@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_I3IPC
+        bool "python-i3ipc"
+
+        help
+          i3ipc-python is a Python library for controlling the window manager.
+
+          https://github.com/altdesktop/i3ipc-python

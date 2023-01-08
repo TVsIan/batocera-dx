@@ -1,0 +1,7 @@
+config BR2_PACKAGE_I3_ALT_TAB
+        bool "i3-alt-tab"
+
+        help
+          alt-tab like functionality for i3
+
+          https://github.com/yoshimoto/i3-alt-tab.py

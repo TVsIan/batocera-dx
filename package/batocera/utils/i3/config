@@ -1,0 +1,56 @@
+# i3 config file (v4)
+# Batocera version, most keybinds removed, remaining ones changed.
+
+font pango:Droid Sans Fallback 12
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+# Replicate Openbox keybinds as much as possible
+# Note: kill attempts to close normally, only kills task if unsupported
+bindsym Mod1+F4 kill
+
+# Alt-Tab/Alt-Shift-Tab via Python script
+bindsym Mod1+Tab exec i3-alt-tab.py next current
+bindsym Mod1+Shift+Tab exec i3-alt-tab.py prev current
+
+# By default, borders only on floating windows
+default_border none
+default_floating_border normal
+
+# Custom color scheme (Synthwave-ish)
+# class                 border  bground text    indicator child_border
+client.focused          #290CFF #0161E8 #FFFFFF #0161E8   #290CFF
+client.focused_inactive #333333 #9B00E8 #FFFFFF #9B00E8   #5F676A
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2F343A #FF2975 #FFFFFF #FF019A   #FF019A
+client.placeholder      #000000 #000000 #F222FF #000000   #000000
+
+client.background       #FFFFFF
+
+gaps inner 2
+smart_gaps on
+
+# Hide the bar
+bar {
+    mode invisible
+}
+
+# Set up workspaces
+workspace "1: Main" output primary
+workspace "2: Tiles" output primary
+workspace "3: Floating" output primary
+assign [class="emulationstation"] number "1: Main"
+assign [class="Pcmanfm"] number "3: Floating"
+for_window [workspace="3: Floating"] floating enable, border normal
+for_window [workspace="1: Main"] fullscreen enable
+for_window [floating] title_window_icon
+
+# This workspace for future dual screen use (marquee or dual screen emulation)
+workspace "4: Secondary" output nonprimary
+
+# Launch ES
+exec_always i3-switch-if-workspace-empty --keep-same-output
+exec i3-msg workspace number "1: Main"
+exec emulationstation-standalone

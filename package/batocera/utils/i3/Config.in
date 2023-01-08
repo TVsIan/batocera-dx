@@ -1,5 +1,15 @@
 config BR2_PACKAGE_I3
         bool "I3"
+        select BR2_PACKAGE_STARTUP_NOTIFICATION
+        select BR2_PACKAGE_XCB_UTIL
+        select BR2_PACKAGE_XCB_UTIL_CURSOR
+        select BR2_PACKAGE_XCB_UTIL_XRM
+        select BR2_PACKAGE_YAJL
+        select BR2_PACKAGE_I3_ALT_TAB
+        select BR2_PACKAGE_I3_SWITCH_IF_WORKSPACE_EMPTY
+        select BR2_PACKAGE_XAPP_XPROP
+        select BR2_PACKAGE_XAPP_XWININFO
+
         help
           Dynamic Window Manager
 

@@ -23,7 +23,4 @@ if (not t or t == ''):
 EOF
 
 unclutter-remote -s
-
-DISPLAY=:0.0 pcmanfm /userdata
-
-unclutter-remote -h
+test -x /usr/bin/i3-msg && DISPLAY=:0.0 i3-msg workspace number "3: Floating"; exec pcmanfm /userdata || DISPLAY=:0.0 pcmanfm /userdata && unclutter-remote -h

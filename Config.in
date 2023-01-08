@@ -432,6 +432,8 @@ menu "Utils"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/touchegg/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/imgui/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/i3/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/i3-alt-tab/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/i3-switch-if-workspace-empty/Config.in"
 endmenu
 
 menu "Libraries"
@@ -457,6 +459,8 @@ menu "Libraries"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/libraries/python-sysv-ipc/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/libraries/python-pyqt5-sip/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/libraries/python-hidapi/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/libraries/python-i3ipc/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/libraries/xcb-util-xrm/Config.in"
 endmenu
 
 endmenu
