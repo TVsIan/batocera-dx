@@ -2,6 +2,9 @@
 
 This is a fork that's somehwat looser with the rules for adding features than the original.
 
+Note that any fork-specific changes (listed as DX Mods in the changelog) are likely to be x86_64-specific only.
+I expect that Batocera DX will still build on any boards that Batocera Linux will build on, but it won't have any enhancements.
+
 ### Current Differences
  - Re-added CPU core control options
  - Re-added multi-window mode, using ratpoison WM only when needed
