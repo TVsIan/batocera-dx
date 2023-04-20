@@ -1,3 +1,13 @@
+## Batocera DX
+
+This is a fork that's somehwat looser with the rules for adding features than the original.
+
+### Current Differences
+ - Re-added CPU core control options
+ - Re-added multi-window mode, using ratpoison WM only when needed
+
+## Original Readme:
+
 [![Activity](https://img.shields.io/github/commit-activity/m/batocera-linux/batocera.linux)](https://github.com/batocera-linux/batocera.linux)
 [![PR](https://img.shields.io/github/issues-pr-closed/batocera-linux/batocera.linux)](https://github.com/batocera-linux/batocera.linux)
 [![Stars](https://img.shields.io/github/stars/batocera-linux?style=social)](https://github.com/batocera-linux/batocera.linux)
