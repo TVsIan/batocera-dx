@@ -57,6 +57,8 @@ apple2gs:
 arcadia:
   emulator: libretro
   core:     mame
+  options:
+    sharemameart: 0
 archimedes:
   emulator: libretro
   core:     mame
@@ -333,6 +335,9 @@ mugen:
 fpinball:
   emulator: fpinball
   core:     fpinball
+multivision:
+  emulator: libretro
+  core:     gearsystem
 n64:
   emulator: mupen64plus
   core:     glide64mk2
@@ -562,6 +567,8 @@ virtualboy:
 vitaquake2:
   emulator: libretro
   core:     vitaquake2
+  options:
+    gfxbackend: glcore
 vsmile:
   emulator: libretro
   core:     mame

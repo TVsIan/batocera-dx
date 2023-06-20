@@ -354,6 +354,15 @@ class MameGenerator(Generator):
                             commandArray += [ "-flop" ]
                         else:
                             commandArray += [ "-" + system.config["altromtype"] ]
+                    elif system.name == "adam":
+                        # add some logic based on the rom extension
+                        rom_extension = os.path.splitext(rom)[1].lower()
+                        if rom_extension == ".ddp":
+                            commandArray += [ "-cass1" ]
+                        elif rom_extension == ".dsk":
+                            commandArray += [ "-flop1" ]
+                        else:
+                            commandArray += [ "-cart1" ]
                     else:
                         commandArray += [ "-" + messRomType[messMode] ]
                 else:
@@ -473,9 +482,9 @@ class MameGenerator(Generator):
         buttonLayout = getMameControlScheme(system, romBasename)
 
         if messMode == -1:
-            mameControllers.generatePadsConfig(cfgPath, playersControllers, "", buttonLayout, customCfg, specialController, bezelSet, useGuns, useMouse, multiMouse)
+            mameControllers.generatePadsConfig(cfgPath, playersControllers, "", buttonLayout, customCfg, specialController, bezelSet, useGuns, guns, useMouse, multiMouse)
         else:
-            mameControllers.generatePadsConfig(cfgPath, playersControllers, messModel, buttonLayout, customCfg, specialController, bezelSet, useGuns, useMouse, multiMouse)
+            mameControllers.generatePadsConfig(cfgPath, playersControllers, messModel, buttonLayout, customCfg, specialController, bezelSet, useGuns, guns, useMouse, multiMouse)
 
         # Change directory to MAME folder (allows data plugin to load properly)
         os.chdir('/usr/bin/mame')

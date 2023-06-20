@@ -695,14 +695,36 @@ libretro:
       features: [cheevos]
       shared: [autosave, cpucores, cpucores]
       cfeatures:
+            melonds_console_mode:
+                prompt: NDS VERSION
+                decription: Choose the NDS handheld version
+                choices:
+                    "DS (Default)": DS
+                    "DSi":          DSi
             melonds_boot_directly:
-                prompt:      SKIP DS SYSTEM MENU
+                prompt: SKIP DS SYSTEM MENU
                 description: Disable to access the system's settings, like time and language.
                 choices:
                     "Off": disabled
                     "On":  enabled
+            melonds_use_fw_settings:
+                prompt: USE FIRMWARE SETTINGS
+                description: Use language and username from the NDS Firmware
+                choices:
+                    "ON":            enable
+                    "OFF (Default)": disable
+            melonds_language:
+                prompt: LANGUAGE
+                description: Select language will be used if 'Use Firmware Settings' is disabled or if firmware file was not found.
+                choices:
+                    "English (Default)": English
+                    "French":            French
+                    "German":            German
+                    "Italian":           Italian
+                    "Spanish":           Spanish
+                    "Japanese":          Japanese
             melonds_screen_layout:
-                prompt:      SCREEN LAYOUT
+                prompt: SCREEN LAYOUT
                 description: Arrange the dual screen layout.
                 choices:
                     "top/bottom":            Top/Bottom
@@ -716,7 +738,7 @@ libretro:
                     "hybrid bottom ratio 2": Hybrid Bottom-Ratio2
                     "hybrid bottom ratio 3": Hybrid Bottom-Ratio3
             melonds_touch_mode:
-                prompt:      TOUCH SCREEN MODE
+                prompt: TOUCH SCREEN MODE
                 description: Select the input type to navigate the touch screen
                 choices:
                     "None":         Disabled
@@ -730,12 +752,12 @@ libretro:
                         prompt:      RENDERING RESOLUTION
                         description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
                         choices:
-                            "1x native (640x528)":  x1 (640 x 528)
-                            "2x 720p (1280x1056)":  x2 (1280 x 1056)
-                            "3x 1080p (1920x1584)": x3 (1920 x 1584)
-                            "4x 1440p (2560x2112)": x4 (2560 x 2112)
-                            "5x (3200x2640)":       x5 (3200 x 2640)
-                            "6x 4K (3840x3168)":    x6 (3840 x 3168)
+                            "1x native (640x528)":  'x1 (640 x 528)'
+                            "2x 720p (1280x1056)":  'x2 (1280 x 1056)'
+                            "3x 1080p (1920x1584)": 'x3 (1920 x 1584)'
+                            "4x 1440p (2560x2112)": 'x4 (2560 x 2112)'
+                            "5x (3200x2640)":       'x5 (3200 x 2640)'
+                            "6x 4K (3840x3168)":    'x6 (3840 x 3168)'
                     wii_language:
                         prompt:      LANGUAGE
                         description: Wii NAND's language setting.
@@ -758,13 +780,13 @@ libretro:
                             "On":  enabled
                     wii_shader_mode:
                         group: ADVANCED OPTIONS
-                        prompt:      UBERSHADERS
+                        prompt: UBERSHADERS
                         description: May not work well on all hardware. Hybrid is preferred, where supported.
                         choices:
-                            "No Ubershaders":        sync
-                            "Exclusive Ubershaders": sync UberShaders
-                            "Hybrid Ubershaders":    a-sync UberShaders
-                            "Skip Drawing":          a-sync Skip Rendering
+                            "No Ubershaders":        'sync'
+                            "Exclusive Ubershaders": 'sync UberShaders'
+                            "Hybrid Ubershaders":    'a-sync UberShaders'
+                            "Skip Drawing":          'a-sync Skip Rendering'
                     wii_anisotropic:
                         group: ADVANCED OPTIONS
                         prompt:      ANISOTROPIC FILTERING
@@ -1998,7 +2020,7 @@ libretro:
             hiscoreplugin:
                 group: ADVANCED OPTIONS
                 prompt:      HIGH SCORE PLUGIN
-                description: Emable or disable high score saving
+                description: Enable or disable high score saving
                 choices:
                     "Enabled (Default)": 1
                     "Disabled":          0
@@ -2135,6 +2157,7 @@ libretro:
                           "Cassette":       cass
                           "Disk (Drive 1)": flop1
                           "Disk (Drive 2)": flop2
+                          "Hard Drive":     hard1
                   gameio:
                       group: ADVANCED OPTIONS
                       prompt:      JOYSTICK TYPE
@@ -2922,15 +2945,15 @@ libretro:
                       prompt:      32K RAM EXPANSION
                       description: 32k RAM expansion card installed
                       choices:
-                          "Enabled (Default)": 1
-                          "Disabled":          0
+                          "Disabled (Default)": 0
+                          "Enabled":            1
                   ti99_speech:
                       group: ADVANCED OPTIONS
                       prompt:      SPEECH MODULE
                       description: Speech module installed
                       choices:
-                          "Enabled (Default)": 1
                           "Disabled":          0
+                          "Enabled (Default)": 1
                   altromtype:
                       group: ADVANCED OPTIONS
                       prompt:      MEDIA TYPE
@@ -3568,6 +3591,15 @@ libretro:
                 choices:
                     "Original":   Original
                     "Full speed": Fullspeed
+            mupen64plus-parallel-rdp-upscaling:
+                group: ADVANCED OPTIONS
+                prompt: PARALLEL-RDP UPSCALER
+                description: Only applies when using Parallel-RDP as the chosen RDP Plugin.
+                choices:
+                    "1x (Default)": 1x
+                    "2x":           2x
+                    "4x":           4x
+                    "8x":           8x
     neocd:
       shared: [rewind, autosave, cpucores]
       cfeatures:
@@ -4019,13 +4051,6 @@ libretro:
                     "1":                1
                     "2":                2
                     "3":                3
-            neon_enhancement:
-                prompt:      ENHANCED RENDERING RESOLUTION
-                description: Double the rendering resolution.
-                choices:
-                    "Off":              disabled
-                    "On":               enabled
-                    "On (Speed hack)":  enabled_with_speedhack
             pcsx_rearmed_multitap:
                 prompt:      MULTITAP
                 description: Allows up to 5 or 8 controllers in supported games.
@@ -6217,15 +6242,25 @@ devilutionx:
 dolphin:
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
   cfeatures:
+        dolphin_aspect_ratio:
+            submenu: DISPLAY
+            prompt: GAME ASPECT RATIO
+            description: The final output image, unrelated to the Wii's emulated NAND setting.
+            choices:
+                "Force 16:9":        1
+                "Force 4:3":         2
+                "Stretch to window": 3
         gfxbackend:
             archs_include: [x86, x86_64, bcm2711, rk3326]
-            prompt:      GRAPHICS API
+            submenu: RENDERING
+            prompt:  GRAPHICS API
             description: Choose which graphics API library to use. Vulkan is better, when supported.
             choices:
                 "OpenGL": OGL
                 "Vulkan": Vulkan
         internal_resolution:
-            prompt:      RENDERING RESOLUTION
+            submenu: RENDERING
+            prompt: RENDERING RESOLUTION
             description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
             choices:
                 "1x native (640x528)":  1
@@ -6236,46 +6271,39 @@ dolphin:
                 "6x 4K (3840x3168)":    6
                 "7x (4480x3696)":       7
                 "8x 5K (5120x4224)":    8
-        dolphin_aspect_ratio:
-            prompt:      GAME ASPECT RATIO
-            description: The final output image, unrelated to the Wii's emulated NAND setting.
-            choices:
-                "Force 16:9": 1
-                "Force 4:3": 2
-                "Stretch to window": 3
         ubershaders:
-            group: ADVANCED OPTIONS
-            prompt:      UBERSHADERS
+            submenu: RENDERING
+            prompt: UBERSHADERS
             description: May not work well on all hardware. Hybrid is preferred, where supported.
             choices:
-                "No Ubershaders":                          no_ubershader
-                "Exclusive Ubershaders":                   exclusive_ubershader
-                "Hybrid Ubershaders":                      hybrid_ubershader
-                "Skip Drawing":                            skip_draw
+                "No Ubershaders":        no_ubershader
+                "Exclusive Ubershaders": exclusive_ubershader
+                "Hybrid Ubershaders":    hybrid_ubershader
+                "Skip Drawing":          skip_draw
         wait_for_shaders:
-            group: ADVANCED OPTIONS
-            prompt:      PRE-CACHE SHADERS
+            submenu: RENDERING
+            prompt: PRE-CACHE SHADERS
             description: Compile shaders on next launch of game (one time). Reduces micro-freezes.
             choices:
                 "Off (default)": 0
                 "On":            1
         perf_hacks:
             group: ADVANCED OPTIONS
-            prompt:      PERFORMANCE HACKS
+            prompt: PERFORMANCE HACKS
             description: Increase emulator performance, at the cost of accuracy/stability.
             choices:
                 "Off": 0
                 "On":  1
         use_pad_profiles:
-            group: ADVANCED OPTIONS
-            prompt:      USE PAD PROFILES
+            submenu: CONTROLLERS
+            prompt: USE PAD PROFILES
             description: Search for custom configured joystick profiles.
             choices:
                 "Off": 0
                 "On":  1
         dolphin_port_1_type:
-            group: ADVANCED OPTIONS
-            prompt:      GAMECUBE PORT 1 TYPE
+            submenu: CONTROLLERS
+            prompt: GAMECUBE PORT 1 TYPE
             description: Change what's plugged into the virtual GameCube ports.
             choices:
                 "None":                       0
@@ -6288,8 +6316,8 @@ dolphin:
                 "Keyboard":                   7
                 "GBA (Internal)":             13
         dolphin_port_2_type:
-            group: ADVANCED OPTIONS
-            prompt:      GAMECUBE PORT 2 TYPE
+            submenu: CONTROLLERS
+            prompt: GAMECUBE PORT 2 TYPE
             choices:
                 "None":                       0
                 "Standard Controller":        6
@@ -6301,8 +6329,8 @@ dolphin:
                 "Keyboard":                   7
                 "GBA (Internal)":             13
         dolphin_port_3_type:
-            group: ADVANCED OPTIONS
-            prompt:      GAMECUBE PORT 3 TYPE
+            submenu: CONTROLLERS
+            prompt: GAMECUBE PORT 3 TYPE
             choices:
                 "None":                       0
                 "Standard Controller":        6
@@ -6314,8 +6342,8 @@ dolphin:
                 "Keyboard":                   7
                 "GBA (Internal)":             13
         dolphin_port_4_type:
-            group: ADVANCED OPTIONS
-            prompt:      GAMECUBE PORT 4 TYPE
+            submenu: CONTROLLERS
+            prompt: GAMECUBE PORT 4 TYPE
             choices:
                 "None":                       0
                 "Standard Controller":        6
@@ -6327,8 +6355,8 @@ dolphin:
                 "Keyboard":                   7
                 "GBA (Internal)":             13
         anisotropic_filtering:
-            group: ADVANCED OPTIONS
-            prompt:      ANISOTROPIC FILTERING
+            submenu: RENDERING
+            prompt: ANISOTROPIC FILTERING
             description: Improves clarity of distant textures.
             choices:
                 "Off": 0
@@ -6338,21 +6366,21 @@ dolphin:
                 "16x": 4
         dual_core:
             group: ADVANCED OPTIONS
-            prompt:      DUAL CORE MODE
+            prompt: DUAL CORE MODE
             description: Usually not much faster than single core mode.
             choices:
                 "Off": 0
                 "On":  1
         gpu_sync:
             group: ADVANCED OPTIONS
-            prompt:      GPU SYNC
+            prompt: GPU SYNC
             description: Speed hack for dual core mode to fix some glitches.
             choices:
                 "Off": 0
                 "On":  1
         antialiasing:
-            group: ADVANCED OPTIONS
-            prompt:      ANTI-ALIASING
+            submenu: RENDERING
+            prompt: ANTI-ALIASING
             description: Enhancement. Smooth out jagged edges on 3D object polygons.
             choices:
                 "Off": 0
@@ -6360,65 +6388,73 @@ dolphin:
                 "4x":  4
                 "8x":  8
         use_ssaa:
-            group: ADVANCED OPTIONS
-            prompt:      ANTI-ALIASING MODE
+            submenu: RENDERING
+            prompt: ANTI-ALIASING MODE
             description: Toggle MSAA/SSAA. Depends on anti-aliasing being enabled.
             choices:
                 "MSAA (default)": 0
                 "SSAA":           1
         hires_textures:
-            group: ADVANCED OPTIONS
-            prompt:      LOAD CUSTOM TEXTURES
+            submenu: RENDERING
+            prompt: LOAD CUSTOM TEXTURES
             choices:
                 "Off": 0
                 "On":  1
         enable_cheats:
             group: ADVANCED OPTIONS
-            prompt:      ENABLE CHEATS
+            prompt: ENABLE CHEATS
             description: To use game cheats or 16/9 Aspect Ratio Fix codes.
             choices:
                 "Off": 0
                 "On":  1
         enable_mmu:
             group: ADVANCED OPTIONS
-            prompt:      MEMORY MANAGEMENT UNIT
+            prompt: MEMORY MANAGEMENT UNIT
             description: Required by some games.
             choices:
                 "Off": 0
                 "On":  1
         enable_fastdisc:
             group: ADVANCED OPTIONS
-            prompt:      FAST DISK TRANSFER RATE
+            prompt: FAST DISK TRANSFER RATE
             description: Enhancement. Removes disc loading.
             choices:
                 "Off": 0
                 "On":  1
         vsync:
-            group: ADVANCED OPTIONS
-            prompt:      VSYNC
+            submenu: DISPLAY
+            prompt: VSYNC
             description: Fix screen tearing. CPU heavy.
             choices:
                 "Off": 0
                 "On":  1
         dsmotion:
-            group: ADVANCED OPTIONS
-            prompt:      DUALSHOCK MOTION CONTROL
+            submenu: CONTROLLERS
+            prompt: DUALSHOCK MOTION CONTROL
             description: Emulate the Wiimote pointer with a DS4's gyroscope.
             choices:
                 "Off": 0
                 "On":  1
         mouseir:
-            group: ADVANCED OPTIONS
-            prompt:      MOUSE AS WIIMOTE POINTER
+            submenu: CONTROLLERS
+            prompt: MOUSE AS WIIMOTE POINTER
             description: Emulate the Wiimote pointer with a mouse.
             choices:
                 "Off": 0
                 "On":  1
         rumble:
-            prompt:      RUMBLE
+            submenu: CONTROLLERS
+            prompt: RUMBLE
             choices:
                 "Off": 0
                 "On":  1
+        vbi_hack:
+            group: ADVANCED OPTIONS
+            prompt: VBI SKIP
+            description: Skips Vertical Blank Interrupts when lag is detected, allowing for smooth audio playback when emulation speed is not 100%.
+            choices:
+                "Off": "False"
+                "On":  "True"
 
   systems:
     gamecube:
@@ -6443,7 +6479,8 @@ dolphin:
                     "e-Reader (JP)":  Card e-Reader (J)
                     "e-Reader+ (JP)": Card e-Reader+ (J)
             widescreen_hack:
-                prompt:      WIDESCREEN HACK (GLITCHY)
+                submenu: DISPLAY
+                prompt: WIDESCREEN HACK (GLITCHY)
                 description: Enhancement. Only works with a 16/9 ratio and bezels disabled.
                 choices:
                     "Off": 0
@@ -6452,19 +6489,22 @@ dolphin:
         shared: [use_guns, cpucores]
         cfeatures:
             tv_mode:
-                prompt:      WII TV MODE
+                submenu: DISPLAY
+                prompt: WII TV MODE
                 description: Wii NAND's aspect ratio setting. Most games support both ratios natively.
                 choices:
-                    "4:3": 0
+                    "4:3":  0
                     "16:9": 1
             emulatedwiimotes:
-                prompt:      EMULATE WIIMOTE
+                submenu: CONTROLLERS
+                prompt: EMULATE WIIMOTE
                 description: Map your controller to an emulated Wiimote.
                 choices:
                     "Off": 0
-                    "On": 1
+                    "On":  1
             controller_mode:
-                prompt:      CUSTOMIZE EMULATED WIIMOTE & GAMEPAD
+                submenu: CONTROLLERS
+                prompt: CUSTOMIZE EMULATED WIIMOTE & GAMEPAD
                 description: Emulate a Wiimote Sideway with L2 for Shake and Nunchuk on R-stick.
                 choices:
                     "Off":                       disabled
@@ -6474,8 +6514,9 @@ dolphin:
                     "Wiimote Sideway + Tilt":    it
                     "Wiimote Sideway + Nunchuk": in
             dolphin-lightgun-hide-crosshair:
+                submenu: CONTROLLERS
                 group: LIGHT GUN
-                prompt:      SHOW LIGHT GUN CROSSHAIRS
+                prompt: SHOW LIGHT GUN CROSSHAIRS
                 choices:
                     "Off": 0
                     "On":  1
@@ -6604,205 +6645,304 @@ dosbox-x:
   shared: [videomode, ratio, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
 
 duckstation:
-  shared: [videomode, ratio, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
+  shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
   cfeatures:
-        duckstation_rewind:
-            prompt:      REWIND
-            description: System requirements at native; (RAM|VRAM).
+        duckstation_clocking:
+            submenu: EMULATION
+            prompt: EMULATION SPEED
+            description: Determines the speed and the runahead behaviour of the system.
             choices:
-                "Off":                                "false"
-                "Per 0.05s, 5s total (550MB|100MB)":  5
-                "Per 0.1s, 10s total (1100MB|200MB)": 10
-                "Per 1s, 15s total (165MB|30MB)":     15
-                "Per 1s, 30s total (330MB|60MB)":     30
-                "Per 1s, 60s total (660MB|120MB)":    60
-                "Per 1s, 90s total (990MB|180MB)":    90
-                "Per 1s, 120s total (1320MB|240MB)":  120
-        gfxbackend:
-            archs_include: [x86, x86_64, bcm2711, rk3326]
-            prompt:      GRAPHICS API
-            description: Choose which graphics API library to use. Vulkan is better, when supported.
-            choices:
-                "OpenGL":                        OpenGL
-                "Vulkan":                        Vulkan
-        duckstation_osd:
-            prompt:      SHOW ON-SCREEN DISPLAY MESSAGES
+                "Unlimited": "0"
+                "10%":       ".1"
+                "20%":       ".2"
+                "30%":       ".3"
+                "40%":       ".4"
+                "50%":       ".5"
+                "60%":       ".6"
+                "70%":       ".7"
+                "80%":       ".8"
+                "90%":       ".9"
+                "100%":      "1"
+                "125%":      "1.25"
+                "150%":      "1.5"
+                "175%":      "1.75"
+                "200%":      "2"
+                "250%":      "2.5"
+                "300%":      "3"
+                "350%":      "3.5"
+                "400%":      "4"
+                "450%":      "4.5"
+                "500%":      "5"
+                "600%":      "6"
+                "700%":      "7"
+                "800%":      "8"
+                "900%":      "9"
+                "1000%":     "10"
+        duckstation_hrr:
+            submenu: EMULATION
+            prompt: SYNC TO HOST REFRESH RATE
+            description: VSync and Audio Resampling need to be enabled.
             choices:
                 "Disabled (Default)": "false"
                 "Enabled":            "true"
-        duckstation_executionmode:
-            group: ADVANCED OPTIONS
-            prompt:      CPU EXECUTION MODE
-            description: Interpreter is the most accurate, but is the slowest.
+        duckstation_ofp:
+            submenu: EMULATION
+            prompt: OPTIMAL FRAME PACING
+            description: Ensure every frame the console renders is displayed to screen.
             choices:
-                "Recompiler (Fastest)":              Recompiler
-                "Cached Interpreter (Faster)":       CachedInterpreter
-                "Interpreter (Slowest)":             Interpreter
-        duckstation_threadedpresentation:
-            group: ADVANCED OPTIONS
-            prompt:      THREADED PRESENTATION
-            description: Improve performance if VSync is disabled and using Vulkan.
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_gfxbackend:
+            submenu: DISPLAY
+            archs_include: [x86, x86_64, bcm2711, rk3326]
+            prompt: GRAPHICS API
+            description: Choose which graphics API library to use. Vulkan is better, when supported.
             choices:
-                "Off":                           0
-                "On":                            1
+                "Vulkan":   Vulkan
+                "OpenGL":   OpenGL
+                "Software": Software                
         duckstation_vsync:
-            group: ADVANCED OPTIONS
-            prompt:      VSYNC
+            submenu: DISPLAY
+            prompt: VSYNC
             description: Fix screen tearing. CPU heavy.
             choices:
-                "Off":                           0
-                "On":                            1
-        duckstation_frameskip:
-            prompt:      FRAMESKIP
-            description: Skip frames to improve performance, at the cost of choppy motion.
+                "Off": "false"
+                "On":  "true"
+        duckstation_threadedpresentation:
+            submenu: DISPLAY
+            prompt: THREADED PRESENTATION
+            description: Improve performance if VSync is disabled and using Vulkan.
             choices:
-                "Off":                           0
-                "On":                            1
-        duckstation_PatchFastBoot:
-            prompt:      SHOW BIOS BOOTLOGO
-            description: Skipping it can break some games.
+                "Off": "false"
+                "On":  "true"
+        duckstation_ratio:
+            submenu: DISPLAY
+            prompt: ASPECT RATIO
+            description: Change the output resolution ratio.
             choices:
-                "Show":                            0
-                "Skip":                            1
-        duckstation_resolution_scale:
-            prompt:      RENDERING RESOLUTION
-            description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
-            choices:
-                "1x native (320x240)":                       1
-                "2x (640x480)":                              2
-                "3x 720p (960x720)":                         3
-                "4x (1280x960)":                             4
-                "5x 1080p (1600x1200)":                      5
-                "6x 1440p (1920x1440)":                      6
-                "7x (2240x1680)":                            7
-                "8x (2560x1920)":                            8
-                "9x 4K (2880x2160)":                         9
-                "10x (3200x2400)":                           10
-                "11x (3520x2640)":                           11
-                "12x (3840x2880)":                           12
-                "13x (4160x3120)":                           13
-                "14x (4480x3360)":                           14
-                "15x (4800x3600)":                           15
-                "16x (5120x3840)":                           16
-        duckstation_antialiasing:
-            group: ADVANCED OPTIONS
-            prompt:      ANTI-ALIASING (MSAA/SSAA)
-            description: Enhancement. Smooth out jagged edges on 3D object polygons.
-            choices:
-                "Off":                           1
-                "2x MSAA":                       2
-                "4x MSAA":                       4
-                "8x MSAA":                       8
-                "16x MSAA":                      16
-                "32x MSAA":                      32
-                "2x SSAA":                       2-ssaa
-                "4x SSAA":                       4-ssaa
-                "8x SSAA":                       8-ssaa
-                "16x SSAA":                      16-ssaa
-                "32x SSAA":                      32-ssaa
-        duckstation_texture_filtering:
-            group: ADVANCED OPTIONS
-            prompt:      TEXTURE FILTERING
-            description: Enhancement. Smooth/upscale textures on 3D objects.
-            choices:
-                "Nearest-Neighbor":              Nearest
-                "Bilinear":                      Bilinear
-                "Bilinear (no edge blending)":   BilinearBinAlpha
-                "JINC2":                         Jinc2
-                "JINC2 (no edge blending)":      Jinc2BinAlpha
-                "xBR":                           xBR
-                "xBR (no edge blending)":        xBRBinAlpha
+                "Match Window": "Auto (Match Window)"
+                "4:3":          "4:3"
+                "16:9":         "16:9"
+                "19:9":         "19:9"
+                "20:9":         "20:9"
+                "PAR 1:1":      "PAR 1:1"
         duckstation_CropMode:
-            group: ADVANCED OPTIONS
-            prompt:      CROP OVERSCAN
+            submenu: DISPLAY
+            prompt: CROP OVERSCAN
             description: Zooms in to hide black borders. Borders are different per game.
             choices:
-                "Off":                           "None"
-                "Only Overscan Area":            "Overscan"
-                "All Borders":                   "Borders"
+                "Off":                "None"
+                "Only Overscan Area": "Overscan"
+                "All Borders":        "Borders"
+        duckstation_integer:
+            submenu: DISPLAY
+            prompt: INTEGER UPSCALING
+            description: May result in a sharper image in some 2D games.
+            choices:
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_linear:
+            submenu: DISPLAY
+            prompt: LINEAR UPSCALING
+            description: Enabling will smooth out the image.
+            choices:
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_stretch:
+            submenu: DISPLAY
+            prompt: STRETCH TO FILL
+            description: Fills the screen regardless of the aspect ratio. Doesn't work with Integer Upscaling.
+            choices:
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_resolution_scale:
+            submenu: RENDERING
+            prompt: RENDERING RESOLUTION
+            description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
+            choices:
+                "1x native (320x240)":  1
+                "2x (640x480)":         2
+                "3x 720p (960x720)":    3
+                "4x (1280x960)":        4
+                "5x 1080p (1600x1200)": 5
+                "6x 1440p (1920x1440)": 6
+                "7x (2240x1680)":       7
+                "8x (2560x1920)":       8
+                "9x 4K (2880x2160)":    9
+                "10x (3200x2400)":      10
+                "11x (3520x2640)":      11
+                "12x (3840x2880)":      12
+                "13x (4160x3120)":      13
+                "14x (4480x3360)":      14
+                "15x (4800x3600)":      15
+                "16x (5120x3840)":      16
+        duckstation_texture_filtering:
+            submenu: RENDERING
+            prompt: TEXTURE FILTERING
+            description: Enhancement. Smooth/upscale textures on 3D objects.
+            choices:
+                "Nearest-Neighbor":                  Nearest
+                "Bilinear":                          Bilinear
+                "Bilinear (No Edge Blending)":       BilinearBinAlpha
+                "JINC2 (Slow)":                      Jinc2
+                "JINC2 (Slow, No Edge Blending)":    Jinc2BinAlpha
+                "xBR (Very Slow)":                   xBR
+                "xBR (Very Slow, No Edge Blending)": xBRBinAlpha
+        duckstation_truecolour:
+            submenu: RENDERING
+            prompt: TRUE COLOUR RENDERING
+            description: 24-bit, disables dithering.
+            choices:
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_dithering:
+            submenu: RENDERING
+            prompt: SCALED DITHERING
+            description: Makes the dither pattern much less obvious at higher resolutions.
+            choices:
+                "Disabled":          "false"
+                "Enabled (Default)": "true"
         duckstation_widescreen_hack:
-            prompt:      WIDESCREEN HACK (GLITCHY)
+            submenu: RENDERING
+            prompt: WIDESCREEN HACK (GLITCHY)
             description: Enhancement. Only works with a 16/9 ratio and bezels disabled.
             choices:
-                "Off":                           0
-                "On":                            1
-        duckstation_region:
-            prompt:      CONSOLE REGION
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_audio_mode:
+            group: AUDIO
+            prompt: STRETCH MODE
+            description: When running outside of 100%, adjusts the temp instead of dropping frames.
             choices:
-                "PAL":                           PAL
-                "NTSC-U/C":                      NTSC-U
-                "NTSC-J":                        NTSC-J
+                "Off (Noisy)":                             "None"
+                "Resampling (Pirch Shift)":                "Resample"
+                "Time Stretch (Tempo Change, Best Sound)": "TimeStretch"
+        duckstation_interlacing:
+            submenu: DISPLAY
+            prompt: DISABLE INTERLACING
+            description: Force progressive render / scan.
+            choices:
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
         duckstation_60hz:
-            group: ADVANCED OPTIONS
-            prompt:      FORCE NTSC TIMINGS ON PAL
+            submenu: DISPLAY
+            prompt: FORCE NTSC TIMINGS ON PAL
             description: Hack. Increases most PAL games' speed by 17%.
             choices:
-                "Off":                           0
-                "On":                            1
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_region:
+            prompt: CONSOLE REGION
+            choices:
+                "PAL":      PAL
+                "NTSC-U/C": NTSC-U
+                "NTSC-J":   NTSC-J
         duckstation_custom_textures:
             group: ADVANCED OPTIONS
-            prompt:      LOAD CUSTOM TEXTURES
+            prompt: LOAD CUSTOM TEXTURES
             description: Preload requires more RAM.
             choices:
-                "Off":                           0
-                "Normal":                        normal
-                "Preload":                       preload
-        duckstation_rumble:
-            prompt:      RUMBLE
-            description: Activate rumble on supported controllers.
-            choices:
-                "Off":                           0
-                "On":                            1
+                "Off":     "false"
+                "Normal":  "normal"
+                "Preload": "preload"
         duckstation_digitalmode:
-            prompt:      JOYSTICK TO DPAD
-            description: For digital controller mode.
+            submenu: CONTROLLERS
+            prompt: JOYSTICK TO DPAD
+            description: Use Analog joysticks in addition to D-Pad for DualShock controllers.
             choices:
-                "Off":                           0
-                "On":                            1
-        duckstation_multitap:
-            prompt:      MULTITAP
-            description: Allows up to 5 or 8 controllers in supported games.
-            choices:
-                "Off":                           Disabled
-                "Port 1":                        Port1Only
-                "Port 2":                        Port2Only
-                "Port 1+2":                      BothPorts
+                "Off": "false"
+                "On":  "true"
         duckstation_Controller1:
-            prompt:      CONTROLLER 1 TYPE
+            submenu: CONTROLLERS
+            prompt: CONTROLLER 1 TYPE
             description: DualShock has rumble support. Not all games support DualShock.
             choices:
-                "None":                          None
-                "PS1 Digital Controller":        DigitalController
-                "PS1 Analog Joystick":           AnalogJoystick
-                "DualShock / Xbox Type":         AnalogController
-                "Namco GunCon (Rumble)":         NamcoGunCon
-                "PlayStation Mouse":             PlayStationMouse
-                "NeGcon (Rumble)":               NeGcon
+                "Not Connected":          None
+                "PS1 Digital Controller": DigitalController
+                "PS1 Analog Joystick":    AnalogJoystick
+                "DualShock / Xbox Type":  AnalogController
+                "Namco GunCon (Rumble)":  NamcoGunCon
+                "PlayStation Mouse":      PlayStationMouse
+                "NeGcon (Rumble)":        NeGcon
         duckstation_Controller2:
-            prompt:      CONTROLLER 2 TYPE
+            submenu: CONTROLLERS
+            prompt: CONTROLLER 2 TYPE
             description: DualShock has rumble support. Not all games support DualShock.
             choices:
-                "None":                          None
-                "PS1 Digital Controller":        DigitalController
-                "PS1 Analog Joystick":           AnalogJoystick
-                "DualShock / Xbox Type":         AnalogController
-                "Namco GunCon (Rumble)":         NamcoGunCon
-                "PlayStation Mouse":             PlayStationMouse
-                "NeGcon (Rumble)":               NeGcon
+                "Not Connected":          None
+                "PS1 Digital Controller": DigitalController
+                "PS1 Analog Joystick":    AnalogJoystick
+                "DualShock / Xbox Type":  AnalogController
+                "Namco GunCon (Rumble)":  NamcoGunCon
+                "PlayStation Mouse":      PlayStationMouse
+                "NeGcon (Rumble)":        NeGcon  
         duckstation_pgxp:
             group: ADVANCED OPTIONS
-            prompt:      ENABLE PGXP CORRECTIONS
+            prompt: ENABLE PGXP CORRECTIONS
             description: Reduces wobbly polygongs & warping textures.
             choices:
                 "Disabled":          "false"
                 "Enabled (Default)": "true"
         duckstation_boot_without_sbi:
             group: ADVANCED OPTIONS
-            prompt:      ALLOW BOOTING WITHOUT SBI FILE
+            prompt: ALLOW BOOTING WITHOUT SBI FILE
             description: Allows loading protected games without subchannel information.
             choices:
                 "Disabled (Default)": "false"
                 "Enabled":            "true"
+        duckstation_osd:
+            prompt: SHOW ON-SCREEN DISPLAY MESSAGES
+            choices:
+                "Disabled (Default)": "false"
+                "Enabled":            "true"
+        duckstation_PatchFastBoot:
+            prompt: SHOW BIOS BOOTLOGO
+            description: Skipping it can break some games.
+            choices:
+                "Show": "false"
+                "Skip": "true"
+        duckstation_executionmode:
+            group: ADVANCED OPTIONS
+            prompt: CPU EXECUTION MODE
+            description: Interpreter is the most accurate, but is the slowest.
+            choices:
+                "Interpreter (Slowest)":         Interpreter
+                "Cached Interpreter (Faster)":   CachedInterpreter
+                "Recompiler (Fastest)(Default)": Recompiler
+        duckstation_rewind:
+            prompt: REWIND
+            description: System requirements at native; (RAM|VRAM).
+            choices:
+                "Off":                                "false"
+                "Per 0.05s, 5s total (550MB|100MB)":  "5"
+                "Per 0.1s, 10s total (1100MB|200MB)": "10"
+                "Per 1s, 15s total (165MB|30MB)":     "15"
+                "Per 1s, 30s total (330MB|60MB)":     "30"
+                "Per 1s, 60s total (660MB|120MB)":    "60"
+                "Per 1s, 90s total (990MB|180MB)":    "90"
+                "Per 1s, 120s total (1320MB|240MB)":  "120"
+        duckstation_achievements:
+            prompt: ACHIEVEMENTS
+            decription: Enable achievements for supported games. Enter login details via app in F1 menu.
+            choices:
+                "Disabled": "false"
+                "Enabled":  "true"
+        duckstation_antialiasing:
+            submenu: RENDERING
+            prompt: ANTI-ALIASING (MSAA/SSAA)
+            description: Enhancement. Smooth out jagged edges on 3D object polygons.
+            choices:
+                "Disabled (Default)": "1"
+                "2x MSAA":            "2"
+                "4x MSAA":            "4"
+                "8x MSAA":            "8"
+                "16x MSAA":           "16"
+                "32x MSAA":           "32"
+                "2x SSAA":            "2-ssaa"
+                "4x SSAA":            "4-ssaa"
+                "8x SSAA":            "8-ssaa"
+                "16x SSAA":           "16-ssaa"
+                "32x SSAA":           "32-ssaa"
 
 flycast:
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
@@ -7281,154 +7421,216 @@ openbor:
                 "Dot Matrix":     11
 
 pcsx2:
-  shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
-  cfeatures:
-        ratio:
-            prompt:      GAME ASPECT RATIO
+  cores:
+    'pcsx2':
+      shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, use_guns]
+      features: [cheevos]
+      cfeatures:
+        pcsx2_ratio:
+            submenu: DISPLAY
+            prompt: GAME ASPECT RATIO
             description: Force the game to render in this aspect ratio. Not all systems support all ratios.
             choices:
-                "4:3":     4/3
-                "16:9":    16/9
-                "Full":    full
-        gfxbackend:
-            prompt:      GRAPHICS API
-            description: Choose which graphics API library to use. Vulkan is better, when supported.
+                "Fit to Window / Fullscreen":                       Stretch
+                "Auto Standard (4:3 interlaced / 3:2 progressive)": "Auto 4:3/3:2"
+                "Standard (4:3)":                                   "4:3"
+                "Widescreen (16:9)":                                "16:9"
+        pcsx2_fmv_ratio:
+            submenu: DISPLAY
+            prompt: FMV ASPECT RATIO
+            description: Adjusts Full Motion Video movies aspect ratio.
             choices:
-                "OpenGL":      12
-                "Software":    13
-                "Vulkan":      14
-        fullboot:
-            prompt:      SHOW BIOS BOOTLOGO
-            description: Some games have issues when the animation is shown, others require it.
+                "Off (Default)":                                    "off"
+                "Auto Standard (4:3 interlaced / 3:2 progressive)": "Auto 4:3/3:2"
+                "Standard (4:3)":                                   "4:3"
+                "Widescreen (16:9)":                                "16:9"
+        pcsx2_deinterlacing:
+            submenu: DISPLAY
+            prompt: DEINTERLACING
+            description: FMV movie deinterlacing.
             choices:
-                "Show (specific games)": 1
-                "Skip (safer)":          0
-        internal_resolution:
-            prompt:      RENDERING RESOLUTION
-            description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
+                "None":                          1
+                "Weave (Top Field First)":       2
+                "Weave (Bottom Field First)":    3
+                "Bob (Top Field First)":         4
+                "Bob (Bottom Field First)":      5
+                "Blend (Top Field First)":       6
+                "Blend (Bottom Field First)":    7
+                "Adaptive (Top Field First)":    8
+                "Adaptive (Bottom Field First)": 9
+        pcsx2_bilinear_filtering:
+            submenu: DISPLAY
+            prompt: BILINEAR FILTERING
+            description: Smooths the overall picture as it is displayed on the screen. Corrects positioning between pixels.
             choices:
-                "1x (640x480)":      1
-                "2x (1280x960)":     2
-                "3x (1920x1440)":    3
-                "4x (2560x1920)":    4
-                "5x (3200x2400)":    5
-                "6x (3840x2880)":    6
-                "7x (4480x3360)":    7
-        anisotropic_filtering:
-            group: ADVANCED OPTIONS
-            prompt:      ANISOTROPIC FILTERING
-            description: Improves clarity of distant textures.
-            choices:
-                "Off":         0
-                "2x":          2
-                "4x":          4
-                "8x":          8
-                "16x":         16
-        skipdraw:
-            group: ADVANCED OPTIONS
-            prompt:      SKIPDRAW HACK
-            description: Skip drawing screen effects. Cumulative.
-            choices:
-                "Off":             0
-                "1 (post FX)":     1
-                "2 (shadows)":     2
-                "3 (shadows)":     3
-                "4 (special FX)":  4
-                "5 (other)":       5
-        align_sprite:
-            group: ADVANCED OPTIONS
-            prompt:      ALIGN SPRITE (HACK)
-            description: Remove lines in internal resolution (fixes Soul Calibur).
-            choices:
-                "Off":      0
-                "On":       1
-        vsync:
-            group: ADVANCED OPTIONS
-            prompt:      VSYNC
-            description: Fix screen tearing. CPU heavy.
-            choices:
-                "Off":      0
-                "On":       1
-        VsyncQueueSize:
-            group: ADVANCED OPTIONS
-            prompt:      VSYNCS IN MTGS QUEUE
-            description: Render this many frames ahead to improve performance at the cost of input lag.
-            choices:
-                "0":  0
-                "1":  1
-                "2":  2
-                "3":  3
-        micro_vu:
-            group: ADVANCED OPTIONS
-            prompt:     "MICRO VU SPEED HACKS"
-            description: Good speedup and high compatibility; recommended but may cause issues.
-            # The value for each choice is the same as the corresponding PCSX2 ini key
-            choices:
-                "mVU Flag Hack. May cause bad graphics (recommended)":  vuFlagHack
-                "MTVU. May cause hanging (recommended on 3+ cores)":    vuThread
-                "Instant VU1. May cause some graphical errors":         vu1Instant
-                # Valid combos; MTVU + Instant VU1 is not supported by PCSX2
-                "mVU Flag Hack + MTVU":                                 "vuFlagHack,vuThread"
-                "mVU Flag Hack + Instant VU1":                          "vuFlagHack,vu1Instant"
-        EmuCore_EnableCheats:
-            group: ADVANCED OPTIONS
-            prompt:      GAME CHEATS
-            description: Enables Action Replay cheats.
-            choices:
-                "Off":      disabled
-                "On":       enabled
-        EmuCore_EnableWideScreenPatches:
-            group: ADVANCED OPTIONS
-            prompt:      WIDESCREEN PATCHES
+                "None":              0
+                "Bilinear (Smooth)": 1
+                "Bilinear (Sharp)":  2
+        pcsx2_EnableWideScreenPatches:
+            submenu: DISPLAY
+            prompt: ENABLE WIDESCREEN PATCHES
             description: Enhancement. Only works with a 16/9 ratio and bezels disabled.
             choices:
-                "Off":      disabled
-                "On":       enabled
-        EmuCore_EnablePatches:
+                "Disabled": "false"
+                "Enabled":  "true"
+        pcsx2_blur:
+            submenu: DISPLAY
+            prompt: ANTI-BLUR
+            description: Enable to improve bluriness.
+            choices:
+                "Disabled": "false"
+                "Enabled":  "true"
+        pcsx2_vsync:
+            submenu: DISPLAY
+            prompt: VSYNC
+            description: Fix screen tearing. CPU heavy.
+            choices:
+                "Disabled": 0
+                "Enabled":  1
+        pcsx2_interlacing_patches:
+            submenu: DISPLAY
+            prompt: INTERLACING PATCHES
+            description: Enable No-interlacing Patches.
+            choices:
+                "Disabled": "false"
+                "Enabled":  "true"
+        pcsx2_scaling:
+            submenu: DISPLAY
+            prompt: INTEGER SCALING
+            description: Can sharpen images in lower resolutions.
+            choices:
+                "Disabled": "false"
+                "Enabled":  "true"
+        pcsx2_gfxbackend:
+            submenu: RENDERING
+            prompt: GRAPHICS API
+            description: Choose which graphics API library to use. Vulkan is better, when supported.
+            choices:
+                "OpenGL":   12
+                "Software": 13
+                "Vulkan":   14
+        pcsx2_resolution:
+            submenu: RENDERING
+            prompt: RENDERING RESOLUTION
+            description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
+            choices:
+                "Native (PS2)(Default)": 1
+                "1.25x Native":          1.25
+                "1.5x Native":           1.5
+                "1.75x Native":          1.75
+                "2x Native (~720p)":     2
+                "2.25x Native":          2.25
+                "2.5x Native":           2.5
+                "2.75x Native":          2.75
+                "3x Native (~1080p)":    3
+                "3.5x Native":           3.5
+                "4x Native (~1440p/2K)": 4
+                "5x Native (~1620p)":    5
+                "6x Native (~2160p/4K)": 6
+                "7x Native (~2520p)":    7
+                "8x Native (~2880p/5K)": 8
+        pcsx2_mipmapping:
+            submenu: RENDERING
+            prompt: MIPMAPPING
+            description: Choose mipmapping type.
+            choices:
+                "Off":                       0
+                "Basic (generated Mipmaps)": 1
+                "Full (PS2 Mipmaps)":        2
+        pcsx2_texture_filtering:
+            submenu: RENDERING
+            prompt: TEXTURE FILTERING
+            description: Control the texture filtering of the emulation.
+            choices:
+                "Nearest":                            0
+                "Bilinear (Forced)":                  1
+                "Bilinear (PS2)":                     2
+                "Bilinear (Forced excluding sprite)": 3
+        pcsx2_trilinear_filtering:
+            submenu: RENDERING
+            prompt: TRILINEAR FILTERING
+            description: Control the texture's trilinear filtering of the emulation.
+            choices:
+                "Off (None)":         0
+                "Trilinear (PS2)":    1
+                "Trilinear (Forced)": 2
+        pcsx2_anisotropic_filtering:
+            submenu: RENDERING
+            prompt: ANISOTROPIC FILTERING
+            description: Improves clarity of distant textures.
+            choices:
+                "Off": 0
+                "2x":  2
+                "4x":  4
+                "8x":  8
+                "16x": 16
+        pcsx2_dithering:
+            submenu: RENDERING
+            prompt: DITHERING
+            description: Reduces banding between colours and improves the preceived colour depth.
+            choices:
+                "Off":                 0
+                "Unscaled (Default)":  1
+                "Basic (Recommended)": 2
+        pcsx2_blending:
+            submenu: RENDERING
+            prompt: BLENDING ACCURACY
+            description: The higher the setting, the more blending is emulated in the shader accurately, and the higher the speed penalty will be.
+            choices:
+                "Minimum":             0
+                "Basic (Recommended)": 1
+                "Medium":              2
+                "High":                3
+                "Full (Slow)":         4
+                "Maximum (Very Slow)": 5
+        pcsx2_texture_loading:
+            submenu: RENDERING
+            prompt: TEXTURE PRELOADING
+            description: Uploads entire textures at once instead of small pieces. Improves performance in most games.
+            choices:
+                "None":              0
+                "Partial":           1
+                "Full (Hash Cache)": 2
+        pcsx2_fastboot:
+            prompt: SHOW BIOS BOOTLOGO
+            description: Some games have issues when the animation is shown, others require it.
+            choices:
+                "Skip (safer)":          0
+                "Show (specific games)": 1
+        pcsx2_fxaa:
+            submenu: RENDERING
+            prompt: FXAA
+            description: Applies the FXAA anti-aliasing algorithm to improve the visual quality of games.
+            choices:
+                "Disabled": "false"
+                "Enabled":  "true"
+        pcsx2_cheats:
+            prompt: CHEATS
+            description: Automatically loads and applies cheats on game start.
+            choices:
+                "Disabled": "false"
+                "Enabled":  "true"
+        pcsx2_multitap:
+            prompt: MULTITAP
+            description: Allows up to 8 controllers in supported games.
+            choices:
+                "Maximum 2 Players (Default)": 2
+                "Maximum 4 Players":           4
+                "Maximum 8 Players":           8
+        pcsx2_texture_replacements:
             group: ADVANCED OPTIONS
-            prompt:      AUTOMATIC GAMEFIXES
-            description: Automatically use gamefixes as appropriate. Stacks with manual gamefixes.
+            prompt: TEXTURE REPLACEMENTS
+            description: Allows user replaceable textures.
             choices:
-                "Off":      disabled
-                "On":       enabled
-        EmuCore_ManualPatches:
+                "Off": "false"
+                "On":  "true"
+        pcsx2_crisis_fog:
             group: ADVANCED OPTIONS
-            prompt:      MANUAL GAMEFIXES
-            description: Stacks with auto gamefixes.
+            prompt: TIME CRISIS FOG HACK
+            description: Necessary for some guns to replace fog textures as a workaround in Time Crisis - Crisis Zone.
             choices:
-                "Off":                                               disabled
-                "VU Add hack (Fixes Tri-Ace games boot crash)":      VuAddSubHack
-                "FPU Compare hack (For Digimon Rumble Arena 2)":     FpuCompareHack
-                "FPU Multiply hack (For Tales of Destiny)":          FpuMulHack
-                "FPU Negative Div hack (For Gundam Games)":          FpuNegDivHack
-                "VU XGkick hack (For Eremental Gerad)":              XgKickHack
-                "FFX videos fix (Fixes bad graphic overlays)":       IPUWaitHack
-                "EE timing hack (Try if all else fails)":            EETimingHack
-                "Skip MPEG hack (Skips videos/FMVs that freeze)":    SkipMPEGHack
-                "OPH Flag hack (Try if game freezes)":               OPHFlagHack
-                "Handle DMAC writes when it busy":                   DMABusyHack
-                "Simulate VIF1 FIFO read (Fix slow loading)":        VIFFIFOHack
-                "Delay VIF1 Stalls (For SOCOM2 & Spy Hunter)":       VIF1StallHack
-                "Enable the GIF FIFO (Wallace and Gromit, DJ Hero)": GIFFIFOHack
-                "Preload TLB hack to avoid tlb miss on Goemon":      GoemonTlbHack
-                "VU I bit hack - Scarface The World is Yours":       ScarfaceIbit
-                "VU I bit hack - Crash Tag Team Racing":             CrashTagTeamRacingIbit
-                "VU0 Kickstart to avoid sync problems with VU1":     VU0KickstartHack
-        ManualHWHacks:
-            group: ADVANCED OPTIONS
-            prompt:      AUTOMATIC GRAPHICS HARDWARE HACKS
-            description: Automatically use hardware hacks as appropriate. Refer to pcsx2-config for individual hacks.
-            choices:
-                "Off":          1
-                "On (default)": 0
-        multitap:
-            prompt:      MULTITAP
-            description: Allows up to 5 or 8 controllers in supported games.
-            choices:
-                "Off":      disabled
-                "Port1":    port1
-                "Port2":    port2
-                "Port1+2":  port12
+                "Off": "false"
+                "On":  "true"
 
 ppsspp:
   shared: [videomode, ratio, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, rewind, cpucores]
@@ -7548,41 +7750,16 @@ reicast:
 rpcs3:
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, use_guns, cpucores]
   cfeatures:
-        gui:
-            group: ADVANCED OPTIONS
-            prompt: GRAPHICAL USER INTERFACE
-            description: Allows Alt+Tab to RPCS3's menu. Useful for manual disc-swapping.
-            choices:
-                "Off": 0
-                "On":  1
-        gfxbackend:
-            prompt: GRAPHICS API
-            description: Choose which graphics API library to use. Vulkan is better, when supported.
-            choices:
-                "OpenGL": OpenGL
-                "Vulkan": Vulkan
-        stretchtodisplayarea:
-            prompt: STRETCH TO DISPLAY AREA
-            description: Distorts the output to fill the display fully.
-            choices:
-                "Off": False
-                "On":  True
-        tv_mode:
-            prompt: TV MODE
-            description: PS3's internal ratio setting. Some games only support 16/9.
-            choices:
-                "16:9 (default)": "16:9"
-                "4:3":            "4:3"
-        ppudecoder:
-            group: ADVANCED OPTIONS
+        rpcs3_ppudecoder:
+            submenu: CPU
             prompt: PPU DECODER
             description: LLVM is fastest, use the Interpreter settings if there are issues.
             choices:
                 "LLVM Recompiler":     Recompiler (LLVM)
                 "Dynamic Interpreter": Interpreter (dynamic)
                 "Static Interpreter":  Interpreter (static)
-        spudecoder:
-            group: ADVANCED OPTIONS
+        rpcs3_spudecoder:
+            submenu: CPU
             prompt: SPU DECODER
             description: If game crashes, try ASMJIT. If still crashing, try Fast Interpreter.
             choices:
@@ -7590,16 +7767,41 @@ rpcs3:
                 "ASMJIT Recompiler":   Recompiler (ASMJIT)
                 "Fast Interpreter":    Interpreter (fast)
                 "Precise Interpreter": Interpreter (precise)
-        spuxfloataccuracy:
-            group: ADVANCED OPTIONS
+        rpcs3_spuxfloataccuracy:
+            submenu: CPU
             prompt: SPU XFloat Accuracy
             description: Can fix bugs in some games. Only relevant for dynamic or LLVM SPU decoder.
             choices:
                 "Accurate XFloat":    accurate
                 "Approximate XFloat": approximate
                 "Relaxed XFloat":     relaxed
-        framelimit:
-            group: ADVANCED OPTIONS
+        rpcs3_sputhreads:
+            submenu: CPU
+            prompt: PREFERRED SPU THREADS
+            description: Limiting to 1 or 2 may fix audio stuttering on weaker CPUs in some games. Leave on automatic if slowdown occurs.
+            choices:
+                "1 thread":  1
+                "2 threads": 2
+                "3 threads": 3
+                "4 threads": 4
+                "5 threads": 5
+                "6 threads": 6
+        rpcs3_ratio:
+            submenu: VIDEO
+            prompt: ASPECT RATIO
+            description: PS3's internal ratio setting. Some games only support 16/9.
+            choices:
+                "16:9 (default)": "16:9"
+                "4:3":            "4:3"
+        rpcs3_gfxbackend:
+            submenu: RENDER
+            prompt: GRAPHICS API
+            description: Choose which graphics API library to use. Vulkan is better, when supported.
+            choices:
+                "OpenGL": OpenGL
+                "Vulkan": Vulkan
+        rpcs3_framelimit:
+            submenu: VIDEO
             prompt: ADDITIONAL FRAMELIMIT
             description: Most games already have an internal framelimit. Minor performance cost.
             choices:
@@ -7608,69 +7810,168 @@ rpcs3:
                 "50":                     50
                 "59.94":                  59.94
                 "60":                     60
-        shadermode:
-            group: ADVANCED OPTIONS
+        rpcs3_anisotropic:
+            submenu: RENDER
+            prompt: ANISOTROPIC FILTER
+            description: Improves clarity of distant textures.
+            choices:
+                "2x":  2
+                "4x":  4
+                "8x":  8
+                "16x": 16
+        rpcs3_aa:
+            submenu: RENDER
+            prompt: ANTI-ALIASING
+            description: Enhancement. Smooth out jagged edges on 3D object polygons.
+            choices:
+                # Auto is Auto
+                "Disabled": Disabled
+        rpcs3_zcull:
+            submenu: RENDER
+            prompt: ZCULL ACCURACY
+            description: Can improve performance at the expense of graphics accuracy.
+            choices:
+                "Precise (Slowest)(Default)": Precise     # Accurate ZCULL stats: true
+                "Approximate (Fast)":         Approximate # Both false
+                "Relaxed (Fastest)":          Relaxed     # Relaxed ZCULL Sync: true
+        rpcs3_shader:
+            submenu: RENDER
+            prompt: SHADER QUALITY
+            description: Controls precision of generated shaders. Low quality can improved performance.
+            choices:
+                "Ultra":          Ultra
+                "High (Default)": High
+                "Low":            Low
+                "Automatic":      Auto
+        rpcs3_resolution:
+            submenu: VIDEO
+            prompt: RENDER RESOLUTION
+            description: Choose your preferred render resolution.
+            choices:
+                "720x480":            720x480
+                "720x576":            720x576
+                "1280x720 (Default)": 1280x720
+                "960x1080":           960x1080
+                "1280x1080":          1280x1080
+                "1440x1080":          1440x1080
+                "1600x1080":          1600x1080
+                "1920x1080":          1920x1080
+        rpcs3_scaling:
+            submenu: RENDER
+            prompt: OUTPUT SCALING
+            description: Final image filtering.
+            choices:
+                "Nearest":                     Nearest
+                "Bilinear (Default)":          Bilinear
+                "FidelityFX Super Resolution": FidelityFX Super Resolution
+        rpcs3_shadermode:
+            submenu: RENDER
             prompt: SHADER MODE
             description: Only Async (skip draw) avoids freezing while compiling shaders.
             choices:
-                "Legacy (laggy)":                  Shader Recompiler
-                "Async (skip draw, recommended)":  Async Shader Recompiler
-                "Async with interp. (hybrid)":     Async with Shader Interpreter
-                "Interpreter only (experimental)": Shader Interpreter only
-        vsync:
-            group: ADVANCED OPTIONS
-            prompt: VSYNC
-            description: Can fix screen tearing on unorthodox displays (most LCDs don't need this).
+                "Legacy (single threaded)":        Shader Recompiler
+                "Async (multi threaded)(Deafult)": Async Shader Recompiler
+                "Async with Shader Interpreter":   Async with Shader Interpreter
+                "Shader Interpreter only":         Shader Interpreter only
+        rpcs3_num_compilers:
+            submenu: RENDER
+            prompt: NUMBER OF SHADER COMPILER THREADS
+            description: Only applicable when either Async Shader mode is set.
             choices:
-                "Off (Default)": False
-                "On":            True
-        colorbuffers:
-            group: ADVANCED OPTIONS
+                "1":  1
+                "2":  2
+                "3":  3
+                "4":  4
+                "5":  5
+                "6":  6
+                "7":  7
+                "8":  8
+                "9":  9
+                "10": 10
+                "11": 11
+                "12": 12
+                "13": 13
+                "14": 14
+                "15": 15
+                "16": 16
+        rpcs3_colorbuffers:
+            submenu: RENDER
             prompt: WRITE COLOR BUFFERS
             description: May fix missing graphics and broken lighting at the cost of performance.
             choices:
                 "Off (Default)": False
                 "On":            True
-        vertexcache:
-            group: ADVANCED OPTIONS
+        rpcs3_strict:
+            submenu: RENDER
+            prompt: STRICT RENDERING MODE
+            description: Straict API specification. Can resolve rare cases of missing graphics and flickering.
+            choices:
+                "Off (Default)": False
+                "On":            True
+        rpcs3_vsync:
+            submenu: VIDEO
+            prompt: VSYNC
+            description: Can fix screen tearing on unorthodox displays (most LCDs don't need this).
+            choices:
+                "Off (Default)": False
+                "On":            True
+        rpcs3_stretchdisplay:
+            submenu: VIDEO
+            prompt: STRETCH TO DISPLAY AREA
+            description: Distorts the output to fill the display fully Overrides aspect ratio.
+            choices:
+                "Off": False
+                "On":  True
+        rpcs3_vertexcache:
+            submenu: RENDER
             prompt: DISABLE VERTEX CACHE
             description: Disables the vertex cache. Might resolve missing or flickering graphics output but degrade performance.
             choices:
                 "Off (Default)": False
                 "On":            True
-        depthbuffer:
-            group: ADVANCED OPTIONS
-            prompt: WRITE DEPTH BUFFER
-            description: May fix broken graphics in some games.
+        rpcs3_rsx:
+            submenu: RENDER
+            prompt: MULTITHREADED RSX
+            description: Offloads some RSX operations to a secondary thread. Improves performance in high-core processors.
             choices:
                 "Off (Default)": False
                 "On":            True
-        sputhreads:
-            group: ADVANCED OPTIONS
-            prompt: PREFERRED SPU THREADS
-            description: Limiting to 1 or 2 may fix audio stuttering on weaker CPUs in some games. Leave on automatic if slowdown occurs.
+        rpcs3_async_texture:
+            submenu: RENDER
+            prompt: ASYNCHRONOUS TEXTURE STREAMING
+            description: Stream texture to GPU in parrallel. Can improve performance on more powerful GPU's.
             choices:
-                "Automatic": 0
-                "1 thread":  1
-                "2 threads": 2
-                "3 threads": 3
-                "4 threads": 4
-                "5 threads": 5
-                "6 threads": 6
-        audiobuffer:
-            group: ADVANCED OPTIONS
+                "Off (Default)": False
+                "On":            True
+        rpcs3_audio_format:
+            group: AUDIO
+            prompt: AUDIO FORMAT
+            description: Choose number of audio channels.
+            choices:
+                "Stereo":       Stereo
+                "Surround 5.1": Surround 5.1
+                "Surround 7.1": Surround 7.1      
+        rpcs3_audiobuffer:
+            group: AUDIO
             prompt: ENABLE AUDIO BUFFERING
             description: Can reduce crackle and stutter but increases audio latency.
             choices:
                 "Off":          False
                 "On (Default)": True
-        timestretch:
-            group: ADVANCED OPTIONS
+        rpcs3_timestretch:
+            group: AUDIO
             prompt: ENABLE TIME STRETCHING
             description: Reduces crackle and stutter further, but may cause a very noticeable reduction in audio quality on slower CPUs.
             choices:
                 "Off (Default)": False
                 "On":            True
+        rpcs3_gui:
+            group: ADVANCED OPTIONS
+            prompt: GRAPHICAL USER INTERFACE
+            description: Allows Alt+Tab to RPCS3's menu. Useful for manual disc-swapping.
+            choices:
+                "Off": 0
+                "On":  1
 
 scummvm:
   features: [padtokeyboard]
@@ -7784,7 +8085,8 @@ superbroswar:
   shared: [videomode, ratio, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
 
 supermodel:
-  shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
+  features: [padtokeyboard]
+  shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
   cfeatures:
         engine3D:
             group: ADVANCED OPTIONS
@@ -9112,7 +9414,7 @@ mame:
                 hiscoreplugin:
                     group: ADVANCED OPTIONS
                     prompt:      HIGH SCORE PLUGIN
-                    description: Emable or disable high score saving
+                    description: Enable or disable high score saving
                     choices:
                         "Enabled (Default)": 1
                         "Disabled":          0
@@ -9362,7 +9664,7 @@ drastic:
 xemu:
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, cpucores]
   cfeatures:
-        scaling:
+        xemu_scaling:
             prompt:      SCALING MODE
             description: Choose the scaling mode for the game screen.
             choices:
@@ -9371,7 +9673,7 @@ xemu:
                 "Stretch to full":     stretch
                 "Stretch to 16:9":     scale_16_9
                 "Stretch to 4:3":      scale_4_3
-        render:
+        xemu_render:
             prompt:       RENDERING RESOLUTION
             choices:
                 "1x (640x480)":     1
@@ -9390,19 +9692,18 @@ xemu:
             choices:
                 "Show":        "false"
                 "Skip":        "true"
-        use_dsp:
+        xemu_use_dsp:
             prompt:      USE DSP AUDIO
             description: Improve audio accuracy (experimental).
             choices:
                 "Enabled":      "true"
                 "Disabled":     "false"
-        use_zink:
-            group: ADVANCED OPTIONS
-            prompt: USE ZINK RENDERER
-            description: Use the Zink (OpenGL to Vulkan) renderer to fix graphics issues. May cause performance loss.
+        xemu_memory:
+            prompt: SYSTEM MEMORY
+            description: Increase to 128 MiB for debug or homebrew applications.
             choices:
-                "Enabled":            "true"
-                "Disabled (Default)": "false"
+                "64MiB (Default)": 64
+                "128MiB":          128
 
 lexaloffle:
   features: [padtokeyboard]
@@ -9903,6 +10204,12 @@ openmsx:
             choices:
                 "Realistic Loading":    "false"
                 "Full Speed (Default)": "true"
+        openmsx_disk:
+            prompt: DISK TYPE
+            description: Choose the appropriate media for disk image.
+            choices:
+                "Floppy Disk Image": "disk"
+                "Hard Disk Image":   "hda"
 
 demul:
   shared: [videomode, cpucores]
@@ -10087,18 +10394,30 @@ vita3k:
         "6x (5760x3264)": 6
         "7x (6720x3808)": 7
         "8x (7680x4352)": 8
+    vita3k_surface:
+      prompt: DISABLE SURFACE SYNC
+      description: Speed hack, enable to disable surface syncing between CPU and GPU. Surface syncing is needed by a few games.
+      choices:
+        "Disabled":          "false"
+        "Enabled (Default)": "true"    
+    vita3k_linear:
+      prompt: LINEAR FILTERING
+      description: The image will be softer which could help with aliasing.
+      choices:
+        "Disabled (Default)": "false"
+        "Enabled":            "true"
     vita3k_fxaa:
-      prompt:      FXAA
+      prompt: FXAA
       description: Anti-aliasing is a technique for smoothing out jagged edges.
       choices:
-        "Disabled (Default)": False
-        "Enabled":            True
+        "Disabled (Default)": "false"
+        "Enabled":            "true"
     vita3k_vsync:
       prompt: VSYNC
       description: Fix screen tearing.
       choices:
-        "Disabled":          False
-        "Enabled (Default)": True
+        "Disabled":          "false"
+        "Enabled (Default)": "true"
     vita3k_anisotropic:
       prompt:      ANISOTROPIC FILTERING
       description: Improves clarity of distant textures.

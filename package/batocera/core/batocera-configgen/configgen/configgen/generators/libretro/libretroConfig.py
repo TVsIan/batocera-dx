@@ -8,7 +8,7 @@ from Emulator import Emulator
 import settings
 from settings.unixSettings import UnixSettings
 import json
-import socket
+import subprocess
 from utils.logger import get_logger
 from PIL import Image, ImageOps
 import utils.bezels as bezelsUtil
@@ -60,15 +60,16 @@ systemNetplayModes = {'host', 'client', 'spectator'}
 # Cores that require .slang shaders (even on OpenGL, not only Vulkan)
 coreForceSlangShaders = { 'mupen64plus-next' }
 
-def connected_to_internet(host="batocera.org", timeout=1):
-    try:
-        socket.setdefaulttimeout(timeout)
-        sock = socket.create_connection((host, 443), timeout) # Nobody uses http only, right?
-        sock.close()
+def connected_to_internet():
+    # same call as in es
+    cmd = ["timeout", "1", "ping", "-c", "1", "-t", "255", "8.8.8.8"]
+    process = subprocess.Popen(cmd)
+    process.wait()
+    if process.returncode == 0:
+        eslog.error(f"Connected to the internet")
         return True
-    except Exception as e:
-        eslog.error(f"Not connected to the internet: {host} responded with '{e}'")
-        return False
+    eslog.error(f"Not connected to the internet")
+    return False
 
 def writeLibretroConfig(generator, retroconfig, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend):
     writeLibretroConfigToFile(retroconfig, createLibretroConfig(generator, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend))
@@ -589,7 +590,7 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
                 retroarchConfig['cheevos_richpresence_enable'] = 'true'
             else:
                 retroarchConfig['cheevos_richpresence_enable'] = 'false'
-            if not connected_to_internet(host="retroachievements.org", timeout=1):
+            if not connected_to_internet():
                 retroarchConfig['cheevos_enable'] = 'false'
     else:
         retroarchConfig['cheevos_enable'] = 'false'
@@ -675,6 +676,12 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
     # force the assets directory while it was wrong in some beta versions
     retroarchConfig['assets_directory'] = '/usr/share/libretro/assets'
 
+    # Adaptation for small resolution (GPICase)
+    if isLowResolution(gameResolution):
+        retroarchConfig['menu_enable_widgets'] = 'false'
+        retroarchConfig['video_msg_bgcolor_enable'] = 'true'
+        retroarchConfig['video_font_size'] = '11'
+
     # AI option (service for game translations)
     if system.isOptSet('ai_service_enabled') and system.getOptBoolean('ai_service_enabled') == True:
         retroarchConfig['ai_service_enable'] = 'true'
@@ -759,7 +766,7 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
                         retroarchConfig['input_libretro_device_p'+str(nplayer)] = ragunconf["device_p"+str(nplayer)]
                     else:
                         retroarchConfig['input_libretro_device_p'+str(nplayer)] = ragunconf["device"]
-                    configureGunInputsForPlayer(nplayer, guns[ragunconf["p"+str(nplayer)]], controllers, retroarchConfig)
+                    configureGunInputsForPlayer(nplayer, guns[ragunconf["p"+str(nplayer)]], controllers, retroarchConfig, system.config['core'])
 
             # override core settings
             for key in raguncoreconf:
@@ -790,7 +797,7 @@ def clearGunInputsForPlayer(n, retroarchConfig):
         for type in ["btn", "mbtn"]:
             retroarchConfig['input_player{}_{}_{}'.format(n, key, type)] = ''
 
-def configureGunInputsForPlayer(n, gun, controllers, retroarchConfig):
+def configureGunInputsForPlayer(n, gun, controllers, retroarchConfig, core):
     # gun mapping
     retroarchConfig['input_player{}_mouse_index'            .format(n)] = gun["id_mouse"]
     retroarchConfig['input_player{}_gun_trigger_mbtn'       .format(n)] = 1
@@ -805,6 +812,38 @@ def configureGunInputsForPlayer(n, gun, controllers, retroarchConfig):
     retroarchConfig['input_player{}_gun_dpad_down_mbtn'     .format(n)] = 9
     retroarchConfig['input_player{}_gun_dpad_left_mbtn'     .format(n)] = 10
     retroarchConfig['input_player{}_gun_dpad_right_mbtn'    .format(n)] = 11
+
+    # custom mapping by core to match more with avaible gun batocera buttons
+    # different mapping for ps1 which has only 3 buttons and maps on aux_a and aux_b not available on all guns
+    if core == "pcsx_rearmed":
+        retroarchConfig['input_player{}_gun_offscreen_shot_mbtn'.format(n)] = ''
+        retroarchConfig['input_player{}_gun_start_mbtn'         .format(n)] = ''
+        retroarchConfig['input_player{}_gun_aux_a_mbtn'         .format(n)] = 2
+        retroarchConfig['input_player{}_gun_aux_b_mbtn'         .format(n)] = 3
+
+    if core == "fbneo":
+        retroarchConfig['input_player{}_gun_offscreen_shot_mbtn'.format(n)] = ''
+        retroarchConfig['input_player{}_gun_aux_a_mbtn'         .format(n)] = 2
+
+    if core == "snes9x":
+        retroarchConfig['input_player{}_gun_offscreen_shot_mbtn'.format(n)] = ''
+        retroarchConfig['input_player{}_gun_start_mbtn'         .format(n)] = ''
+        retroarchConfig['input_player{}_gun_select_mbtn'        .format(n)] = ''
+        retroarchConfig['input_player{}_gun_aux_a_mbtn'         .format(n)] = 2
+        retroarchConfig['input_player{}_gun_aux_b_mbtn'         .format(n)] = 3
+        retroarchConfig['input_player{}_gun_start_mbtn'         .format(n)] = 4
+
+    if core == "genesisplusgx":
+        retroarchConfig['input_player{}_gun_offscreen_shot_mbtn'.format(n)] = ''
+        retroarchConfig['input_player{}_gun_start_mbtn'         .format(n)] = ''
+        retroarchConfig['input_player{}_gun_select_mbtn'        .format(n)] = ''
+        retroarchConfig['input_player{}_gun_aux_a_mbtn'         .format(n)] = 2
+        retroarchConfig['input_player{}_gun_aux_b_mbtn'         .format(n)] = 3
+        retroarchConfig['input_player{}_gun_start_mbtn'         .format(n)] = 4
+
+    if core == "flycast":
+        retroarchConfig['input_player{}_gun_offscreen_shot_mbtn'.format(n)] = ''
+        retroarchConfig['input_player{}_gun_aux_a_mbtn'         .format(n)] = 2
 
     # mapping
     mapping = {
@@ -1092,6 +1131,9 @@ def writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameRe
         # Shaders should use this path to find the art.
         os.symlink(overlay_png_file, shaderBezelFile)
         eslog.debug("Symlinked bezel file {} to {} for selected shader".format(overlay_png_file, shaderBezelFile))
+
+def isLowResolution(gameResolution):
+    return gameResolution["width"] < 480 or gameResolution["height"] < 480
 
 def writeBezelCfgConfig(cfgFile, overlay_png_file):
     fd = open(cfgFile, "w")

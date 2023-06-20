@@ -3,12 +3,12 @@
 # batocera-nvidia applies either the installed production or legacy driver(s)
 # driver can be detected 'auto' or also set using batoceta-boot.conf
 
-MODE=$1
-LOG="/userdata/system/logs/nvidia.log"
-LISTDIR=/usr/share/nvidia
-
 # try to create the log dir
 mkdir -p "/userdata/system/logs"
+log="/userdata/system/logs/nvidia.log"
+
+MODE=$1
+LISTDIR=/usr/share/nvidia
 
 if test "${MODE}" = "auto"
 then
@@ -16,70 +16,71 @@ then
     NVIDIA_DEV=$(lspci -mn | awk '{ gsub("\"",""); if (($2 ~ "030[0-2]") && ($3 == "10de" || $3 == "12d2")) { print $1 } }')
     if [ "$NVIDIA_DEV" ]
     then
-	echo "Detected a NVIDIA GPU" > $LOG
+    echo "Detected a NVIDIA GPU" >> $log
 	for d in $NVIDIA_DEV ; do
-	    lspci -nn -s $d | sed -e s+"^"+"*** "+
-	done
+        lspci -nn -s $d | sed -e s+"^"+"*** "+
+    done
 	for d in $NVIDIA_DEV ; do
 	    PCIDEVID=$(lspci -mn -s "$d" | awk '{ gsub("\"",""); print $4 }')
         CARDNAME=$(lspci -s "$d" | cut -d "[" -f2 | cut -d "]" -f1;)
-        echo "Checking card: $CARDNAME" >> $LOG
+        echo "Checking card: $CARDNAME" >> $log
         if grep -q -i $PCIDEVID $LISTDIR/production.list 2>/dev/null
         then
             # check card name
-            echo "Detected PCI device ID in production list" >> $LOG
+            echo "Detected PCI device ID: $PCIDEVID in production list" >> $log
             if grep -q -i $CARDNAME $LISTDIR/production.list 2>/dev/null
             then
-                echo "Detected card name in production list" >> $LOG
+                echo "Detected card name: $CARDNAME in production list too, yay!" >> $log
                 MODE=production
                 break
             else
-                echo "Card name not detected in production list" >> $LOG
+                echo "Card name: $CARDNAME not detected in production list" >> $log
             fi
         fi
         if grep -q -i $PCIDEVID $LISTDIR/legacy.list 2>/dev/null
         then
             # check card name
-            echo "Detected PCI device ID in legacy list" >> $LOG
+            echo "Detected PCI device ID: $PCIDEVID in legacy list" >> $log
             if grep -q -i $CARDNAME $LISTDIR/legacy.list 2>/dev/null
 		    then
-                echo "Detected card name in legacy list" >> $LOG
+                echo "Detected card name: $CARDNAME in legacy list too, yay!" >> $log
 		        MODE=legacy
                 break
             else
-                echo "Card name not detected in legacy list" >> $LOG
+                echo "Card name: $CARDNAME not detected in legacy list" >> $log
             fi
         fi
 	    if grep -q -i $PCIDEVID $LISTDIR/legacy390.list 2>/dev/null
 	    then
             # check card name
-            echo "Detected PCI device ID in legacy390 list" >> $LOG
+            echo "Detected PCI device ID: $PCIDEVID in legacy390 list" >> $log
             if grep -q -i $CARDNAME $LISTDIR/legacy390.list 2>/dev/null
             then
-                echo "Detected card name in legacy390 list" >> $LOG
+                echo "Detected card name: $CARDNAME in legacy390 list too, yay!" >> $log
                 MODE=legacy390
                 break
             else
-                echo "Card name not detected in legacy390 list" >> $LOG
+                echo "Card name: $CARDNAME not detected in legacy390 list" >> $log
             fi
 	    fi
 	    if grep -q -i $PCIDEVID $LISTDIR/legacy340.list 2>/dev/null
 	    then
             # check card name
-            echo "Detected PCI device ID in legacy340 list" >> $LOG
+            echo "Detected PCI device ID: $PCIDEVID in legacy340 list" >> $log
             if grep -q -i $CARDNAME $LISTDIR/legacy340.list 2>/dev/null
             then
-                echo "Detected card name in legacy340 list" >> $LOG
-                MODE=legacy340
+                echo "Detected card name: $CARDNAME in legacy340 list too, yay!" >> $log
+                echo "Using Mesa Nouveau driver, currently the legacy 340 driver doesn't work" >> $log
+                MODE=nouveau
                 break
             else
-                echo "Card name not detected in legacy340 list" >> $LOG
+                echo "Card name: $CARDNAME not detected in legacy340 list" >> $log
             fi
 	    fi
 	done
     else
-        echo "No NVIDIA GPU detected" > $LOG
-        echo "Failing back to OpenSource Mesa Nouveau driver" >> $LOG
+        echo "No NVIDIA GPU detected" > $log
+        echo "Failing back to OpenSource Mesa Nouveau driver" >> $log
         test -e /var/run/nvidia/modprobe/blacklist-nouveau.conf && rm -f /var/run/nvidia/modprobe/blacklist-nouveau.conf
         test -e /var/run/nvidia/modprobe/nvidia-drm.conf        && rm -f /var/run/nvidia/modprobe/nvidia-drm.conf
         exit 0
@@ -97,9 +98,9 @@ BATOCERA_NVIDIA340_LEGACY_DRIVER_VERSION=$(cat /usr/share/nvidia/legacy340.versi
 
 mkdir -p /var/run/nvidia/modprobe || exit 1
 
-if test "${MODE}" = "production"
+if [ "$MODE" = "production" ]
 then
-    echo "Using NVIDIA Production driver - ${BATOCERA_NVIDIA_DRIVER_VERSION}" >> $LOG
+    echo "Using NVIDIA Production driver - ${BATOCERA_NVIDIA_DRIVER_VERSION}" >> $log
     echo
     echo "blacklist nouveau" > /var/run/nvidia/modprobe/blacklist-nouveau.conf
     echo "options nvidia-drm modeset=1" > /var/run/nvidia/modprobe/nvidia-drm.conf
@@ -227,32 +228,35 @@ then
     # finally link kernel modules & run them
     mkdir -p /var/run/nvidia/modules
     ln -sf /usr/share/nvidia/modules/nvidia-production.ko /var/run/nvidia/modules/nvidia.ko
-    ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/extra/nvidia.ko
+    ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/updates/nvidia.ko
     ln -sf /usr/share/nvidia/modules/nvidia-modeset-production.ko /var/run/nvidia/modules/nvidia-modeset.ko
-    ln -sf /var/run/nvidia/modules/nvidia-modeset.ko /lib/modules/$LINUX_VER/extra/nvidia-modeset.ko
+    ln -sf /var/run/nvidia/modules/nvidia-modeset.ko /lib/modules/$LINUX_VER/updates/nvidia-modeset.ko
     ln -sf /usr/share/nvidia/modules/nvidia-drm-production.ko /var/run/nvidia/modules/nvidia-drm.ko
-    ln -sf /var/run/nvidia/modules/nvidia-drm.ko /lib/modules/$LINUX_VER/extra/nvidia-drm.ko
+    ln -sf /var/run/nvidia/modules/nvidia-drm.ko /lib/modules/$LINUX_VER/updates/nvidia-drm.ko
     ln -sf /usr/share/nvidia/modules/nvidia-uvm-production.ko /var/run/nvidia/modules/nvidia-uvm.ko
-    ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/extra/nvidia-uvm.ko
+    ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/updates/nvidia-uvm.ko
     for m in ipmi_devintf nvidia nvidia_modeset nvidia_uvm nvidia_drm ; do modprobe $m ; done
 
-elif [[ "${MODE}" == *"legacy"* ]]
+elif echo "$MODE" | grep -q -E '^(legacy|legacy340|legacy390)$'
 then
-    if [[ "${MODE}" == *"390"* ]]
+    echo "Using a NVIDIA Legacy driver" >> $log
+    echo "There may be driver issues due to lack of maintenance from Nvidia for modern kernels" >> $log
+    echo "" >> $log
+    if [ "$MODE" = "legacy390" ]
     then
 	    BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION=$BATOCERA_NVIDIA390_LEGACY_DRIVER_VERSION
     fi
-    if [[ "${MODE}" == *"340"* ]]
+    if [ "$MODE" = "legacy340" ]
     then
 	    BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION=$BATOCERA_NVIDIA340_LEGACY_DRIVER_VERSION
     fi
-    echo "Using NVIDIA Legacy driver version - ${BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION}" >> $LOG
+    echo "Using NVIDIA Legacy driver version - ${BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION}" >> $log
     echo
     echo "blacklist nouveau" > /var/run/nvidia/modprobe/blacklist-nouveau.conf
     echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia-drm.conf
     # [symbolic link 64-bit library files]
     mkdir -p /var/run/nvidia/lib
-    if [[ "${MODE}" == *"340"* ]]
+    if [ "$MODE" = "legacy340" ]
     then
         # libglx.so
         ln -sf /usr/lib/libglx.so.$BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION /var/run/nvidia/lib/libglx.so
@@ -328,7 +332,7 @@ then
     ln -sf /usr/lib/libnvidia-ml.so.$BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION /var/run/nvidia/lib/libnvidia-ml.so.1
     ln -sf /var/run/nvidia/lib/libnvidia-ml.so.1 /usr/lib/libnvidia-ml.so.1
 
-    if [[ "${MODE}" != *"340"* ]]
+    if [ "$MODE" != "legacy340" ]
     then
         # libnvidia-glvkspirv.so
         ln -sf /usr/lib/libnvidia-glvkspirv.so.$BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION /var/run/nvidia/lib/libnvidia-glvkspirv.so
@@ -338,7 +342,7 @@ then
     # [symbolic link 32-bit library files]
     mkdir -p /var/run/nvidia/lib32
 
-    if [[ "${MODE}" == *"340"* ]]
+    if [ "$MODE" = "legacy340" ]
     then
         # libGL.so
         ln -sf /lib32/libGL.so.$BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION /var/run/nvidia/lib32/libGL.so
@@ -406,8 +410,7 @@ then
     ln -sf /lib32/libnvidia-ml.so.$BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION /var/run/nvidia/lib32/libnvidia-ml.so.1
     ln -sf /var/run/nvidia/lib32/libnvidia-ml.so.1 /lib32/libnvidia-ml.so.1
     
-    
-    if [[ "${MODE}" != *"340"* ]]
+    if [ "$MODE" != "legacy340" ]
     then
         # libnvidia-glvkspirv.so
         ln -sf /lib32/libnvidia-glvkspirv.so.$BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION /var/run/nvidia/lib32/libnvidia-glvkspirv.so
@@ -419,9 +422,8 @@ then
         ln -sf /usr/lib/xorg/modules/extensions/libglxserver_nvidia.so.$BATOCERA_NVIDIA_LEGACY_DRIVER_VERSION /var/run/nvidia/lib/libglxserver_nvidia.so.1
         ln -sf /var/run/nvidia/lib/libglxserver_nvidia.so.1 /usr/lib/xorg/modules/extensions/libglxserver_nvidia.so.1
     fi
-   
     # 340 version
-    if [[ "${MODE}" == *"340"* ]]
+    if [ "$MODE" = "legacy340" ]
     then
 	    # link Xorg driver
         mkdir -p /var/run/nvidia/lib
@@ -434,21 +436,24 @@ then
         # finally copy kernel modules & run them
 	    mkdir -p /var/run/nvidia/modules
 	    ln -sf /usr/share/nvidia/modules/nvidia340-legacy.ko /var/run/nvidia/modules/nvidia.ko
-        ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/extra/nvidia.ko
+        ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/updates/nvidia.ko
 	    ln -sf /usr/share/nvidia/modules/nvidia340-uvm-legacy.ko /var/run/nvidia/modules/nvidia-uvm.ko
-        ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/extra/nvidia-uvm.ko
+        ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/updates/nvidia-uvm.ko
 	    
         for m in ipmi_devintf nvidia nvidia_uvm ; do modprobe $m ; done
     # 390 version
-    elif [[ "${MODE}" == *"390"* ]]
+    elif [ "$MODE" = "legacy390" ]
     then
         # link Xorg driver
         mkdir -p /var/run/nvidia/lib
 	    mkdir -p /var/run/nvidia/xorg
 	    ln -sf /usr/lib/xorg/modules/drivers/nvidia390_legacy_drv.so /var/run/nvidia/lib/nvidia_drv.so
         ln -sf /var/run/nvidia/lib/nvidia_drv.so /usr/lib/xorg/modules/drivers/nvidia_drv.so
-	    ln -sf /usr/lib/xorg/modules/extensions/libglx.so.$BATOCERA_NVIDIA390_LEGACY_DRIVER_VERSION /var/run/nvidia/xorg/libglx.so
-        ln -sf /var/run/nvidia/xorg/libglx.so /usr/lib/xorg/modules/extensions/libglx.so
+	    # libglx.so
+        ln -sf /usr/share/nvidia/xorg/libglx.so.$BATOCERA_NVIDIA390_LEGACY_DRIVER_VERSION /var/run/nvidia/xorg/libglx.so
+        ln -sf /var/run/nvidia/xorg/libglx.so /usr/lib/nvidia/xorg/libglx.so
+        ln -sf /usr/share/nvidia/xorg/libglx.so.$BATOCERA_NVIDIA390_LEGACY_DRIVER_VERSION /var/run/nvidia/xorg/libglx.so.1
+        ln -sf /var/run/nvidia/xorg/libglx.so.1 /usr/lib/nvidia/xorg/libglx.so.1
 	    
         # link GL config files
 	    mkdir -p /var/run/nvidia/configs
@@ -468,13 +473,13 @@ then
         # finally copy kernel modules & run them
 	    mkdir -p /var/run/nvidia/modules
 	    ln -sf /usr/share/nvidia/modules/nvidia390-legacy.ko /var/run/nvidia/modules/nvidia.ko
-        ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/extra/nvidia.ko
+        ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/updates/nvidia.ko
 	    ln -sf /usr/share/nvidia/modules/nvidia390-modeset-legacy.ko /var/run/nvidia/modules/nvidia-modeset.ko
-        ln -sf /var/run/nvidia/modules/nvidia-modeset.ko /lib/modules/$LINUX_VER/extra/nvidia-modeset.ko
+        ln -sf /var/run/nvidia/modules/nvidia-modeset.ko /lib/modules/$LINUX_VER/updates/nvidia-modeset.ko
 	    ln -sf /usr/share/nvidia/modules/nvidia390-drm-legacy.ko /var/run/nvidia/modules/nvidia-drm.ko
-        ln -sf /var/run/nvidia/modules/nvidia-drm.ko /lib/modules/$LINUX_VER/extra/nvidia-drm.ko
+        ln -sf /var/run/nvidia/modules/nvidia-drm.ko /lib/modules/$LINUX_VER/updates/nvidia-drm.ko
 	    ln -sf /usr/share/nvidia/modules/nvidia390-uvm-legacy.ko /var/run/nvidia/modules/nvidia-uvm.ko
-        ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/extra/nvidia-uvm.ko
+        ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/updates/nvidia-uvm.ko
 	    for m in ipmi_devintf nvidia nvidia_modeset nvidia_uvm nvidia_drm ; do modprobe $m ; done
     else
         # 470 version
@@ -500,19 +505,20 @@ then
         # finally link the kernel modules & run them
         mkdir -p /var/run/nvidia/modules
         ln -sf /usr/share/nvidia/modules/nvidia-legacy.ko /var/run/nvidia/modules/nvidia.ko
-        ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/extra/nvidia.ko
+        ln -sf /var/run/nvidia/modules/nvidia.ko /lib/modules/$LINUX_VER/updates/nvidia.ko
         ln -sf /usr/share/nvidia/modules/nvidia-modeset-legacy.ko /var/run/nvidia/modules/nvidia-modeset.ko
-        ln -sf /var/run/nvidia/modules/nvidia-modeset.ko /lib/modules/$LINUX_VER/extra/nvidia-modeset.ko
+        ln -sf /var/run/nvidia/modules/nvidia-modeset.ko /lib/modules/$LINUX_VER/updates/nvidia-modeset.ko
         ln -sf /usr/share/nvidia/modules/nvidia-drm-legacy.ko /var/run/nvidia/modules/nvidia-drm.ko
-        ln -sf /var/run/nvidia/modules/nvidia-drm.ko /lib/modules/$LINUX_VER/extra/nvidia-drm.ko
+        ln -sf /var/run/nvidia/modules/nvidia-drm.ko /lib/modules/$LINUX_VER/updates/nvidia-drm.ko
         ln -sf /usr/share/nvidia/modules/nvidia-uvm-legacy.ko /var/run/nvidia/modules/nvidia-uvm.ko
-        ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/extra/nvidia-uvm.ko
+        ln -sf /var/run/nvidia/modules/nvidia-uvm.ko /lib/modules/$LINUX_VER/updates/nvidia-uvm.ko
         for m in ipmi_devintf nvidia nvidia_modeset nvidia_uvm nvidia_drm ; do modprobe $m ; done
     fi
 
 elif test "${MODE}" = "nouveau"
 then
-    echo "Using OpenSource Mesa Nouveau driver" > $LOG
+    echo "Using OpenSource Mesa Nouveau driver" > $log
     test -e /var/run/nvidia/modprobe/blacklist-nouveau.conf && rm -f /var/run/nvidia/modprobe/blacklist-nouveau.conf
     test -e /var/run/nvidia/modprobe/nvidia-drm.conf        && rm -f /var/run/nvidia/modprobe/nvidia-drm.conf
 fi
+echo "The end... or is it..." >> $log

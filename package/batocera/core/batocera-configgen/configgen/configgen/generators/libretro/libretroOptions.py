@@ -195,7 +195,7 @@ def generateCoreSettings(coreSettings, system, rom, guns):
                 coreSettings.save('vice_joyport_type', '"1"')
         # Keyboard Pass-through for Pad2Key
         if system.isOptSet('vice_keyboard_pass_through'):
-            coreSettings.save('vice_physical_keyboard_pass_through', '"' + system.config['keyboard_pass_through'] + '"')
+            coreSettings.save('vice_physical_keyboard_pass_through', '"' + system.config['vice_keyboard_pass_through'] + '"')
         else:
             coreSettings.save('vice_physical_keyboard_pass_through', '"disabled"')
 
@@ -1104,6 +1104,11 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('mupen64plus-Framerate', '"' + system.config['mupen64plus-Framerate'] + '"')
         else:
             coreSettings.save('mupen64plus-Framerate', '"Original"')
+        # Parallel-RDP Upscaling
+        if system.isOptSet('mupen64plus-parallel-rdp-upscaling'):
+            coreSettings.save('mupen64plus-parallel-rdp-upscaling', '"' + system.config['mupen64plus-parallel-rdp-upscaling'] + '"')
+        else:
+            coreSettings.save('mupen64plus-parallel-rdp-upscaling', '"1x"')
 
     if (system.config['core'] == 'parallel_n64'):
         coreSettings.save('parallel-n64-64dd-hardware', '"disabled"')
@@ -1195,6 +1200,21 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('desmume_screens_layout', '"top/bottom"')
 
     if (system.config['core'] == 'melonds'):
+        # Console Mode
+        if system.isOptSet('melonds_console_mode'):
+            coreSettings.save('melonds_console_mode', '"' + system.config['melonds_console_mode'] + '"')
+        else:
+            coreSettings.save('melonds_console_mode', '"DS"')
+        # Language
+        if system.isOptSet('melonds_language'):
+            coreSettings.save('melonds_language', '"' + system.config['melonds_language'] + '"')
+        else:
+            coreSettings.save('melonds_language', '"English"')
+        # External Firmware
+        if system.isOptSet('melonds_use_fw_settings'):
+            coreSettings.save('melonds_use_fw_settings', '"' + system.config['melonds_use_fw_settings'] + '"')
+        else:
+            coreSettings.save('melonds_use_fw_settings', '"disable"')
         # Enable threaded rendering
         coreSettings.save('melonds_threaded_renderer', '"enabled"')
         # Emulate Stylus on Right Stick
@@ -1224,7 +1244,6 @@ def generateCoreSettings(coreSettings, system, rom, guns):
                 coreSettings.save('melonds_screen_layout', '"' + system.config['melonds_screen_layout'] + '"')
         else:
             coreSettings.save('melonds_screen_layout',     '"Top/Bottom"')
-
 
     # Nintendo Gameboy (Dual Screen) / GB Color (Dual Screen)
     if (system.config['core'] == 'tgbdual'):
@@ -2284,17 +2303,9 @@ def generateCoreSettings(coreSettings, system, rom, guns):
         else:
             coreSettings.save('pcsx_rearmed_frameskip', '"0"')
         # Enhanced resolution at the cost of lower performance
-        # Speed hack causes game glitches.
-        if system.isOptSet('neon_enhancement') and system.config['neon_enhancement'] != 'disabled':
-            if system.config['neon_enhancement'] == 'enabled':
-                coreSettings.save('pcsx_rearmed_neon_enhancement_enable',  '"enabled"')
-                coreSettings.save('pcsx_rearmed_neon_enhancement_no_main', '"disabled"')
-            elif system.config['neon_enhancement'] == 'enabled_with_speedhack':
-                coreSettings.save('pcsx_rearmed_neon_enhancement_enable',  '"enabled"')
-                coreSettings.save('pcsx_rearmed_neon_enhancement_no_main', '"enabled"')
-        else:
-            coreSettings.save('pcsx_rearmed_neon_enhancement_enable',  '"disabled"')
-            coreSettings.save('pcsx_rearmed_neon_enhancement_no_main', '"disabled"')
+        # Speed hack causes game glitches - turn it off.
+        coreSettings.save('pcsx_rearmed_neon_enhancement_enable',  '"disabled"')
+        coreSettings.save('pcsx_rearmed_neon_enhancement_no_main', '"disabled"')
         # Multitap
         if system.isOptSet('pcsx_rearmed_multitap'):
             coreSettings.save('pcsx_rearmed_multitap', '"' + system.config['pcsx_rearmed_multitap'] + '"')
@@ -2381,13 +2392,11 @@ def generateCoreSettings(coreSettings, system, rom, guns):
         else:
             coreSettings.save('mrboom-aspect', '"Native"')
         # Monsters
-        if system.isOptSet('mrboom-nomonster') and system.config['mrboom-nomonster'] == "True":
-            coreSettings.save('mrboom-nomonster', '"ON"')
+        if system.isOptSet('mrboom-nomonster'):
+            coreSettings.save('mrboom-nomonster', '"' + system.config['mrboom-nomonster'] + '"')
         else:
-            coreSettings.save('mrboom-nomonster', '"OFF"')
-
-
-
+            coreSettings.save('mrboom-nomonster', '"ON"')
+    
     # Custom : Allow the user to configure directly retroarchcore.cfg via batocera.conf via lines like : snes.retroarchcore.opt=val
     for user_config in system.config:
         if user_config[:14] == "retroarchcore.":
